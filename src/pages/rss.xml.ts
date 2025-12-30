@@ -29,7 +29,7 @@ export async function GET(context: APIContext) {
       pubDate: post.data.publishedDate,
       description: post.data.description,
       author: post.data.author,
-      link: `/blog/${post.id}/`,
+      link: `/blog/${post.slug}/`,
     })),
     customData: `<language>en-us</language>`,
   });

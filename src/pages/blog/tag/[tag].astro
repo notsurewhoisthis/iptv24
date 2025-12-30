@@ -96,7 +96,7 @@ const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
         {
           filteredPosts.map((post) => (
             <article class="group">
-              <a href={`/blog/${post.id}`} class="block">
+              <a href={`/blog/${post.slug}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">
                   <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
                     {post.data.image ? (
