@@ -7,6 +7,7 @@ import { siteConfig } from '@/config';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   image?: string;
   type?: 'website' | 'article';
@@ -15,10 +16,15 @@ interface Props {
   modifiedDate?: Date;
   author?: string;
   tags?: string[];
+  noindex?: boolean;
+  faq?: { question: string; answer: string }[];
+  howTo?: { name: string; steps: { name: string; text: string }[] };
+  softwareApp?: Record<string, unknown> | null;
 }
 
 const {
   title,
+  seoTitle,
   description,
   image,
   type = 'website',
@@ -26,6 +32,10 @@ const {
   modifiedDate,
   author,
   tags,
+  noindex,
+  faq,
+  howTo,
+  softwareApp,
 } = Astro.props;
 
 const { announcement } = siteConfig;
@@ -33,6 +43,7 @@ const { announcement } = siteConfig;
 
 <BaseLayout
   title={title}
+  seoTitle={seoTitle}
   description={description}
   image={image}
   type={type}
@@ -40,6 +51,10 @@ const { announcement } = siteConfig;
   modifiedDate={modifiedDate}
   author={author}
   tags={tags}
+  noindex={noindex}
+  faq={faq}
+  howTo={howTo}
+  softwareApp={softwareApp}
 >
   <div class="flex flex-col min-h-screen">
     {

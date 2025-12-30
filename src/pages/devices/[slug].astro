@@ -1,0 +1,32 @@
+---
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { siteConfig } from '@/config';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('devices', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug ?? entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const tags = entry.data.keywords?.length ? entry.data.keywords : entry.data.tags;
+---
+
+<BlogLayout
+  title={`${entry.data.title} - ${siteConfig.name}`}
+  description={entry.data.description}
+  publishedDate={entry.data.publishedDate}
+  author={entry.data.author}
+  image={entry.data.image}
+  tags={tags}
+  faq={entry.data.faq}
+  howTo={entry.data.howTo}
+  content={entry.body || ''}
+>
+  <Content slot="content" />
+</BlogLayout>

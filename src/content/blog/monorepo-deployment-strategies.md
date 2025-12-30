@@ -5,7 +5,7 @@ publishedDate: 2025-09-01
 author: "Sarah Mitchell"
 image: "/images/blog/monorepo-deploy.webp"
 tags: ["deployment", "tutorial", "development"]
-draft: false
+draft: true
 ---
 
 Monorepos are increasingly popular, and for good reason. They simplify dependency management, enable atomic changes across services, and improve code sharing. But they also introduce deployment challenges.

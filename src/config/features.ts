@@ -14,14 +14,14 @@ export const features: FeatureFlags = {
   blog: true,
 
   /** Enable documentation section and /docs routes */
-  docs: true,
+  docs: false,
 
   /** Enable changelog section and /changelog route */
-  changelog: true,
+  changelog: false,
 
   /** Enable testimonials section and /testimonials route */
-  testimonials: true,
+  testimonials: false,
 
   /** Enable roadmap section and /roadmap route */
-  roadmap: true,
+  roadmap: false,
 };

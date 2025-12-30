@@ -1,0 +1,195 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import {
+  androidAppsList,
+  androidAppsUpdatedAt,
+  androidAppsSource,
+  getAndroidAppBySlug,
+  getAndroidAppSummary,
+  getAndroidHighlights,
+  getAndroidDescriptionExcerpt,
+  getAndroidFeatureHighlights,
+  slugifyAndroid,
+} from '@/data/android-apps';
+import { siteConfig } from '@/config';
+
+export async function getStaticPaths() {
+  return androidAppsList.map((app) => ({ params: { slug: slugifyAndroid(app.title) } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const app = getAndroidAppBySlug(slug);
+if (!app) {
+  throw new Error(`Android app not found: ${slug}`);
+}
+
+const excerpt = getAndroidDescriptionExcerpt(app);
+const features = getAndroidFeatureHighlights(app);
+const baseSeoTitle = `${app.title} Android IPTV App Review`;
+const seoTitle = baseSeoTitle.length > 60 ? `${baseSeoTitle.slice(0, 57).trimEnd()}...` : baseSeoTitle;
+const softwareAppSchema = {
+  name: app.title,
+  operatingSystem: 'Android',
+  applicationCategory: 'Entertainment',
+  offers: {
+    '@type': 'Offer',
+    price: app.price,
+    priceCurrency: app.currency || 'USD',
+    url: app.url,
+  },
+  softwareVersion: app.version,
+  dateModified: app.updated,
+  aggregateRating:
+    app.ratings && app.score
+      ? {
+          '@type': 'AggregateRating',
+          ratingValue: app.score,
+          ratingCount: app.ratings,
+        }
+      : undefined,
+  publisher: {
+    '@type': 'Organization',
+    name: app.developer,
+  },
+  url: app.url,
+};
+---
+
+<MarketingLayout
+  title={`${app.title} - Android IPTV App`}
+  seoTitle={seoTitle}
+  description={`Google Play rating, update history, and install data for ${app.title}.`}
+  softwareApp={softwareAppSchema}
+>
+  <section class="py-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8">
+        <p class="text-sm uppercase tracking-[0.2em] text-text-muted">Android IPTV app</p>
+        <h1 class="mt-3 text-4xl font-bold text-text">{app.title}</h1>
+        <p class="mt-3 text-lg text-text-muted">{getAndroidAppSummary(app)}</p>
+      </header>
+
+      <div class="rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Google Play snapshot</h2>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          {getAndroidHighlights(app).map((item) => (
+            <div class="rounded-md border border-border p-4 text-sm text-text-muted">{item}</div>
+          ))}
+          <div class="rounded-md border border-border p-4 text-sm text-text-muted">
+            Reviews: {app.reviews ? app.reviews.toLocaleString() : 'N/A'}
+          </div>
+          <div class="rounded-md border border-border p-4 text-sm text-text-muted">
+            Version: {app.version || 'Varies'}
+          </div>
+          <div class="rounded-md border border-border p-4 text-sm text-text-muted">
+            Content rating: {app.contentRating || 'Not specified'}
+          </div>
+          <div class="rounded-md border border-border p-4 text-sm text-text-muted">
+            Ads: {app.adSupported ? 'Ad-supported' : 'No ads listed'}
+          </div>
+          <div class="rounded-md border border-border p-4 text-sm text-text-muted">
+            In-app purchases: {app.offersIAP ? app.IAPRange || 'Available' : 'None listed'}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Listing summary</h2>
+        {excerpt ? (
+          <p class="mt-3 text-text-muted">{excerpt}</p>
+        ) : (
+          <p class="mt-3 text-text-muted">
+            This listing does not provide a full description in our data pull. Use the metadata signals to compare this app.
+          </p>
+        )}
+      </div>
+
+      {features.length > 0 && (
+        <div class="mt-8 rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Feature highlights from the listing</h2>
+          <ul class="mt-3 space-y-2 text-sm text-text-muted">
+            {features.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {app.recentChanges && (
+        <div class="mt-8 rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Recent changes</h2>
+          <p class="mt-3 text-sm text-text-muted">{app.recentChanges}</p>
+        </div>
+      )}
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">IPTV24 testing notes</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li>We check playlist import flows (M3U and Xtream Codes) and EPG load time.</li>
+          <li>We track channel switching speed and stability during 30 to 60 minute viewing sessions.</li>
+          <li>We log Android version and app build, then retest after major updates.</li>
+        </ul>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">What to verify</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li>M3U or Xtream Codes support in the app description.</li>
+          <li>EPG input and time shift controls.</li>
+          <li>Buffer length settings for live sports.</li>
+          <li>Clear pricing and renewal terms.</li>
+        </ul>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Developer contacts</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li>Website: {app.developerWebsite ? <a class="text-primary hover:underline" href={app.developerWebsite}>{app.developerWebsite}</a> : 'Not listed'}</li>
+          <li>Email: {app.developerEmail || 'Not listed'}</li>
+          <li>Address: {app.developerAddress || 'Not listed'}</li>
+        </ul>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Related resources</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li>
+            <a class="text-primary hover:underline" href="/troubleshooting/platforms/android-mobile/">
+              Android phone and tablet troubleshooting
+            </a>
+          </li>
+          <li>
+            <a class="text-primary hover:underline" href="/comparisons/">
+              Compare IPTV apps and devices
+            </a>
+          </li>
+          <li>
+            <a class="text-primary hover:underline" href="/devices/categories/streaming-sticks/">
+              Best streaming sticks for Android IPTV apps
+            </a>
+          </li>
+          <li>
+            <a class="text-primary hover:underline" href="/guides/">
+              IPTV setup and playlist guides
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Sources</h2>
+        <p class="mt-2 text-sm text-text-muted">
+          Google Play listing: <a class="text-primary hover:underline" href={app.url}>{app.url}</a>
+        </p>
+        <p class="mt-2 text-xs text-text-muted">
+          Data updated: {new Date(androidAppsUpdatedAt).toLocaleString('en-US')}. Source:
+          <a class="text-primary hover:underline ml-1" href={androidAppsSource}>Google Play search</a>.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <a class="text-primary hover:underline" href="/apps/android/">Back to Android rankings</a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

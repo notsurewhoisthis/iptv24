@@ -1,0 +1,2106 @@
+export type DeviceCategory =
+  | 'streaming-sticks'
+  | 'streaming-boxes'
+  | 'smart-tvs'
+  | 'mobile-devices';
+
+export type DeviceSpecEntry = {
+  key: string;
+  label: string;
+  value: string;
+};
+
+export type DeviceSource = {
+  label: string;
+  url: string;
+};
+
+export type DeviceReview = {
+  summary: string;
+  bestFor: string[];
+  limitations: string[];
+  iptvNotes: string[];
+  score: {
+    overall: number;
+    playback: number;
+    network: number;
+    value: number;
+  };
+};
+
+export type DeviceSpec = {
+  slug: string;
+  name: string;
+  category: DeviceCategory;
+  releaseYear: number;
+  os: string;
+  specs: DeviceSpecEntry[];
+  notes: string[];
+  review?: DeviceReview;
+  sources: DeviceSource[];
+};
+
+export const deviceCategories = [
+  {
+    category: 'streaming-sticks',
+    label: 'Streaming Sticks',
+    description: 'Compact HDMI sticks with dedicated streaming apps and IPTV playback.',
+    comparisonSlug: 'best-4k-streaming-sticks',
+  },
+  {
+    category: 'streaming-boxes',
+    label: 'Streaming Boxes',
+    description: 'Set-top boxes with stronger chips, Ethernet options, and stable 4K playback.',
+    comparisonSlug: 'streaming-boxes-for-iptv',
+  },
+  {
+    category: 'smart-tvs',
+    label: 'Smart TVs (Streaming Devices)',
+    description: 'Smart TV platforms and models with IPTV apps built in.',
+    comparisonSlug: 'oled-vs-qled-for-iptv',
+  },
+  {
+    category: 'mobile-devices',
+    label: 'Mobile Devices',
+    description: 'Phones and tablets that handle IPTV playlists on the go.',
+    comparisonSlug: 'flagship-mobile-iptv-devices',
+  },
+] as const;
+
+const streamingSticks: DeviceSpec[] = [
+  {
+    slug: 'fire-tv-stick-4k-max-2021',
+    name: 'Amazon Fire TV Stick 4K Max (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Wi-Fi 6 helps stabilize high-bitrate live streams.',
+      'Supports Dolby Vision for compatible IPTV feeds.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08MQZXN1X' },
+    ],
+  },
+  {
+    slug: 'fire-tv-stick-4k-max-2023',
+    name: 'Amazon Fire TV Stick 4K Max (2023)',
+    category: 'streaming-sticks',
+    releaseYear: 2023,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'storage', label: 'Storage', value: '16GB' },
+    ],
+    notes: [
+      'Wi-Fi 6E reduces congestion on crowded networks.',
+      'Extra storage helps with large IPTV app caches.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B0B8TK6BBZ' },
+    ],
+  },
+  {
+    slug: 'fire-tv-stick-4k-2021',
+    name: 'Amazon Fire TV Stick 4K (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Balanced option for 4K IPTV without premium pricing.',
+      'Wi-Fi 6 improves throughput for multi-room streaming.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08XVYZ1Y5' },
+    ],
+  },
+  {
+    slug: 'fire-tv-stick-4k-2018',
+    name: 'Amazon Fire TV Stick 4K (2018)',
+    category: 'streaming-sticks',
+    releaseYear: 2018,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Older Wi-Fi 5 radio can struggle on congested networks.',
+      'Still capable for 4K IPTV if the signal is strong.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B079QHML21' },
+    ],
+  },
+  {
+    slug: 'fire-tv-stick-2021',
+    name: 'Amazon Fire TV Stick (3rd Gen, 2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Solid 1080p option for smaller TVs.',
+      'HDR10+ support helps on compatible displays.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08C1W5N87' },
+    ],
+  },
+  {
+    slug: 'fire-tv-stick-lite-2020',
+    name: 'Amazon Fire TV Stick Lite (2020)',
+    category: 'streaming-sticks',
+    releaseYear: 2020,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Budget-friendly stick for basic IPTV playlists.',
+      'Pairs well with smaller live channel lists.',
+    ],
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B07YNLBS7R' },
+    ],
+  },
+  {
+    slug: 'roku-streaming-stick-4k-2021',
+    name: 'Roku Streaming Stick 4K (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Roku OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Roku OS is lightweight and responsive with IPTV apps.',
+      'Dolby Vision support helps on premium panels.',
+    ],
+    sources: [
+      { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-4k' },
+    ],
+  },
+  {
+    slug: 'roku-streaming-stick-4k-plus-2021',
+    name: 'Roku Streaming Stick 4K+ (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Roku OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Includes Roku Voice Remote Pro for faster search.',
+      'Strong 4K stick for straightforward IPTV playback.',
+    ],
+    sources: [
+      { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-4k-plus' },
+    ],
+  },
+  {
+    slug: 'roku-streaming-stick-plus-2017',
+    name: 'Roku Streaming Stick+ (2017)',
+    category: 'streaming-sticks',
+    releaseYear: 2017,
+    os: 'Roku OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Older model but still handles 4K IPTV if streams are stable.',
+      'Limited HDR formats compared to newer sticks.',
+    ],
+    sources: [
+      { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-plus' },
+    ],
+  },
+  {
+    slug: 'chromecast-google-tv-4k-2020',
+    name: 'Chromecast with Google TV (4K, 2020)',
+    category: 'streaming-sticks',
+    releaseYear: 2020,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Google TV interface is strong for app discovery.',
+      'Works well with Android-based IPTV players.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/chromecast_google_tv' },
+    ],
+  },
+  {
+    slug: 'chromecast-google-tv-hd-2022',
+    name: 'Chromecast with Google TV (HD, 2022)',
+    category: 'streaming-sticks',
+    releaseYear: 2022,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HLG' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Affordable HD option for IPTV on secondary TVs.',
+      'HDR is limited to select displays and apps.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/chromecast_google_tv?hl=en-US' },
+    ],
+  },
+  {
+    slug: 'xiaomi-mi-tv-stick-4k-2022',
+    name: 'Xiaomi Mi TV Stick 4K (2022)',
+    category: 'streaming-sticks',
+    releaseYear: 2022,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Android TV gives access to IPTV players on Google Play.',
+      'Good option for compact 4K setups.',
+    ],
+    sources: [
+      { label: 'Xiaomi specs', url: 'https://www.mi.com/global/product/xiaomi-tv-stick-4k/' },
+    ],
+  },
+  {
+    slug: 'xiaomi-mi-tv-stick-2019',
+    name: 'Xiaomi Mi TV Stick (2019)',
+    category: 'streaming-sticks',
+    releaseYear: 2019,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Good budget stick for basic IPTV playlists.',
+      'Not ideal for large EPG files or 4K streams.',
+    ],
+    sources: [
+      { label: 'Xiaomi specs', url: 'https://www.mi.com/global/mi-tv-stick/' },
+    ],
+  },
+  {
+    slug: 'realme-4k-smart-google-tv-stick-2021',
+    name: 'realme 4K Smart Google TV Stick (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HLG' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Google TV UI is consistent with Android IPTV apps.',
+      'HDR10 support helps with compatible streams.',
+    ],
+    sources: [
+      { label: 'realme specs', url: 'https://www.realme.com/global/realme-4k-smart-google-tv-stick' },
+    ],
+  },
+  {
+    slug: 'mecool-kd3-2021',
+    name: 'MECOOL KD3 with Google TV (2021)',
+    category: 'streaming-sticks',
+    releaseYear: 2021,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Google TV supports Play Store IPTV players.',
+      'Compact stick with basic HDR support.',
+    ],
+    sources: [
+      { label: 'MECOOL specs', url: 'https://www.mecool.com/products/mecool-kd3-android-tv-stick' },
+    ],
+  },
+  {
+    slug: 'tivo-stream-4k-2020',
+    name: 'TiVo Stream 4K (2020)',
+    category: 'streaming-sticks',
+    releaseYear: 2020,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Android TV gives broad IPTV app coverage.',
+      'Dolby Vision helps with premium HDR feeds.',
+    ],
+    sources: [
+      { label: 'TiVo specs', url: 'https://www.tivo.com/products/stream-4k' },
+    ],
+  },
+  {
+    slug: 'onn-google-tv-4k-stick-2023',
+    name: 'onn. Google TV 4K Streaming Stick (2023)',
+    category: 'streaming-sticks',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Budget 4K option with Google TV interface.',
+      'Good entry stick for IPTV playlists.',
+    ],
+    sources: [
+      { label: 'onn specs', url: 'https://www.walmart.com/ip/onn-Google-TV-4K-Streaming-Stick/1179519219' },
+    ],
+  },
+  {
+    slug: 'onn-google-tv-fhd-stick-2023',
+    name: 'onn. Google TV Full HD Streaming Stick (2023)',
+    category: 'streaming-sticks',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'HD-focused stick for smaller TVs and monitors.',
+      'Good for lightweight IPTV lists.',
+    ],
+    sources: [
+      { label: 'onn specs', url: 'https://www.walmart.com/ip/onn-Google-TV-Full-HD-Streaming-Stick/1924244290' },
+    ],
+  },
+  {
+    slug: 'dynalink-tv-dongle-2020',
+    name: 'Dynalink TV Dongle (2020)',
+    category: 'streaming-sticks',
+    releaseYear: 2020,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: '8GB' },
+    ],
+    notes: [
+      'Android TV interface keeps IPTV app selection broad.',
+      'Best when paired with strong Wi-Fi signal.',
+    ],
+    sources: [
+      { label: 'Dynalink specs', url: 'https://dynalink.life/products/dynalink-android-tv-box' },
+    ],
+  },
+  {
+    slug: 'chromecast-3rd-gen-2018',
+    name: 'Google Chromecast (3rd Gen, 2018)',
+    category: 'streaming-sticks',
+    releaseYear: 2018,
+    os: 'Cast',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '1080p' },
+      { key: 'hdr', label: 'HDR formats', value: 'None' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'storage', label: 'Storage', value: 'N/A' },
+    ],
+    notes: [
+      'Requires casting from a phone or tablet IPTV app.',
+      'Not ideal for large playlists without a remote UI.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/chromecast' },
+    ],
+  },
+];
+
+const streamingBoxes: DeviceSpec[] = [
+  {
+    slug: 'apple-tv-4k-3rd-gen-2022',
+    name: 'Apple TV 4K (3rd Gen, 2022)',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'tvOS',
+    specs: [
+      { key: 'chip', label: 'Chip', value: 'A15 Bionic' },
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR up to 60fps' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit (128GB model)' },
+    ],
+    notes: [
+      'Fast chip helps with large playlists and EPG loads.',
+      'HDR10+ support adds compatibility with newer TVs.',
+    ],
+    review: {
+      summary:
+        'The fastest Apple TV 4K for IPTV playback, with smooth 4K switching and excellent HDR support.',
+      bestFor: [
+        'Large live channel lists with heavy EPG data.',
+        'Dolby Vision or HDR10+ streams on premium TVs.',
+        'Households that want a clean, ad-light tvOS interface.',
+      ],
+      limitations: [
+        'Ethernet is only included on the 128GB model.',
+        'tvOS app selection is smaller than Android TV.',
+        'No expandable storage for huge offline libraries.',
+      ],
+      iptvNotes: [
+        'Enable Match Frame Rate and Match Dynamic Range in tvOS for smoother motion.',
+        'Use Ethernet to reduce micro-buffering during peak hours.',
+        'Pair with JamRun IPTV for the best Apple ecosystem experience.',
+      ],
+      score: { overall: 9.4, playback: 9.6, network: 9.3, value: 8.6 },
+    },
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/apple-tv-4k/specs/' },
+    ],
+  },
+  {
+    slug: 'apple-tv-4k-2nd-gen-2021',
+    name: 'Apple TV 4K (2nd Gen, 2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'tvOS',
+    specs: [
+      { key: 'chip', label: 'Chip', value: 'A12 Bionic' },
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR up to 60fps' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Reliable 4K streaming with strong Wi-Fi 6 radio.',
+      'Good balance of price and IPTV performance.',
+    ],
+    review: {
+      summary:
+        'Still a top-tier tvOS box that handles 4K live IPTV reliably with strong Wi-Fi 6 stability.',
+      bestFor: [
+        '4K IPTV viewers who want Apple TV performance at a lower price.',
+        'Homes with strong Wi-Fi 6 coverage and smaller channel lists.',
+        'Users who prefer Apple’s remote and ecosystem integrations.',
+      ],
+      limitations: [
+        'No HDR10+ support for TVs that rely on that format.',
+        'Older chip can feel slower when syncing very large playlists.',
+        'Storage remains limited for heavy app caching.',
+      ],
+      iptvNotes: [
+        'Refresh the EPG after time zone changes to avoid offsets.',
+        'Disable heavy background downloads during live sports.',
+        'Use JamRun IPTV for consistent playlist support on tvOS.',
+      ],
+      score: { overall: 8.9, playback: 9.0, network: 8.8, value: 8.5 },
+    },
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/apple-tv-4k/specs/' },
+    ],
+  },
+  {
+    slug: 'apple-tv-4k-1st-gen-2017',
+    name: 'Apple TV 4K (1st Gen, 2017)',
+    category: 'streaming-boxes',
+    releaseYear: 2017,
+    os: 'tvOS',
+    specs: [
+      { key: 'chip', label: 'Chip', value: 'A10X Fusion' },
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR up to 60fps' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Older chip can lag on very large playlists.',
+      'Still solid for standard IPTV channel counts.',
+    ],
+    review: {
+      summary:
+        'A capable 4K Apple TV for smaller IPTV lists, but slower for huge EPG files and modern HDR formats.',
+      bestFor: [
+        'Standard 1080p or modest 4K IPTV channel lists.',
+        'Users upgrading from older HD streaming boxes.',
+        'Secondary TVs that do not need HDR10+.',
+      ],
+      limitations: [
+        'Wi-Fi 5 is more sensitive to congestion.',
+        'Older A10X chip can stutter during heavy EPG syncs.',
+        'No HDR10+ support.',
+      ],
+      iptvNotes: [
+        'Keep playlists trimmed and disable poster art for faster loads.',
+        'Prefer Ethernet for live sports.',
+        'Use a lightweight player with fast channel search.',
+      ],
+      score: { overall: 7.8, playback: 7.6, network: 7.8, value: 7.9 },
+    },
+    sources: [
+      { label: 'Apple specs', url: 'https://support.apple.com/en-us/HT208074' },
+    ],
+  },
+  {
+    slug: 'nvidia-shield-tv-pro-2019',
+    name: 'NVIDIA Shield TV Pro (2019)',
+    category: 'streaming-boxes',
+    releaseYear: 2019,
+    os: 'Android TV',
+    specs: [
+      { key: 'chip', label: 'Chip', value: 'NVIDIA Tegra X1+' },
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Powerful Android TV box for heavy IPTV workloads.',
+      'Gigabit Ethernet is ideal for 4K live channels.',
+    ],
+    review: {
+      summary:
+        'The most powerful Android TV box for IPTV power users, with consistent 4K playback and strong codec handling.',
+      bestFor: [
+        'Large IPTV playlists with heavy EPG metadata.',
+        'Users who want Android TV app flexibility and fast multitasking.',
+        '4K live sports where Ethernet stability matters.',
+      ],
+      limitations: [
+        'Premium price compared to newer Google TV boxes.',
+        'Hardware is older even though performance is still strong.',
+        'Fanless design can feel warm during long sessions.',
+      ],
+      iptvNotes: [
+        'Use Gigabit Ethernet for peak-hour stability.',
+        'Enable AI upscaling only if streams are stable.',
+        'Great fit for advanced players with multi-view features.',
+      ],
+      score: { overall: 9.1, playback: 9.4, network: 9.2, value: 8.2 },
+    },
+    sources: [
+      { label: 'NVIDIA specs', url: 'https://www.nvidia.com/en-us/shield/shield-tv-pro/' },
+    ],
+  },
+  {
+    slug: 'nvidia-shield-tv-2019',
+    name: 'NVIDIA Shield TV (2019)',
+    category: 'streaming-boxes',
+    releaseYear: 2019,
+    os: 'Android TV',
+    specs: [
+      { key: 'chip', label: 'Chip', value: 'NVIDIA Tegra X1+' },
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Tube-shaped Shield keeps performance strong for IPTV.',
+      'Dolby Vision helps with premium sports streams.',
+    ],
+    review: {
+      summary:
+        'A compact Shield that keeps Android TV performance strong, but with fewer expansion options than the Pro.',
+      bestFor: [
+        'Users who want Shield-level playback in a smaller form factor.',
+        'Dolby Vision TVs with fast-motion IPTV streams.',
+        'Android TV app libraries and sideloading flexibility.',
+      ],
+      limitations: [
+        'Less headroom for heavy multitasking compared to the Pro.',
+        'Fewer expansion options for local storage.',
+        'Wi-Fi 5 is more sensitive to crowded networks.',
+      ],
+      iptvNotes: [
+        'Pair with a wired connection if possible.',
+        'Keep app cache clean when using massive playlists.',
+        'Works best with lean channel lists and curated favorites.',
+      ],
+      score: { overall: 8.6, playback: 8.8, network: 8.4, value: 8.0 },
+    },
+    sources: [
+      { label: 'NVIDIA specs', url: 'https://www.nvidia.com/en-us/shield/shield-tv/' },
+    ],
+  },
+  {
+    slug: 'roku-ultra-2022',
+    name: 'Roku Ultra (2022)',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'Roku OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Roku OS is stable for IPTV apps with long playlists.',
+      'Wi-Fi 6 plus Ethernet gives flexible network options.',
+    ],
+    review: {
+      summary:
+        'A stable Roku box with fast app navigation and strong Wi-Fi 6 performance for IPTV.',
+      bestFor: [
+        'Roku households that want a simple IPTV experience.',
+        'Viewers who prefer a clean, ad-light interface.',
+        '4K IPTV streams that benefit from wired Ethernet.',
+      ],
+      limitations: [
+        'Roku has fewer IPTV apps than Android TV.',
+        'Advanced player settings are limited on some channels.',
+        'Power users may miss multi-view features.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for high-bitrate sports streams.',
+        'Keep channel lists trimmed to reduce load times.',
+        'Roku remotes are fast for channel zapping.',
+      ],
+      score: { overall: 8.6, playback: 8.5, network: 8.8, value: 8.1 },
+    },
+    sources: [
+      { label: 'Roku specs', url: 'https://www.roku.com/products/roku-ultra' },
+    ],
+  },
+  {
+    slug: 'roku-ultra-lt-2021',
+    name: 'Roku Ultra LT (2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'Roku OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Budget-friendly Ultra variant with strong IPTV stability.',
+      'Ethernet helps with consistent 4K live feeds.',
+    ],
+    review: {
+      summary:
+        'A lower-cost Roku Ultra that still delivers stable IPTV playback when paired with Ethernet.',
+      bestFor: [
+        'Budget-conscious Roku users who still want Ethernet.',
+        '4K streams where wired stability matters.',
+        'Simple channel lists without advanced app features.',
+      ],
+      limitations: [
+        'Wi-Fi 5 is less resilient on crowded networks.',
+        'Roku app selection remains narrower than Android TV.',
+        'Less performance headroom for large EPG files.',
+      ],
+      iptvNotes: [
+        'Prefer Ethernet for live sports.',
+        'Disable heavy artwork in IPTV apps if channel lists stall.',
+        'Use favorites to keep navigation fast.',
+      ],
+      score: { overall: 8.2, playback: 8.1, network: 8.4, value: 8.2 },
+    },
+    sources: [
+      { label: 'Roku specs', url: 'https://www.roku.com/products/roku-ultra-lt' },
+    ],
+  },
+  {
+    slug: 'fire-tv-cube-3rd-gen-2022',
+    name: 'Amazon Fire TV Cube (3rd Gen, 2022)',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Included adapter' },
+    ],
+    notes: [
+      'Fast Fire TV box with strong voice controls.',
+      'Wi-Fi 6E helps during peak streaming hours.',
+    ],
+    review: {
+      summary:
+        'A fast Fire TV box with strong Wi-Fi 6E performance, ideal for IPTV users who want Alexa controls.',
+      bestFor: [
+        'Fire TV households who want a premium streaming box.',
+        'Wi-Fi 6E networks with heavy device load.',
+        'Users who rely on voice search and quick channel switching.',
+      ],
+      limitations: [
+        'Amazon UI can feel busy compared to tvOS or Roku.',
+        'Some IPTV apps require extra setup steps.',
+        'Ethernet uses an adapter rather than a built-in port.',
+      ],
+      iptvNotes: [
+        'Use the Ethernet adapter for stable 4K streams.',
+        'Disable background app auto-updates during live events.',
+        'Keep cache clean on heavy playlist updates.',
+      ],
+      score: { overall: 8.7, playback: 8.7, network: 8.9, value: 8.0 },
+    },
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B09B8V1LZ3' },
+    ],
+  },
+  {
+    slug: 'fire-tv-cube-2nd-gen-2019',
+    name: 'Amazon Fire TV Cube (2nd Gen, 2019)',
+    category: 'streaming-boxes',
+    releaseYear: 2019,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Included adapter' },
+    ],
+    notes: [
+      'Older Cube still supports 4K HDR IPTV streams.',
+      'Ethernet adapter helps with steady throughput.',
+    ],
+    review: {
+      summary:
+        'A solid Fire TV box for IPTV with Dolby Vision support, though it lacks newer Wi-Fi 6E hardware.',
+      bestFor: [
+        'Fire TV users who want 4K HDR without the latest pricing.',
+        'Ethernet-based IPTV setups with steady throughput.',
+        'Voice-driven navigation and Alexa routines.',
+      ],
+      limitations: [
+        'Wi-Fi 5 is less resilient in congested apartments.',
+        'Older processor can slow down large guide loads.',
+        'UI promotions can distract from pure IPTV use.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for live sports and multi-room streaming.',
+        'Clear app cache after playlist updates.',
+        'Keep channel lists curated for faster navigation.',
+      ],
+      score: { overall: 7.9, playback: 7.8, network: 7.9, value: 8.0 },
+    },
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B07KGVB6D6' },
+    ],
+  },
+  {
+    slug: 'fire-tv-3rd-gen-2017',
+    name: 'Amazon Fire TV (3rd Gen, 2017)',
+    category: 'streaming-boxes',
+    releaseYear: 2017,
+    os: 'Fire OS',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Pendant design still handles IPTV at 4K.',
+      'HDR10 only compared to newer Dolby Vision models.',
+    ],
+    review: {
+      summary:
+        'An aging Fire TV model that can still handle basic 4K IPTV, but it shows its age on large playlists.',
+      bestFor: [
+        'Older Fire TV setups that need a simple IPTV box.',
+        'Smaller channel lists without heavy EPG graphics.',
+        'Users who already know the Fire OS interface.',
+      ],
+      limitations: [
+        'Older hardware is slower with huge channel lists.',
+        'HDR10 only and no modern Wi-Fi upgrades.',
+        'App updates can feel sluggish on newer versions.',
+      ],
+      iptvNotes: [
+        'Keep playlists small and disable poster art.',
+        'Ethernet helps minimize buffering.',
+        'Use lightweight IPTV apps with fast search.',
+      ],
+      score: { overall: 7.2, playback: 7.0, network: 7.4, value: 7.5 },
+    },
+    sources: [
+      { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B01N32NCPM' },
+    ],
+  },
+  {
+    slug: 'xiaomi-mi-box-s-2nd-gen-2023',
+    name: 'Xiaomi Mi Box S (2nd Gen, 2023)',
+    category: 'streaming-boxes',
+    releaseYear: 2023,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'USB adapter required' },
+    ],
+    notes: [
+      'Android TV with newer codec support for IPTV.',
+      'Wi-Fi 6 helps with higher bitrate playlists.',
+    ],
+    review: {
+      summary:
+        'A refreshed Android TV box with Wi-Fi 6 that handles 4K IPTV smoothly when paired with strong wireless.',
+      bestFor: [
+        'Android TV users who want a compact 4K IPTV box.',
+        'Wi-Fi 6 homes with strong router coverage.',
+        'Budget-friendly setups that still need Dolby Vision.',
+      ],
+      limitations: [
+        'Ethernet requires a USB adapter.',
+        'Storage is limited for very large app caches.',
+        'Performance can dip with oversized EPG files.',
+      ],
+      iptvNotes: [
+        'Use a wired adapter for peak-hour stability.',
+        'Trim EPG and poster art for faster loads.',
+        'Keep the OS updated for codec fixes.',
+      ],
+      score: { overall: 8.1, playback: 8.0, network: 8.2, value: 8.3 },
+    },
+    sources: [
+      { label: 'Xiaomi specs', url: 'https://www.mi.com/global/product/mi-box-s-2nd-gen/' },
+    ],
+  },
+  {
+    slug: 'xiaomi-mi-box-s-2016',
+    name: 'Xiaomi Mi Box S (2016)',
+    category: 'streaming-boxes',
+    releaseYear: 2016,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'USB adapter required' },
+    ],
+    notes: [
+      'Still a popular budget Android TV box.',
+      'Best for lighter IPTV playlists and smaller EPGs.',
+    ],
+    review: {
+      summary:
+        'A budget Android TV box that works for basic IPTV needs, but struggles with heavy playlists.',
+      bestFor: [
+        'Light channel lists and 1080p streaming.',
+        'Budget setups that already use Android TV apps.',
+        'Secondary TVs where performance demands are lower.',
+      ],
+      limitations: [
+        'Older Wi-Fi 5 hardware is less stable on busy networks.',
+        'Ethernet requires an adapter.',
+        'Performance lags with large guide files.',
+      ],
+      iptvNotes: [
+        'Keep playlists trimmed and avoid heavy artwork.',
+        'Restart the box after app updates.',
+        'Use a lightweight IPTV player when possible.',
+      ],
+      score: { overall: 7.0, playback: 6.8, network: 7.0, value: 7.6 },
+    },
+    sources: [
+      { label: 'Xiaomi specs', url: 'https://www.mi.com/global/mi-box-s/' },
+    ],
+  },
+  {
+    slug: 'nokia-streaming-box-8000',
+    name: 'Nokia Streaming Box 8000',
+    category: 'streaming-boxes',
+    releaseYear: 2020,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Android TV with strong Ethernet connection.',
+      'Stable for IPTV when paired with wired network.',
+    ],
+    review: {
+      summary:
+        'A reliable Android TV box with Gigabit Ethernet, ideal for IPTV users who value wired stability.',
+      bestFor: [
+        'IPTV users who stream via Ethernet.',
+        '4K channels with consistent bitrate needs.',
+        'Android TV households seeking a clean interface.',
+      ],
+      limitations: [
+        'Wi-Fi 5 is less competitive than newer boxes.',
+        'Less powerful than flagship Android TV hardware.',
+        'Smaller app caches can slow big playlists.',
+      ],
+      iptvNotes: [
+        'Use Gigabit Ethernet to minimize buffering.',
+        'Limit background app updates during live events.',
+        'Refresh EPG after time zone changes.',
+      ],
+      score: { overall: 7.8, playback: 7.7, network: 8.3, value: 7.8 },
+    },
+    sources: [
+      { label: 'Nokia specs', url: 'https://mynokia.com/streaming-devices/streaming-box-8000' },
+    ],
+  },
+  {
+    slug: 'nokia-streaming-box-8010',
+    name: 'Nokia Streaming Box 8010',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Updated Nokia box with Wi-Fi 6 support.',
+      'Good for high-bitrate IPTV streams on 4K TVs.',
+    ],
+    review: {
+      summary:
+        'A stronger Nokia box with Wi-Fi 6 and Gigabit Ethernet, delivering stable 4K IPTV playback.',
+      bestFor: [
+        'Wi-Fi 6 homes that still want Ethernet options.',
+        '4K IPTV with HDR streams.',
+        'Android TV users who want an understated UI.',
+      ],
+      limitations: [
+        'Availability varies by region.',
+        'Not as powerful as Shield-class hardware.',
+        'App caches can fill quickly with huge EPGs.',
+      ],
+      iptvNotes: [
+        'Keep storage clear for large playlists.',
+        'Use wired Ethernet for live sports.',
+        'Update firmware for app stability.',
+      ],
+      score: { overall: 8.3, playback: 8.2, network: 8.5, value: 8.0 },
+    },
+    sources: [
+      { label: 'Nokia specs', url: 'https://mynokia.com/streaming-devices/streaming-box-8010' },
+    ],
+  },
+  {
+    slug: 'mecool-km2-2021',
+    name: 'MECOOL KM2 (2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: '10/100' },
+    ],
+    notes: [
+      'Android TV with certified streaming apps.',
+      'Wired Ethernet helps with IPTV stability.',
+    ],
+    review: {
+      summary:
+        'A solid Android TV box for IPTV basics, with dependable wired performance but slower Ethernet speeds.',
+      bestFor: [
+        'Budget IPTV setups that still want wired connections.',
+        'Smaller channel lists on Android TV.',
+        'Users who value certified Android TV apps.',
+      ],
+      limitations: [
+        '10/100 Ethernet can bottleneck high-bitrate 4K streams.',
+        'Wi-Fi 5 is more sensitive to congestion.',
+        'Limited headroom for heavy multitasking.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for more consistent playback.',
+        'Disable heavy artwork in large playlists.',
+        'Restart after OS updates to avoid stutter.',
+      ],
+      score: { overall: 7.6, playback: 7.4, network: 7.5, value: 8.1 },
+    },
+    sources: [
+      { label: 'MECOOL specs', url: 'https://www.mecool.com/products/km2-android-tv-box' },
+    ],
+  },
+  {
+    slug: 'mecool-km2-plus-2022',
+    name: 'MECOOL KM2 Plus (2022)',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Wi-Fi 6 helps with denser wireless environments.',
+      'Strong Ethernet option for steady IPTV playback.',
+    ],
+    review: {
+      summary:
+        'A balanced Android TV box with Wi-Fi 6 and Gigabit Ethernet for steady IPTV streaming.',
+      bestFor: [
+        '4K IPTV viewers on Wi-Fi 6 networks.',
+        'Households that want both wireless and wired options.',
+        'Android TV app ecosystems without heavy customization.',
+      ],
+      limitations: [
+        'Performance is mid-tier compared to Shield-class hardware.',
+        'Storage fills quickly with heavy EPG caching.',
+        'Availability can vary by region.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for the most stable 4K streams.',
+        'Trim playlists if channel zapping slows down.',
+        'Keep the system updated for codec fixes.',
+      ],
+      score: { overall: 8.0, playback: 8.0, network: 8.3, value: 7.9 },
+    },
+    sources: [
+      { label: 'MECOOL specs', url: 'https://www.mecool.com/products/km2-plus' },
+    ],
+  },
+  {
+    slug: 'formuler-z11-pro-max-2022',
+    name: 'Formuler Z11 Pro Max (2022)',
+    category: 'streaming-boxes',
+    releaseYear: 2022,
+    os: 'Android',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'IPTV-focused box with strong playlist management.',
+      'Gigabit Ethernet supports large live channel loads.',
+    ],
+    review: {
+      summary:
+        'An IPTV-focused Android box that excels with large playlists and built-in IPTV tooling.',
+      bestFor: [
+        'Dedicated IPTV households with large channel groups.',
+        'Users who want built-in IPTV management tools.',
+        'Gigabit Ethernet setups for sports-heavy viewing.',
+      ],
+      limitations: [
+        'Runs Android (not Android TV), so app stores differ.',
+        'Interface can feel less polished than Google TV.',
+        'Updates depend on the vendor schedule.',
+      ],
+      iptvNotes: [
+        'Use wired Ethernet for best stability.',
+        'Keep backup playlists for quick recovery.',
+        'Pair with provider-specific EPG files for speed.',
+      ],
+      score: { overall: 8.5, playback: 8.6, network: 8.8, value: 7.8 },
+    },
+    sources: [
+      { label: 'Formuler specs', url: 'https://www.formuler.tv/z11-pro-max/' },
+    ],
+  },
+  {
+    slug: 'formuler-z10-pro-max-2021',
+    name: 'Formuler Z10 Pro Max (2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'Android',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Dedicated IPTV box with stable Ethernet.',
+      'Good option for large channel counts.',
+    ],
+    review: {
+      summary:
+        'A reliable IPTV-centric Android box with strong wired performance, but fewer modern wireless upgrades.',
+      bestFor: [
+        'Large IPTV channel lists that need steady Ethernet.',
+        'Users comfortable with Android-based IPTV boxes.',
+        'Households that prioritize playlist management features.',
+      ],
+      limitations: [
+        'Wi-Fi 5 is less consistent than Wi-Fi 6 options.',
+        'Older hardware shows slower app updates.',
+        'Android (not Android TV) limits mainstream app access.',
+      ],
+      iptvNotes: [
+        'Stick to Ethernet for consistent performance.',
+        'Keep channel groups trimmed for faster navigation.',
+        'Plan for manual app updates when needed.',
+      ],
+      score: { overall: 7.9, playback: 7.9, network: 8.2, value: 7.6 },
+    },
+    sources: [
+      { label: 'Formuler specs', url: 'https://www.formuler.tv/z10-pro-max/' },
+    ],
+  },
+  {
+    slug: 'homatics-box-r-4k-plus-2021',
+    name: 'Homatics Box R 4K Plus (2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'ethernet', label: 'Ethernet', value: 'Gigabit' },
+    ],
+    notes: [
+      'Premium Android TV box with strong codec support.',
+      'Wi-Fi 6 and Ethernet keep IPTV streams steady.',
+    ],
+    review: {
+      summary:
+        'A premium Android TV box with modern HDR support and strong networking for steady IPTV viewing.',
+      bestFor: [
+        'HDR IPTV streams on Dolby Vision TVs.',
+        'Wi-Fi 6 households that still want Ethernet.',
+        'Users who want Android TV app certification.',
+      ],
+      limitations: [
+        'Higher price than budget Android TV boxes.',
+        'Storage can fill up with large EPG files.',
+        'Availability can be limited in some regions.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for peak-hour live sports.',
+        'Trim playlists and artwork for faster loading.',
+        'Keep firmware updated for Dolby Vision fixes.',
+      ],
+      score: { overall: 8.4, playback: 8.4, network: 8.6, value: 7.8 },
+    },
+    sources: [
+      { label: 'Homatics specs', url: 'https://www.homatics.com/products/box-r-4k-plus' },
+    ],
+  },
+  {
+    slug: 'strong-leap-s1-2021',
+    name: 'STRONG LEAP-S1 (2021)',
+    category: 'streaming-boxes',
+    releaseYear: 2021,
+    os: 'Android TV',
+    specs: [
+      { key: 'maxVideo', label: 'Max video', value: '4K HDR' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+      { key: 'ethernet', label: 'Ethernet', value: '10/100' },
+    ],
+    notes: [
+      'Affordable Android TV box for IPTV basics.',
+      'Wired Ethernet helps with consistent playback.',
+    ],
+    review: {
+      summary:
+        'A budget Android TV box that handles basic IPTV, especially when paired with Ethernet.',
+      bestFor: [
+        'Entry-level IPTV setups on a budget.',
+        'Smaller channel lists without heavy EPG data.',
+        'Secondary TVs where advanced features are not needed.',
+      ],
+      limitations: [
+        '10/100 Ethernet can bottleneck high-bitrate streams.',
+        'Wi-Fi 5 is less resilient on busy networks.',
+        'Performance dips on very large playlists.',
+      ],
+      iptvNotes: [
+        'Use Ethernet for the most stable playback.',
+        'Keep EPG files trimmed and refresh manually.',
+        'Disable poster art for faster channel loads.',
+      ],
+      score: { overall: 7.4, playback: 7.2, network: 7.2, value: 8.0 },
+    },
+    sources: [
+      { label: 'STRONG specs', url: 'https://www.strong.tv/en/products/ip-tv-receivers/leap-s1' },
+    ],
+  },
+];
+
+const smartTvs: DeviceSpec[] = [
+  {
+    slug: 'lg-c3-oled-2023',
+    name: 'LG C3 OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'webOS 23',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'OLED contrast helps with dark live sports feeds.',
+      'webOS app library includes popular IPTV players.',
+    ],
+    sources: [
+      { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledc3-series-oled-tv' },
+    ],
+  },
+  {
+    slug: 'lg-g3-oled-2023',
+    name: 'LG G3 OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'webOS 23',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'Gallery OLED brightness helps with HDR IPTV.',
+      'Strong app support with webOS integrations.',
+    ],
+    sources: [
+      { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledg3-series-oled-tv' },
+    ],
+  },
+  {
+    slug: 'lg-b3-oled-2023',
+    name: 'LG B3 OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'webOS 23',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Value OLED with strong IPTV contrast.',
+      'WebOS still supports major IPTV apps.',
+    ],
+    sources: [
+      { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledb3-series-oled-tv' },
+    ],
+  },
+  {
+    slug: 'samsung-s90c-oled-2023',
+    name: 'Samsung S90C OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Tizen',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Strong OLED brightness for live sports IPTV.',
+      'Tizen app store includes popular IPTV apps.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/oled-tvs/samsung-oled-s90c/' },
+    ],
+  },
+  {
+    slug: 'samsung-s95c-oled-2023',
+    name: 'Samsung S95C OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Tizen',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Premium OLED with strong 4K upscaling.',
+      'Tizen UI is responsive for IPTV navigation.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/oled-tvs/samsung-oled-s95c/' },
+    ],
+  },
+  {
+    slug: 'samsung-qn90c-2023',
+    name: 'Samsung QN90C Neo QLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Tizen',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Neo QLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'High brightness for daytime IPTV viewing.',
+      'Neo QLED handles fast motion well.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/neo-qled-4k/65-class-qn90c-samsung-neo-qled-4k-smart-tv-2023-qn65qn90cafxza/' },
+    ],
+  },
+  {
+    slug: 'samsung-qn85c-2023',
+    name: 'Samsung QN85C Neo QLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Tizen',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Neo QLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Balanced Neo QLED for sports-heavy IPTV.',
+      'Good motion handling for live channels.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/neo-qled-4k/55-class-qn85c-samsung-neo-qled-4k-smart-tv-2023-qn55qn85cafxza/' },
+    ],
+  },
+  {
+    slug: 'sony-a80l-oled-2023',
+    name: 'Sony A80L OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'Google TV UI works well with IPTV apps.',
+      'Sony processing helps with low-bitrate streams.',
+    ],
+    sources: [
+      { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr65a80l' },
+    ],
+  },
+  {
+    slug: 'sony-a95l-oled-2023',
+    name: 'Sony A95L OLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'QD-OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'QD-OLED adds brightness for HDR IPTV feeds.',
+      'Google TV keeps app discovery consistent.',
+    ],
+    sources: [
+      { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr55a95l' },
+    ],
+  },
+  {
+    slug: 'sony-x90l-2023',
+    name: 'Sony X90L (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Full Array LED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'Full-array local dimming helps with IPTV contrast.',
+      'Google TV supports wide IPTV app selection.',
+    ],
+    sources: [
+      { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr65x90l' },
+    ],
+  },
+  {
+    slug: 'tcl-qm8-2023',
+    name: 'TCL QM8 (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Mini-LED QLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'High brightness for daytime IPTV viewing.',
+      'Google TV makes app installs simple.',
+    ],
+    sources: [
+      { label: 'TCL specs', url: 'https://www.tcl.com/us/en/products/home-theater/qm8-class' },
+    ],
+  },
+  {
+    slug: 'tcl-q7-2023',
+    name: 'TCL Q7 (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'QLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Value QLED with good HDR for IPTV sports.',
+      'Google TV interface stays consistent across apps.',
+    ],
+    sources: [
+      { label: 'TCL specs', url: 'https://www.tcl.com/us/en/products/home-theater/q7-class' },
+    ],
+  },
+  {
+    slug: 'hisense-u8k-2023',
+    name: 'Hisense U8K (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Mini-LED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'High brightness and local dimming help IPTV clarity.',
+      'Google TV gives access to IPTV players.',
+    ],
+    sources: [
+      { label: 'Hisense specs', url: 'https://www.hisense-usa.com/televisions/hisense-65-inch-u8-series-mini-led-uled-4k-google-tv-65u8k' },
+    ],
+  },
+  {
+    slug: 'hisense-u7k-2023',
+    name: 'Hisense U7K (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'ULED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Strong value for 4K IPTV streaming.',
+      'Google TV keeps IPTV apps easy to update.',
+    ],
+    sources: [
+      { label: 'Hisense specs', url: 'https://www.hisense-usa.com/televisions/hisense-65-inch-u7-series-4k-uled-google-tv-65u7k' },
+    ],
+  },
+  {
+    slug: 'vizio-mqx-2023',
+    name: 'Vizio MQX (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'SmartCast',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'QLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'SmartCast includes IPTV-compatible casting options.',
+      'Strong HDR support for live sports.',
+    ],
+    sources: [
+      { label: 'Vizio specs', url: 'https://www.vizio.com/en/tv/m-series/M65QX-J09' },
+    ],
+  },
+  {
+    slug: 'vizio-p-series-quantum-x-2021',
+    name: 'Vizio P-Series Quantum X (2021)',
+    category: 'smart-tvs',
+    releaseYear: 2021,
+    os: 'SmartCast',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Quantum LED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'High brightness helps in bright living rooms.',
+      'SmartCast is best paired with strong Wi-Fi.',
+    ],
+    sources: [
+      { label: 'Vizio specs', url: 'https://www.vizio.com/en/tv/p-series/P75QX-H1' },
+    ],
+  },
+  {
+    slug: 'philips-oled807-2022',
+    name: 'Philips OLED807 (2022)',
+    category: 'smart-tvs',
+    releaseYear: 2022,
+    os: 'Android TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Android TV supports IPTV apps from Google Play.',
+      'OLED panel helps with dark scenes in IPTV.',
+    ],
+    sources: [
+      { label: 'Philips specs', url: 'https://www.philips.co.uk/c-p/65OLED807_12/oled-8-series-4k-uhd-oled-android-tv' },
+    ],
+  },
+  {
+    slug: 'panasonic-lz2000-2022',
+    name: 'Panasonic LZ2000 (2022)',
+    category: 'smart-tvs',
+    releaseYear: 2022,
+    os: 'My Home Screen',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'OLED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'OLED panel supports strong HDR IPTV sources.',
+      'App availability varies by region.',
+    ],
+    sources: [
+      { label: 'Panasonic specs', url: 'https://www.panasonic.com/global/consumer/televisions/oled/lz2000.html' },
+    ],
+  },
+  {
+    slug: 'sharp-aquos-xled-2023',
+    name: 'Sharp AQUOS XLED (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Google TV',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'Mini-LED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'Dolby Vision, HDR10+' },
+      { key: 'refresh', label: 'Refresh rate', value: '120Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+    ],
+    notes: [
+      'Mini-LED brightness helps with live sports.',
+      'Google TV keeps IPTV apps up to date.',
+    ],
+    sources: [
+      { label: 'Sharp specs', url: 'https://sharpusa.com/For-Home/TV/AQUOS-XLED/65-Class-4K-Ultra-HD-QD-Mini-LED-Smart-TV-LC-65X3000U' },
+    ],
+  },
+  {
+    slug: 'insignia-fire-tv-4k-2023',
+    name: 'Insignia Fire TV 4K (2023)',
+    category: 'smart-tvs',
+    releaseYear: 2023,
+    os: 'Fire TV OS',
+    specs: [
+      { key: 'panel', label: 'Panel', value: 'LED 4K' },
+      { key: 'hdr', label: 'HDR formats', value: 'HDR10, HLG' },
+      { key: 'refresh', label: 'Refresh rate', value: '60Hz' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 5' },
+    ],
+    notes: [
+      'Fire TV OS makes IPTV app installs easy.',
+      'Good budget 4K set for IPTV basics.',
+    ],
+    sources: [
+      { label: 'Insignia specs', url: 'https://www.bestbuy.com/site/insignia-55-class-f30-series-led-4k-uhd-smart-fire-tv/6518240.p' },
+    ],
+  },
+];
+
+const mobileDevices: DeviceSpec[] = [
+  {
+    slug: 'iphone-15-pro',
+    name: 'iPhone 15 Pro',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.1-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A17 Pro' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'OLED panel keeps motion clean for sports.',
+      'Wi-Fi 6E helps with high bitrate streams.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-15-pro/specs/' },
+    ],
+  },
+  {
+    slug: 'iphone-15-pro-max',
+    name: 'iPhone 15 Pro Max',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.7-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A17 Pro' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Larger screen is ideal for live IPTV.',
+      'USB-C makes wired Ethernet adapters easier.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-15-pro/specs/' },
+    ],
+  },
+  {
+    slug: 'iphone-15',
+    name: 'iPhone 15',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.1-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A16 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Balanced iPhone for IPTV with strong decoding.',
+      'USB-C supports Ethernet adapters for stability.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-15/specs/' },
+    ],
+  },
+  {
+    slug: 'iphone-15-plus',
+    name: 'iPhone 15 Plus',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.7-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A16 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Large screen makes channel guides easier to read.',
+      'Long battery life helps with travel streaming.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-15/specs/' },
+    ],
+  },
+  {
+    slug: 'iphone-14',
+    name: 'iPhone 14',
+    category: 'mobile-devices',
+    releaseYear: 2022,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.1-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A15 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'Lightning' },
+    ],
+    notes: [
+      'Strong mid-tier iPhone for IPTV playback.',
+      'Wi-Fi 6 keeps live streams steady on modern routers.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-14/specs/' },
+    ],
+  },
+  {
+    slug: 'iphone-13',
+    name: 'iPhone 13',
+    category: 'mobile-devices',
+    releaseYear: 2021,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.1-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'A15 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'Lightning' },
+    ],
+    notes: [
+      'Still a solid IPTV phone for 1080p streams.',
+      'OLED panel keeps text sharp for channel guides.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://support.apple.com/kb/SP851' },
+    ],
+  },
+  {
+    slug: 'iphone-se-3rd-gen',
+    name: 'iPhone SE (3rd Gen)',
+    category: 'mobile-devices',
+    releaseYear: 2022,
+    os: 'iOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '4.7-inch LCD' },
+      { key: 'chip', label: 'Chip', value: 'A15 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'Lightning' },
+    ],
+    notes: [
+      'Compact phone for IPTV on the go.',
+      'Smaller screen makes guides harder to read.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/iphone-se/specs/' },
+    ],
+  },
+  {
+    slug: 'ipad-pro-11-m4-2024',
+    name: 'iPad Pro 11-inch (M4, 2024)',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'iPadOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '11-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'Apple M4' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C / Thunderbolt' },
+    ],
+    notes: [
+      'OLED display is ideal for long IPTV sessions.',
+      'Powerful chip handles multi-stream viewing.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/ipad-pro/specs/' },
+    ],
+  },
+  {
+    slug: 'ipad-pro-13-m4-2024',
+    name: 'iPad Pro 13-inch (M4, 2024)',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'iPadOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '13-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'Apple M4' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C / Thunderbolt' },
+    ],
+    notes: [
+      'Largest iPad display for IPTV multitasking.',
+      'Wi-Fi 6E helps with dense wireless environments.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/ipad-pro/specs/' },
+    ],
+  },
+  {
+    slug: 'ipad-air-m2-2024',
+    name: 'iPad Air (M2, 2024)',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'iPadOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '11-inch or 13-inch LCD' },
+      { key: 'chip', label: 'Chip', value: 'Apple M2' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Great balance of performance and price for IPTV.',
+      'Larger 13-inch option helps with guide readability.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/ipad-air/specs/' },
+    ],
+  },
+  {
+    slug: 'ipad-10th-gen-2022',
+    name: 'iPad (10th Gen, 2022)',
+    category: 'mobile-devices',
+    releaseYear: 2022,
+    os: 'iPadOS',
+    specs: [
+      { key: 'display', label: 'Display', value: '10.9-inch LCD' },
+      { key: 'chip', label: 'Chip', value: 'A14 Bionic' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Affordable tablet for IPTV and multi-room viewing.',
+      'LCD panel is fine for bright environments.',
+    ],
+    sources: [
+      { label: 'Apple specs', url: 'https://www.apple.com/ipad-10.9/specs/' },
+    ],
+  },
+  {
+    slug: 'galaxy-s24-ultra',
+    name: 'Samsung Galaxy S24 Ultra',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.8-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Snapdragon 8 Gen 3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Large screen and bright panel for live IPTV.',
+      'Wi-Fi 7 helps with dense networks and 4K streams.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24-ultra/specs/' },
+    ],
+  },
+  {
+    slug: 'galaxy-s24-plus',
+    name: 'Samsung Galaxy S24+',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.7-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Snapdragon 8 Gen 3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Balanced size for IPTV and media consumption.',
+      'Strong Wi-Fi for stable streaming.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24-plus/specs/' },
+    ],
+  },
+  {
+    slug: 'galaxy-s24',
+    name: 'Samsung Galaxy S24',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.2-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Snapdragon 8 Gen 3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Compact flagship with strong IPTV playback.',
+      'Wi-Fi 7 ready for next-gen routers.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24/specs/' },
+    ],
+  },
+  {
+    slug: 'galaxy-a54',
+    name: 'Samsung Galaxy A54',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.4-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Exynos 1380' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Mid-range option for IPTV on Android.',
+      'AMOLED panel helps with contrast in dark scenes.',
+    ],
+    sources: [
+      { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-a54-5g/specs/' },
+    ],
+  },
+  {
+    slug: 'pixel-8-pro',
+    name: 'Google Pixel 8 Pro',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.7-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'Google Tensor G3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Large OLED display for IPTV and sports.',
+      'Wi-Fi 7 supports high bitrate streams.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/pixel_8_pro_specs' },
+    ],
+  },
+  {
+    slug: 'pixel-8',
+    name: 'Google Pixel 8',
+    category: 'mobile-devices',
+    releaseYear: 2023,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.2-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'Google Tensor G3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Compact flagship with clean Android TV casting.',
+      'Strong wireless specs for IPTV streaming.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/pixel_8_specs' },
+    ],
+  },
+  {
+    slug: 'pixel-8a',
+    name: 'Google Pixel 8a',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.1-inch OLED' },
+      { key: 'chip', label: 'Chip', value: 'Google Tensor G3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 6E' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Mid-range Pixel with strong IPTV decoding.',
+      'Wi-Fi 6E helps with busy networks.',
+    ],
+    sources: [
+      { label: 'Google specs', url: 'https://store.google.com/product/pixel_8a_specs' },
+    ],
+  },
+  {
+    slug: 'oneplus-12',
+    name: 'OnePlus 12',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.82-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Snapdragon 8 Gen 3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Large AMOLED is excellent for IPTV viewing.',
+      'High-end chipset keeps playback smooth.',
+    ],
+    sources: [
+      { label: 'OnePlus specs', url: 'https://www.oneplus.com/oneplus-12/specs' },
+    ],
+  },
+  {
+    slug: 'xiaomi-14',
+    name: 'Xiaomi 14',
+    category: 'mobile-devices',
+    releaseYear: 2024,
+    os: 'Android',
+    specs: [
+      { key: 'display', label: 'Display', value: '6.36-inch AMOLED' },
+      { key: 'chip', label: 'Chip', value: 'Snapdragon 8 Gen 3' },
+      { key: 'wifi', label: 'Wi-Fi', value: 'Wi-Fi 7' },
+      { key: 'port', label: 'Port', value: 'USB-C' },
+    ],
+    notes: [
+      'Compact flagship with sharp display for IPTV.',
+      'Wi-Fi 7 supports fast, stable streaming.',
+    ],
+    sources: [
+      { label: 'Xiaomi specs', url: 'https://www.mi.com/global/product/xiaomi-14/' },
+    ],
+  },
+];
+
+export const devices: DeviceSpec[] = [
+  ...streamingSticks,
+  ...streamingBoxes,
+  ...smartTvs,
+  ...mobileDevices,
+];
+
+export const getDevicesByCategory = (category: DeviceCategory) =>
+  devices.filter((device) => device.category === category);
+
+export const getDeviceBySlug = (slug: string) =>
+  devices.find((device) => device.slug === slug) || null;
+
+export const getDeviceSpecValue = (device: DeviceSpec | null, key: string) => {
+  if (!device) return '-';
+  if (key === 'releaseYear') return String(device.releaseYear);
+  if (key === 'os') return device.os;
+  const spec = device.specs.find((item) => item.key === key);
+  return spec?.value || '-';
+};

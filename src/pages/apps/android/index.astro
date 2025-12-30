@@ -1,0 +1,83 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+import {
+  androidAppsList,
+  androidAppsUpdatedAt,
+  androidAppsSource,
+  slugifyAndroid,
+  getAndroidAppSummary,
+  getAndroidDescriptionExcerpt,
+} from '@/data/android-apps';
+---
+
+<MarketingLayout
+  title={`Android IPTV Apps - ${siteConfig.name}`}
+  description="Top Android IPTV apps ranked by Google Play data, update recency, and rating signals."
+>
+  <section class="py-section">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold text-text">Top Android IPTV Apps</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Rankings are based on Google Play metadata (ratings, review volume, and update recency).
+        </p>
+      </header>
+
+      <div class="rounded-lg border border-border overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-7 gap-4 px-4 py-3 bg-surface text-sm text-text-muted">
+          <span class="md:col-span-1">Rank</span>
+          <span class="md:col-span-2">App</span>
+          <span>Rating</span>
+          <span>Price</span>
+          <span>Installs</span>
+          <span>Updated</span>
+        </div>
+        {androidAppsList.map((app, index) => (
+          <div class="border-t border-border px-4 py-4 grid grid-cols-1 md:grid-cols-7 gap-4">
+            <div class="text-sm text-text-muted">#{index + 1}</div>
+            <div class="md:col-span-2">
+              <a class="font-semibold text-text hover:text-primary" href={`/apps/android/${slugifyAndroid(app.title)}/`}>
+                {app.title}
+              </a>
+              <p class="mt-2 text-sm text-text-muted">{getAndroidAppSummary(app)}</p>
+              {getAndroidDescriptionExcerpt(app) && (
+                <p class="mt-2 text-xs text-text-muted">{getAndroidDescriptionExcerpt(app)}</p>
+              )}
+            </div>
+            <div class="text-sm text-text-muted">
+              {app.score ? `${app.score.toFixed(1)}★` : '—'}
+              <div class="text-xs text-text-muted">
+                {app.ratings ? `${app.ratings.toLocaleString()} ratings` : 'No ratings'}
+              </div>
+            </div>
+            <div class="text-sm text-text-muted">{app.priceText}</div>
+            <div class="text-sm text-text-muted">{app.installs || 'Varies'}</div>
+            <div class="text-sm text-text-muted">
+              {app.updated
+                ? new Date(app.updated).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })
+                : '—'}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">How we rank Android apps</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li>Ratings and review volume from Google Play.</li>
+          <li>Recent update activity and version transparency.</li>
+          <li>Clear install footprint and platform compatibility.</li>
+        </ul>
+        <p class="mt-4 text-xs text-text-muted">
+          Data updated: {new Date(androidAppsUpdatedAt).toLocaleString('en-US')}. Source:
+          <a class="text-primary hover:underline ml-1" href={androidAppsSource}>Google Play search</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

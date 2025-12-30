@@ -1,0 +1,232 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { comparisons, getComparisonBySlug } from '@/data/comparisons';
+import { slugify } from '@/data/apps';
+import { slugifyAndroid } from '@/data/android-apps';
+import { getDeviceSpecValue } from '@/data/devices';
+import { siteConfig } from '@/config';
+
+export async function getStaticPaths() {
+  return comparisons.map((comparison) => ({ params: { slug: comparison.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const comparison = getComparisonBySlug(slug);
+if (!comparison) {
+  throw new Error(`Comparison not found: ${slug}`);
+}
+
+const { left, right } = comparison;
+
+const getAppLink = (app: { name: string }, platform: 'ios' | 'macos') =>
+  `/apps/${platform}/${slugify(app.name)}/`;
+
+const getAndroidLink = (app: { title: string }) => `/apps/android/${slugifyAndroid(app.title)}/`;
+
+const getDeviceLink = (device: { slug: string }) => `/devices/models/${device.slug}/`;
+
+const leftLink = comparison.type === 'ios-app'
+  ? getAppLink(left as { name: string }, 'ios')
+  : comparison.type === 'macos-app'
+    ? getAppLink(left as { name: string }, 'macos')
+    : comparison.type === 'android-app'
+      ? getAndroidLink(left as { title: string })
+      : getDeviceLink(left as { slug: string });
+
+const rightLink = comparison.type === 'ios-app'
+  ? getAppLink(right as { name: string }, 'ios')
+  : comparison.type === 'macos-app'
+    ? getAppLink(right as { name: string }, 'macos')
+    : comparison.type === 'android-app'
+      ? getAndroidLink(right as { title: string })
+      : getDeviceLink(right as { slug: string });
+
+const baseSeoTitle = `${comparison.title} IPTV Comparison`;
+const seoTitle = baseSeoTitle.length > 60 ? `${baseSeoTitle.slice(0, 57).trimEnd()}...` : baseSeoTitle;
+const faq = [
+  {
+    question: `Which is better for IPTV: ${(left as any).name || (left as any).title} or ${(right as any).name || (right as any).title}?`,
+    answer:
+      'The better pick depends on update cadence, network stability, and platform support. Use the highlights and spec table, then open the full profiles to match your setup.',
+  },
+  {
+    question: 'Do these apps or devices support M3U and Xtream Codes?',
+    answer:
+      'Support varies by app and platform. Check the full profile pages and the official store listing or device specs to confirm playlist formats.',
+  },
+  {
+    question: 'How often are IPTV24 comparisons updated?',
+    answer:
+      'We refresh comparisons when app listings or device specs change and after major OS updates that can impact playback.',
+  },
+];
+---
+
+<MarketingLayout
+  title={`${comparison.title} - ${siteConfig.name}`}
+  seoTitle={seoTitle}
+  description={comparison.description}
+  faq={faq}
+>
+  <section class="py-section">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8">
+        <p class="text-sm uppercase tracking-[0.2em] text-text-muted">IPTV comparison</p>
+        <h1 class="mt-3 text-4xl font-bold text-text">{comparison.title}</h1>
+        <p class="mt-4 text-lg text-text-muted">{comparison.summary}</p>
+      </header>
+
+      <div class="rounded-lg border border-border bg-surface p-4">
+        <p class="text-sm text-text-muted">
+          <span class="font-semibold text-text">TL;DR:</span> {comparison.summary}
+        </p>
+      </div>
+
+      <div class="rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Key highlights</h2>
+        <ul class="mt-4 space-y-2 text-sm text-text-muted">
+          {comparison.highlights.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      {comparison.type === 'device' && (
+        <div class="mt-8 rounded-lg border border-border overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-3 bg-surface text-sm text-text-muted">
+            <span>Spec</span>
+            <span>{(left as { name: string }).name}</span>
+            <span>{(right as { name: string }).name}</span>
+          </div>
+          {comparison.specKeys?.map((key) => (
+            <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+              <div class="text-sm font-medium text-text">{key.replace(/([A-Z])/g, ' $1')}</div>
+              <div class="text-sm text-text-muted">
+                {getDeviceSpecValue(left as any, key)}
+              </div>
+              <div class="text-sm text-text-muted">
+                {getDeviceSpecValue(right as any, key)}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {comparison.type !== 'device' && (
+        <div class="mt-8 rounded-lg border border-border overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-3 bg-surface text-sm text-text-muted">
+            <span>Metric</span>
+            <span>{(left as { name?: string; title?: string }).name || (left as { title: string }).title}</span>
+            <span>{(right as { name?: string; title?: string }).name || (right as { title: string }).title}</span>
+          </div>
+          {comparison.type === 'android-app' ? (
+            <>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Rating</div>
+                <div class="text-sm text-text-muted">
+                  {(left as any).score ? `${(left as any).score.toFixed(1)} rating` : 'No rating'}
+                </div>
+                <div class="text-sm text-text-muted">
+                  {(right as any).score ? `${(right as any).score.toFixed(1)} rating` : 'No rating'}
+                </div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Installs</div>
+                <div class="text-sm text-text-muted">{(left as any).installs || 'Varies'}</div>
+                <div class="text-sm text-text-muted">{(right as any).installs || 'Varies'}</div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Updated</div>
+                <div class="text-sm text-text-muted">
+                  {(left as any).updated
+                    ? new Date((left as any).updated).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })
+                    : 'Unknown'}
+                </div>
+                <div class="text-sm text-text-muted">
+                  {(right as any).updated
+                    ? new Date((right as any).updated).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })
+                    : 'Unknown'}
+                </div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Android version</div>
+                <div class="text-sm text-text-muted">{(left as any).androidVersionText || (left as any).androidVersion || 'Varies'}</div>
+                <div class="text-sm text-text-muted">{(right as any).androidVersionText || (right as any).androidVersion || 'Varies'}</div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Rating</div>
+                <div class="text-sm text-text-muted">
+                  {(left as any).averageRating ? `${(left as any).averageRating.toFixed(1)} rating` : 'No rating'}
+                </div>
+                <div class="text-sm text-text-muted">
+                  {(right as any).averageRating ? `${(right as any).averageRating.toFixed(1)} rating` : 'No rating'}
+                </div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Price</div>
+                <div class="text-sm text-text-muted">{(left as any).formattedPrice}</div>
+                <div class="text-sm text-text-muted">{(right as any).formattedPrice}</div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Updated</div>
+                <div class="text-sm text-text-muted">
+                  {new Date((left as any).currentVersionReleaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </div>
+                <div class="text-sm text-text-muted">
+                  {new Date((right as any).currentVersionReleaseDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </div>
+              </div>
+              <div class="border-t border-border grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-4">
+                <div class="text-sm font-medium text-text">Minimum OS</div>
+                <div class="text-sm text-text-muted">{(left as any).minimumOsVersion}</div>
+                <div class="text-sm text-text-muted">{(right as any).minimumOsVersion}</div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">View full profiles</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <a class="rounded-md border border-border p-4 hover:border-primary transition-colors" href={leftLink}>
+            <p class="font-semibold text-text">{(left as any).name || (left as any).title}</p>
+            <p class="text-sm text-text-muted">Open full profile</p>
+          </a>
+          <a class="rounded-md border border-border p-4 hover:border-primary transition-colors" href={rightLink}>
+            <p class="font-semibold text-text">{(right as any).name || (right as any).title}</p>
+            <p class="text-sm text-text-muted">Open full profile</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Related resources</h2>
+        <ul class="mt-3 space-y-2 text-sm text-text-muted">
+          <li><a class="text-primary hover:underline" href="/comparisons/">Browse all comparisons</a></li>
+          <li><a class="text-primary hover:underline" href="/guides/">Setup guides</a></li>
+          <li><a class="text-primary hover:underline" href="/troubleshooting/">Troubleshooting fixes</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

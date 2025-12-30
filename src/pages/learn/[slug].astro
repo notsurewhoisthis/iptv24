@@ -1,0 +1,64 @@
+---
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import { learnTopics } from '@/data/learn-topics';
+import { siteConfig } from '@/config';
+
+export async function getStaticPaths() {
+  return learnTopics.map((topic) => ({ params: { slug: topic.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const topic = learnTopics.find((entry) => entry.slug === slug);
+if (!topic) {
+  throw new Error(`Learn topic not found: ${slug}`);
+}
+
+const content = [
+  ...topic.summary,
+  ...topic.takeaways,
+  ...topic.checklist,
+  ...topic.pitfalls,
+].join(' ');
+---
+
+<BlogLayout
+  title={`${topic.title} - ${siteConfig.name}`}
+  description={topic.description}
+  publishedDate={new Date(topic.publishedDate)}
+  author={siteConfig.author}
+  tags={topic.tags}
+  content={content}
+>
+  <div slot="content">
+    <p>{topic.summary[0]}</p>
+    {topic.summary[1] && <p>{topic.summary[1]}</p>}
+
+    <h2>Key takeaways</h2>
+    <ul>
+      {topic.takeaways.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+
+    <h2>Practical checklist</h2>
+    <ul>
+      {topic.checklist.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+
+    <h2>Common pitfalls</h2>
+    <ul>
+      {topic.pitfalls.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+
+    <h2>Related resources</h2>
+    <ul>
+      {topic.related.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</BlogLayout>

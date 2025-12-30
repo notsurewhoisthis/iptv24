@@ -5,7 +5,7 @@ publishedDate: 2025-07-01
 author: "James Chen"
 image: "/images/blog/security-practices.webp"
 tags: ["development", "tutorial", "deployment"]
-draft: false
+draft: true
 ---
 
 Security isn't optional. Every week brings news of another data breach, another compromised application. As developers, we have a responsibility to protect our users.

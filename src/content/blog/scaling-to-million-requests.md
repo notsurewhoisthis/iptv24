@@ -5,7 +5,7 @@ publishedDate: 2025-08-01
 author: "David Kim"
 image: "/images/blog/scaling-million.webp"
 tags: ["tutorial", "deployment"]
-draft: false
+draft: true
 ---
 
 Last month, Virex crossed a significant milestone: we now serve over 1 million requests per second across our global edge network. Getting here wasn't easy, and we learned a lot along the way.

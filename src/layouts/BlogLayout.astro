@@ -5,15 +5,19 @@ import { calculateReadingTime, formatDate } from '@/lib/utils';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   publishedDate: Date;
   author: string;
   image?: string;
   tags?: string[];
   content: string;
+  faq?: { question: string; answer: string }[];
+  howTo?: { name: string; steps: { name: string; text: string }[] };
 }
 
-const { title, description, publishedDate, author, image, tags = [], content } = Astro.props;
+const { title, seoTitle, description, publishedDate, author, image, tags = [], content, faq, howTo } =
+  Astro.props;
 
 const readingTime = calculateReadingTime(content);
 const formattedDate = formatDate(publishedDate, {
@@ -25,12 +29,15 @@ const formattedDate = formatDate(publishedDate, {
 
 <MarketingLayout
   title={title}
+  seoTitle={seoTitle}
   description={description}
   image={image}
   type="article"
   publishedDate={publishedDate}
   author={author}
   tags={tags}
+  faq={faq}
+  howTo={howTo}
 >
   <article class="py-section">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,6 +83,18 @@ const formattedDate = formatDate(publishedDate, {
         <slot name="content" />
       </div>
       <slot />
+
+      <div class="mt-10 rounded-lg border border-border p-6">
+        <p class="text-sm uppercase tracking-[0.2em] text-text-muted">About the author</p>
+        <h2 class="mt-2 text-lg font-semibold text-text">{author || 'IPTV24 Lab'}</h2>
+        <p class="mt-2 text-sm text-text-muted">
+          IPTV24 Lab reviews IPTV apps and devices with a focus on playlist compatibility, playback
+          stability, and network performance. Learn more about our methodology on the about page.
+        </p>
+        <a class="mt-3 inline-flex text-primary hover:underline text-sm" href="/about/">
+          Read our testing methodology
+        </a>
+      </div>
     </div>
   </article>
 </MarketingLayout>

@@ -1,0 +1,120 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '@/config';
+import { platforms } from '@/data/troubleshooting-platforms';
+
+const entries = await getCollection('troubleshooting', ({ data }) => !data.draft);
+const posts = [...entries].sort(
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+);
+---
+
+<MarketingLayout
+  title={`IPTV Troubleshooting - ${siteConfig.name}`}
+  description="Fix buffering, playlist, EPG, VOD, and network issues with proven IPTV steps."
+>
+  <section class="py-section bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-2 items-center">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-text-muted">Fix issues fast</p>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-bold text-text">IPTV troubleshooting for every device.</h1>
+          <p class="mt-4 text-lg text-text-muted">
+            Use targeted fixes for buffering, login errors, EPG drift, VOD failures, and device-specific playback bugs.
+            Each guide focuses on practical steps you can apply right away.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a
+              href="/troubleshooting/platforms/"
+              class="px-5 py-3 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+            >
+              Browse device troubleshooting
+            </a>
+            <a
+              href="/guides"
+              class="px-5 py-3 rounded-md border border-border text-sm font-medium text-text hover:border-primary transition-colors"
+            >
+              Go to setup guides
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-border bg-background p-8">
+          <h2 class="text-xl font-semibold text-text">Most common fixes</h2>
+          <ul class="mt-4 space-y-4 text-sm text-text-muted">
+            {posts.slice(0, 5).map((post) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/troubleshooting/${post.slug ?? post.id}/`}>
+                  {post.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text">Troubleshoot by platform</h2>
+      <p class="mt-3 text-text-muted">Pick your device or OS to get tailored steps and settings paths.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {platforms.slice(0, 8).map((platform) => (
+          <a
+            class="rounded-xl border border-border p-6 hover:border-primary transition-colors"
+            href={`/troubleshooting/platforms/${platform.slug}/`}
+          >
+            <h3 class="text-lg font-semibold text-text">{platform.name}</h3>
+            <p class="mt-2 text-sm text-text-muted">OS: {platform.os}</p>
+          </a>
+        ))}
+      </div>
+      <a class="mt-6 inline-flex text-primary hover:underline" href="/troubleshooting/platforms/">
+        View all platforms
+      </a>
+      <div class="mt-10 rounded-lg border border-border p-6">
+        <h3 class="text-lg font-semibold text-text">Need the why behind the fixes?</h3>
+        <p class="mt-2 text-sm text-text-muted">
+          Use the learning center to understand IPTV protocols, EPG data, and network constraints before you troubleshoot.
+        </p>
+        <a class="mt-4 inline-flex text-primary hover:underline" href="/learn/">
+          Visit learning center
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text">Troubleshooting guides</h2>
+      <div class="mt-8 space-y-8">
+        {posts.map((post) => (
+          <article class="group">
+            <a href={`/troubleshooting/${post.slug ?? post.id}/`} class="block">
+              <div class="rounded-lg border border-border p-6 hover:border-primary transition-colors">
+                <p class="text-sm text-text-muted">
+                  {post.data.publishedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <h2 class="mt-2 text-2xl font-semibold text-text group-hover:text-primary">
+                  {post.data.title}
+                </h2>
+                <p class="mt-3 text-text-muted">{post.data.description}</p>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-text-muted">We are actively testing new fixes. Check back soon.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</MarketingLayout>

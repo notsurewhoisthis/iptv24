@@ -4,6 +4,7 @@ import '../styles/global.css';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   description: string;
   image?: string;
   type?: 'website' | 'article';
@@ -12,10 +13,15 @@ interface Props {
   modifiedDate?: Date;
   author?: string;
   tags?: string[];
+  noindex?: boolean;
+  faq?: { question: string; answer: string }[];
+  howTo?: { name: string; steps: { name: string; text: string }[] };
+  softwareApp?: Record<string, unknown> | null;
 }
 
 const {
   title,
+  seoTitle,
   description,
   image,
   type = 'website',
@@ -23,7 +29,34 @@ const {
   modifiedDate,
   author,
   tags,
+  noindex,
+  faq,
+  howTo,
+  softwareApp,
 } = Astro.props;
+
+const autoNoindexPaths = [
+  '/dashboard',
+  '/login',
+  '/register',
+  '/forgot-password',
+  '/pricing',
+  '/enterprise',
+  '/status',
+  '/customers',
+  '/features',
+  '/integrations',
+  '/demo',
+  '/docs',
+  '/changelog',
+  '/testimonials',
+  '/roadmap',
+  '/security',
+  '/careers',
+];
+
+const autoNoindex = autoNoindexPaths.some((path) => Astro.url.pathname.startsWith(path));
+const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
 ---
 
 <!doctype html>
@@ -34,6 +67,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO
       title={title}
+      seoTitle={seoTitle}
       description={description}
       image={image}
       type={type}
@@ -41,6 +75,10 @@ const {
       modifiedDate={modifiedDate}
       author={author}
       tags={tags}
+      noindex={resolvedNoindex}
+      faq={faq}
+      howTo={howTo}
+      softwareApp={softwareApp}
     />
     <!-- Theme and announcement initialization - runs before page render to prevent flash -->
     <script is:inline>

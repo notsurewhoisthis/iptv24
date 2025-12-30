@@ -32,9 +32,11 @@ interface Props {
   netlify?: boolean;
   /** Form name for Netlify Forms */
   formName?: string;
+  /** Web3Forms access key (optional) */
+  web3formsKey?: string;
 }
 
-const { action = '', method = 'POST', netlify = false, formName = 'contact' } = Astro.props;
+const { action = '', method = 'POST', netlify = false, formName = 'contact', web3formsKey = '' } = Astro.props;
 ---
 
 <form
@@ -56,6 +58,7 @@ const { action = '', method = 'POST', netlify = false, formName = 'contact' } = 
 
   <!-- Netlify hidden field -->
   {netlify && <input type="hidden" name="form-name" value={formName} />}
+  {web3formsKey && <input type="hidden" name="access_key" value={web3formsKey} />}
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
     <div>

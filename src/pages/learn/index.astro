@@ -1,0 +1,71 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { learnTopics } from '@/data/learn-topics';
+import { siteConfig } from '@/config';
+
+const topics = [...learnTopics];
+---
+
+<MarketingLayout
+  title={`IPTV Learning Center - ${siteConfig.name}`}
+  description="Deep-dive IPTV learning articles covering playlists, EPG, protocols, and streaming hardware."
+>
+  <section class="py-section bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-2 items-center">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-text-muted">Learn the fundamentals</p>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-bold text-text">IPTV learning center</h1>
+          <p class="mt-4 text-lg text-text-muted">
+            Go deeper on IPTV protocols, playlists, network tuning, and device strategy. Each article is designed to
+            explain concepts clearly and connect them to real troubleshooting steps.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a
+              href="/guides/"
+              class="px-5 py-3 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+            >
+              Setup guides
+            </a>
+            <a
+              href="/troubleshooting/"
+              class="px-5 py-3 rounded-md border border-border text-sm font-medium text-text hover:border-primary transition-colors"
+            >
+              Troubleshooting fixes
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-border bg-background p-8">
+          <h2 class="text-xl font-semibold text-text">Popular learning topics</h2>
+          <ul class="mt-4 space-y-4 text-sm text-text-muted">
+            {topics.slice(0, 6).map((topic) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/learn/${topic.slug}/`}>
+                  {topic.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text">All IPTV learning articles</h2>
+      <p class="mt-3 text-text-muted">Start with fundamentals and move into performance, protocols, and device strategy.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {topics.map((topic) => (
+          <a
+            class="rounded-lg border border-border p-6 hover:border-primary transition-colors"
+            href={`/learn/${topic.slug}/`}
+          >
+            <h3 class="text-xl font-semibold text-text">{topic.title}</h3>
+            <p class="mt-2 text-sm text-text-muted">{topic.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

@@ -5,7 +5,7 @@ publishedDate: 2025-06-01
 author: "Maria Rodriguez"
 image: "/images/blog/deployment-workflow.webp"
 tags: ["deployment", "product"]
-draft: false
+draft: true
 ---
 
 Deployment shouldn't be stressful. Yet for many teams, pushing code to production remains a nerve-wracking experience filled with manual steps, crossed fingers, and late-night rollbacks.

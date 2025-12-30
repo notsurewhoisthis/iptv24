@@ -19,17 +19,17 @@ export const navigation: Navigation = {
    */
   header: {
     main: [
-      { label: 'Features', href: '/features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Demo', href: '/dashboard' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Docs', href: '/docs', feature: 'docs' },
+      { label: 'Apps', href: '/apps' },
+      { label: 'iOS Apps', href: '/apps/ios' },
+      { label: 'Android Apps', href: '/apps/android' },
+      { label: 'Devices', href: '/devices' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'Learn', href: '/learn' },
+      { label: 'Troubleshooting', href: '/troubleshooting' },
       { label: 'Blog', href: '/blog', feature: 'blog' },
     ],
     cta: [
-      { label: 'Login', href: '/login', variant: 'ghost' },
-      { label: 'Get Started', href: '/register', variant: 'primary' },
+      { label: 'Start Here', href: '/guides/iptv-apple-tv-4k-setup', variant: 'primary' },
     ],
   },
 
@@ -39,29 +39,31 @@ export const navigation: Navigation = {
    */
   footer: {
     product: [
-      { label: 'Features', href: '/features' },
-      { label: 'Integrations', href: '/integrations' },
-      { label: 'Security', href: '/security' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Apps', href: '/apps' },
+      { label: 'iOS Apps', href: '/apps/ios' },
+      { label: 'Android Apps', href: '/apps/android' },
+      { label: 'Devices', href: '/devices' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'Learn', href: '/learn' },
+      { label: 'Troubleshooting', href: '/troubleshooting' },
     ],
     solutions: [
-      { label: 'Enterprise', href: '/enterprise' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Request Demo', href: '/demo' },
-      { label: 'Status', href: '/status' },
+      { label: 'Streaming Sticks', href: '/devices/categories/streaming-sticks' },
+      { label: 'Streaming Boxes', href: '/devices/categories/streaming-boxes' },
+      { label: 'Android IPTV Apps', href: '/apps/android' },
+      { label: 'Buffering Fixes', href: '/troubleshooting/iptv-buffering-fix' },
     ],
     resources: [
-      { label: 'Documentation', href: '/docs', feature: 'docs' },
+      { label: 'Learning Center', href: '/learn' },
       { label: 'Blog', href: '/blog', feature: 'blog' },
-      { label: 'Changelog', href: '/changelog', feature: 'changelog' },
-      { label: 'Roadmap', href: '/roadmap', feature: 'roadmap' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Privacy', href: '/privacy' },
     ],
     company: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Testimonials', href: '/testimonials', feature: 'testimonials' },
+      { label: 'Editorial Policy', href: '/about' },
+      { label: 'IPTV Legal Guide', href: '/blog' },
+      { label: 'Submit Feedback', href: '/contact' },
     ],
     legal: [
       { label: 'Privacy', href: '/privacy' },

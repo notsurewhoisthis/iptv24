@@ -1,0 +1,60 @@
+---
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { siteConfig } from '@/config';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('troubleshooting', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug ?? entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const tags = entry.data.keywords?.length ? entry.data.keywords : entry.data.tags;
+const shortTopic = entry.data.title.replace(/:.*$/, '').trim();
+const baseSeoTitle = `${shortTopic} Fix`;
+const seoTitle = baseSeoTitle.length > 60 ? `${baseSeoTitle.slice(0, 57).trimEnd()}...` : baseSeoTitle;
+const faq = [
+  {
+    question: `What usually causes ${shortTopic.toLowerCase()} issues?`,
+    answer:
+      'The most common causes are playlist authentication errors, unstable network connections, and outdated app builds. Start by validating your playlist and testing a second stream.',
+  },
+  {
+    question: 'What should I check first?',
+    answer:
+      'Confirm your playlist or Xtream Codes credentials, restart the app, and test on a second network if possible.',
+  },
+  {
+    question: 'How long does a typical fix take?',
+    answer:
+      'Most fixes can be completed in under 10 minutes once the playlist and network checks are done.',
+  },
+];
+---
+
+<BlogLayout
+  title={`${entry.data.title} - ${siteConfig.name}`}
+  seoTitle={seoTitle}
+  description={entry.data.description}
+  publishedDate={entry.data.publishedDate}
+  author={entry.data.author}
+  image={entry.data.image}
+  tags={tags}
+  faq={entry.data.faq?.length ? entry.data.faq : faq}
+  howTo={entry.data.howTo}
+  content={entry.body || ''}
+>
+  <div slot="content">
+    <div class="rounded-lg border border-border bg-surface p-4 mb-6">
+      <p class="text-sm text-text-muted">
+        <span class="font-semibold text-text">TL;DR:</span> {entry.data.description}
+      </p>
+    </div>
+    <Content />
+  </div>
+</BlogLayout>

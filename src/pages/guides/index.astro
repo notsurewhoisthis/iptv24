@@ -1,0 +1,120 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '@/config';
+
+const entries = await getCollection('guides', ({ data }) => !data.draft);
+const posts = [...entries].sort(
+  (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
+);
+---
+
+<MarketingLayout
+  title={`IPTV Guides - ${siteConfig.name}`}
+  description="Step-by-step IPTV setup guides with tested settings and device notes."
+>
+  <section class="py-section bg-surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-2 items-center">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-text-muted">Setup playbook</p>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-bold text-text">IPTV guides that start with real devices.</h1>
+          <p class="mt-4 text-lg text-text-muted">
+            Use clear, repeatable steps to set up playlists, EPG, and playback on the devices you actually use.
+            Every guide calls out OS versions, app settings, and network tweaks.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <a
+              href="/guides/iptv-apple-tv-4k-setup"
+              class="px-5 py-3 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+            >
+              Start with Apple TV
+            </a>
+            <a
+              href="/troubleshooting"
+              class="px-5 py-3 rounded-md border border-border text-sm font-medium text-text hover:border-primary transition-colors"
+            >
+              Jump to troubleshooting
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-border bg-background p-8">
+          <h2 class="text-xl font-semibold text-text">Popular guides</h2>
+          <ul class="mt-4 space-y-4 text-sm text-text-muted">
+            <li><a class="text-primary hover:underline" href="/guides/iptv-apple-tv-4k-setup">Apple TV 4K IPTV setup</a></li>
+            <li><a class="text-primary hover:underline" href="/guides/iptv-on-ios-setup">iPhone and iPad IPTV setup</a></li>
+            <li><a class="text-primary hover:underline" href="/guides/iptv-epg-setup">EPG setup and time shift</a></li>
+            <li><a class="text-primary hover:underline" href="/guides/iptv-m3u-on-apple-tv">Add an M3U playlist on Apple TV</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text">Browse by device</h2>
+      <p class="mt-3 text-text-muted">Pick a device category to jump to tuned setup steps and recommended players.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <a href="/devices/categories/streaming-sticks/" class="rounded-xl border border-border p-6 hover:border-primary transition-colors">
+          <h3 class="text-lg font-semibold text-text">Streaming sticks</h3>
+          <p class="mt-2 text-sm text-text-muted">Fire TV, Chromecast, Roku, and Android TV sticks.</p>
+        </a>
+        <a href="/devices/categories/streaming-boxes/" class="rounded-xl border border-border p-6 hover:border-primary transition-colors">
+          <h3 class="text-lg font-semibold text-text">Streaming boxes</h3>
+          <p class="mt-2 text-sm text-text-muted">Apple TV, Shield, Fire TV Cube, and more.</p>
+        </a>
+        <a href="/devices/categories/smart-tvs/" class="rounded-xl border border-border p-6 hover:border-primary transition-colors">
+          <h3 class="text-lg font-semibold text-text">Smart TVs</h3>
+          <p class="mt-2 text-sm text-text-muted">webOS, Tizen, and Google TV setups.</p>
+        </a>
+        <a href="/devices/categories/mobile-devices/" class="rounded-xl border border-border p-6 hover:border-primary transition-colors">
+          <h3 class="text-lg font-semibold text-text">Mobile devices</h3>
+          <p class="mt-2 text-sm text-text-muted">iOS and Android phones and tablets.</p>
+        </a>
+      </div>
+      <div class="mt-10 rounded-lg border border-border p-6">
+        <h3 class="text-lg font-semibold text-text">Want the fundamentals first?</h3>
+        <p class="mt-2 text-sm text-text-muted">
+          Visit the IPTV learning center for deep dives on playlists, protocols, and device strategy.
+        </p>
+        <a class="mt-4 inline-flex text-primary hover:underline" href="/learn/">
+          Go to learning center
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-text">Latest guides</h2>
+      <div class="mt-8 space-y-8">
+        {posts.map((post) => (
+          <article class="group">
+            <a href={`/guides/${post.slug ?? post.id}/`} class="block">
+              <div class="rounded-lg border border-border p-6 hover:border-primary transition-colors">
+                <p class="text-sm text-text-muted">
+                  {post.data.publishedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <h2 class="mt-2 text-2xl font-semibold text-text group-hover:text-primary">
+                  {post.data.title}
+                </h2>
+                <p class="mt-3 text-text-muted">{post.data.description}</p>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-text-muted">Fresh guides are being tested now.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</MarketingLayout>

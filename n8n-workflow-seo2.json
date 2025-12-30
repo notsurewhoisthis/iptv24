@@ -1,0 +1,270 @@
+{
+  "name": "SEO2 Blog Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e8af591-eb66-4f67-9287-9ec1414184bc",
+              "name": "topic",
+              "value": "={{\n  (() => {\n    try {\n      const content = $json.choices[0].message.content;\n      const cleanContent = content.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n      const jsonMatch = cleanContent.match(/\\{.*\\}/s);\n      if (jsonMatch) {\n        const parsed = JSON.parse(jsonMatch[0]);\n        return parsed.topic;\n      }\n    } catch(e) {\n      const topicMatch = content.match(/\"topic\"\\s*:\\s*\"([^\"]+)\"/);\n      if (topicMatch) return topicMatch[1];\n    }\n    return 'IPTV Setup Guide ' + new Date().toISOString().split('T')[0];\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "0f49374b-36f3-476d-a77d-8b4944e73e6f",
+              "name": "category",
+              "value": "={{\n  (() => {\n    try {\n      const content = $json.choices[0].message.content;\n      const cleanContent = content.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n      const jsonMatch = cleanContent.match(/\\{.*\\}/s);\n      if (jsonMatch) {\n        const parsed = JSON.parse(jsonMatch[0]);\n        return parsed.category;\n      }\n    } catch(e) {\n      const categoryMatch = content.match(/\"category\"\\s*:\\s*\"([^\"]+)\"/);\n      if (categoryMatch) return categoryMatch[1];\n    }\n    return 'Setup Guides';\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "8d7490b1-c8f6-4c20-b399-94c717cf94c6",
+              "name": "keywords",
+              "value": "={{ \n  (() => {\n    try {\n      const content = $json.choices[0].message.content;\n      const cleanContent = content.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n      const jsonMatch = cleanContent.match(/\\{.*\\}/s);\n      if (jsonMatch) {\n        const parsed = JSON.parse(jsonMatch[0]);\n        return parsed.keywords;\n      }\n    } catch(e) {\n      const keywordsMatch = content.match(/\"keywords\"\\s*:\\s*\\[([^\\]]+)\\]/);\n      if (keywordsMatch) {\n        return JSON.parse('[' + keywordsMatch[1] + ']');\n      }\n    }\n    return [\"iptv\", \"streaming\", \"guide\", \"tutorial\"];\n  })()\n}}",
+              "type": "array"
+            },
+            {
+              "id": "109e4f8a-58b7-46ba-8887-71d27e4a1626",
+              "name": "angle",
+              "value": "={{ \n  (() => {\n    try {\n      const content = $json.choices[0].message.content;\n      const cleanContent = content.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n      const jsonMatch = cleanContent.match(/\\{.*\\}/s);\n      if (jsonMatch) {\n        const parsed = JSON.parse(jsonMatch[0]);\n        return parsed.angle;\n      }\n    } catch(e) {\n      const angleMatch = content.match(/\"angle\"\\s*:\\s*\"([^\"]+)\"/);\n      if (angleMatch) return angleMatch[1];\n    }\n    return 'comprehensive guide';\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "0f126326-932f-4b64-9353-a21610147697",
+              "name": "searchQuery",
+              "value": "={{ \n  (() => {\n    try {\n      const content = $json.choices[0].message.content;\n      const cleanContent = content.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n      \n      let keywords = null;\n      let topic = null;\n      \n      const jsonMatch = cleanContent.match(/\\{[\\s\\S]*\\}/);\n      if (jsonMatch) {\n        try {\n          const parsed = JSON.parse(jsonMatch[0]);\n          keywords = parsed.keywords;\n          topic = parsed.topic;\n        } catch(parseError) {}\n      }\n      \n      if (keywords && Array.isArray(keywords) && keywords.length > 0) {\n        return keywords.slice(0, 3).join(' ') + ' 2025 guide';\n      }\n      \n      if (topic) {\n        const words = topic.split(' ').slice(0, 5);\n        return words.join(' ') + ' 2025';\n      }\n      \n      const keywordsMatch = cleanContent.match(/\"keywords\"\\s*:\\s*\\[([^\\]]+)\\]/);\n      if (keywordsMatch) {\n        try {\n          const keywordsList = JSON.parse('[' + keywordsMatch[1] + ']');\n          return keywordsList.slice(0, 3).join(' ') + ' 2025 guide';\n        } catch(e) {}\n      }\n      \n    } catch(e) {}\n    \n    return \"iptv setup guide 2025\";\n  })()\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "a036d8e9-30b2-4f16-983a-05a8a588c061",
+      "name": "Set Topic Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [448, 0]
+    },
+    {
+      "parameters": {
+        "model": "sonar-reasoning-pro",
+        "messages": {
+          "message": [
+            {
+              "content": "You are an expert IPTV and streaming technology researcher. Provide comprehensive, practical insights focused on setup guides, troubleshooting solutions, and device compatibility. Include specific app versions, device requirements, and step-by-step solutions.",
+              "role": "system"
+            },
+            {
+              "content": "=Research: {{ $json.topic }}\nCategory: {{ $json.category }}\nAngle: {{ $json.angle }}\n\nProvide comprehensive research including:\n1. Step-by-step setup/troubleshooting instructions\n2. Device compatibility and requirements\n3. App versions and update information\n4. Common problems and their solutions\n5. Alternative methods or workarounds\n6. Performance optimization tips\n7. Related features users should know\n8. FAQ-worthy questions users commonly ask\n\nFocus on {{ $json.searchQuery }}\n\nBe specific with app names, version numbers, device models, and exact steps. Avoid generic statements."
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "id": "9f803e9b-551f-4819-958f-ef28ec526f95",
+      "name": "Deep Research",
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [672, 0],
+      "credentials": {
+        "perplexityApi": {
+          "id": "laUFrgZKgBvRxRPL",
+          "name": "Perplexity account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// SEO2 Blog Formatter - Outputs Markdown with YAML frontmatter for Astro\nconst aiResponse = $input.first().json;\nconst aiContent = aiResponse.message?.content || aiResponse.choices?.[0]?.message?.content || '';\n\nlet topic, category, keywords;\n\ntry {\n  const topicData = $('Set Topic Data').first().json;\n  topic = topicData.topic;\n  category = topicData.category;\n  keywords = topicData.keywords || [];\n} catch(e) {\n  topic = $input.first().json.topic || 'IPTV Guide ' + Date.now();\n  category = $input.first().json.category || 'Setup Guides';\n  keywords = $input.first().json.keywords || [\"iptv\", \"streaming\", \"guide\"];\n}\n\nif (!topic) {\n  topic = 'IPTV Setup Guide ' + new Date().toISOString().split('T')[0];\n}\n\nconst wordCount = aiContent.split(/\\s+/).filter(word => word.length > 0).length;\nif (wordCount < 500) {\n  throw new Error(`Content too short: ${wordCount} words. Minimum 500 required.`);\n}\n\nconst slug = topic\n  .toLowerCase()\n  .replace(/[^a-z0-9]+/g, '-')\n  .replace(/^-+|-+$/g, '')\n  .substring(0, 60);\n\nconst titleMatch = aiContent.match(/^#\\s+(.+)$/m);\nconst title = titleMatch ? titleMatch[1].replace(/[*_`]/g, '') : topic;\n\nconst paragraphs = aiContent.split('\\n\\n').filter(p => p.trim() && !p.startsWith('#'));\nconst description = paragraphs[0]\n  ? paragraphs[0].substring(0, 155).replace(/[*_`#\\n]/g, ' ').trim() + '...'\n  : `Complete guide on ${topic}`;\n\nconst contentWithoutTitle = aiContent.replace(/^#\\s+.+\\n+/, '');\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst markdownContent = `---\ntitle: \"${title.replace(/\"/g, '\\\\\"')}\"\ndescription: \"${description.replace(/\"/g, '\\\\\"')}\"\npublishedDate: ${today}\nauthor: \"IPTV24 Lab\"\ntags: ${JSON.stringify((keywords || []).slice(0, 5))}\nkeywords: ${JSON.stringify(keywords || [])}\ndraft: false\n---\n\n${contentWithoutTitle}\n`;\n\nreturn {\n  fileContent: markdownContent,\n  filePath: `src/content/blog/${slug}.md`,\n  commitMessage: `Add blog post: ${title}`,\n  slug: slug,\n  wordCount: wordCount\n};"
+      },
+      "id": "c15038c5-eceb-4fd3-9c63-c4a38890f244",
+      "name": "Format Blog Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 0]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/notsurewhoisthis",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "SEO2",
+          "mode": "list",
+          "cachedResultName": "SEO2",
+          "cachedResultUrl": "https://github.com/notsurewhoisthis/SEO2"
+        },
+        "filePath": "={{ $json.filePath }}",
+        "fileContent": "={{ $json.fileContent }}",
+        "commitMessage": "={{$json.commitMessage}}"
+      },
+      "id": "c8fc5f43-67e6-4a87-af62-4983c7833504",
+      "name": "Create File in GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [1344, 0],
+      "webhookId": "855955ed-09cc-461f-8dfa-394ada1b1428",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "u9s52BOxtzB1s04t",
+          "name": "GitHub account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "a3498162-ec3b-4d34-8a50-3477d1195ef8",
+      "name": "Every 6 hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [0, 0],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "model": "sonar-reasoning-pro",
+        "messages": {
+          "message": [
+            {
+              "content": "You are a trend analyst for an IPTV and streaming technology blog. Generate ONE unique, actionable topic that helps users with IPTV setup, troubleshooting, or optimization. Focus on practical guides, device-specific tutorials, and streaming solutions.",
+              "role": "system"
+            },
+            {
+              "content": "={{ (function() {\n  const topics = [\n    \"How to fix IPTV buffering issues\",\n    \"Best IPTV players for Firestick 2025\",\n    \"TiviMate setup guide for beginners\",\n    \"IPTV Smarters Pro vs TiviMate comparison\",\n    \"How to setup IPTV on Apple TV\",\n    \"Fix IPTV freezing and stuttering\",\n    \"Best free IPTV players for Android\",\n    \"How to use VPN with IPTV\",\n    \"IPTV EPG not loading fix\",\n    \"Kodi IPTV addon setup guide\",\n    \"Best IPTV players for Samsung Smart TV\",\n    \"How to record IPTV streams\",\n    \"IPTV playlist format M3U explained\",\n    \"Fix IPTV no audio problem\",\n    \"Best IPTV players for iPhone and iPad\",\n    \"How to setup IPTV on Nvidia Shield\",\n    \"IPTV catchup and timeshift guide\",\n    \"Best IPTV players with parental controls\",\n    \"How to fix IPTV authentication errors\",\n    \"IPTV multiscreen setup guide\",\n    \"Best IPTV players for Mac\",\n    \"How to optimize internet for IPTV\",\n    \"IPTV vs cable TV comparison\",\n    \"Best IPTV players with DVR features\",\n    \"How to setup Xtream Codes API\",\n    \"IPTV picture quality settings guide\",\n    \"Best IPTV players for Windows PC\",\n    \"How to fix IPTV black screen\",\n    \"IPTV favorites and playlist management\",\n    \"Best IPTV players for LG Smart TV\",\n    \"JamRun IPTV setup guide for Apple devices\",\n    \"GSE Smart IPTV setup tutorial\",\n    \"VLC IPTV setup guide\",\n    \"How to test IPTV stream quality\",\n    \"IPTV channel logos not showing fix\",\n    \"Best IPTV players with Chromecast support\",\n    \"How to backup IPTV settings\",\n    \"IPTV external player integration guide\",\n    \"Best IPTV players for Android TV box\",\n    \"How to fix IPTV connection timeout\"\n  ];\n  const now = $now;\n  const randomIndex = (now.toMillis() % topics.length);\n  const selectedTopic = topics[randomIndex];\n  return \"Generate a blog post idea about: \" + selectedTopic + \"\\n\\n\" +\n    \"Respond with ONLY a valid JSON object (no markdown, no extra text).\\n\\n\" +\n    \"Example response format:\\n\" +\n    '{\"topic\": \"How to Fix IPTV Buffering Issues - Complete Guide 2025\", \"category\": \"Troubleshooting\", \"keywords\": [\"iptv buffering\", \"streaming issues\", \"fix buffering\", \"iptv lag\"], \"angle\": \"how-to guide\"}\\n\\n' +\n    \"Now generate for: \" + selectedTopic + \"\\n\" +\n    \"Requirements: topic must be specific and SEO-optimized with year, category must be one of (Troubleshooting, Setup Guides, Player Comparisons, Device Guides, Optimization, Features), keywords must be 4 actual search terms, angle must be one of (how-to guide, troubleshooting, comparison, setup tutorial, optimization tips, feature deep-dive, beginner guide)\";\n})() }}"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "id": "be25768b-3066-4b22-8b03-526de2db1c30",
+      "name": "Find trending topics using Perplexity Sonar",
+      "type": "n8n-nodes-base.perplexity",
+      "position": [224, 0],
+      "typeVersion": 1,
+      "credentials": {
+        "perplexityApi": {
+          "id": "laUFrgZKgBvRxRPL",
+          "name": "Perplexity account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "chatModel": "gpt-5-mini",
+        "prompt": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are an expert IPTV and streaming technology writer. Your task is to write COMPLETE, COMPREHENSIVE technical guides of EXACTLY 2000-2500 words. Focus on practical, step-by-step instructions. DO NOT truncate content. Write EVERY section in FULL DETAIL. Include specific app names, settings, and troubleshooting steps."
+            },
+            {
+              "content": "=Topic: {{ $('Set Topic Data').item.json.topic }}\nCategory: {{ $('Set Topic Data').item.json.category }}\nAngle: {{ $('Set Topic Data').item.json.angle }}\nKeywords: {{ $('Set Topic Data').item.json.keywords.join(', ') }}\n\nResearch: {{ $('Deep Research').item.json.choices[0].message.content }}\n\nWrite a COMPLETE 2000-2500 word technical guide about \"{{ $('Set Topic Data').item.json.topic }}\"\n\nREQUIREMENTS:\n1. Use the specific angle: {{ $('Set Topic Data').item.json.angle }}\n2. Target users looking for {{ $('Set Topic Data').item.json.category }} help\n3. Include ALL research data provided\n4. Write in a helpful, clear technical tone\n5. Use markdown formatting with proper headers\n6. Include specific steps, settings, and solutions\n\nSTRUCTURE:\n# [Clear, SEO-Optimized Title with Year]\n## Quick Answer (50-100 words summary)\n## Introduction (200+ words)\n## Prerequisites/Requirements (150+ words)\n## Step-by-Step Guide (600+ words with numbered steps)\n## Troubleshooting Common Issues (400+ words)\n## Pro Tips and Optimization (300+ words)\n## Frequently Asked Questions (300+ words - 4-5 questions)\n## Conclusion (150+ words)\n\nWrite the FULL article now. Do not use placeholders. Include specific app names, menu paths, and settings."
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "id": "94790d8c-fa3a-492b-8f70-92550f1645e9",
+      "name": "AI Content Generation using GPT5-mini",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.1,
+      "position": [896, 0],
+      "credentials": {
+        "openAiApi": {
+          "id": "69b7Hhxzgwc719cO",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Set Topic Data": {
+      "main": [
+        [
+          {
+            "node": "Deep Research",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deep Research": {
+      "main": [
+        [
+          {
+            "node": "AI Content Generation using GPT5-mini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Blog Markdown": {
+      "main": [
+        [
+          {
+            "node": "Create File in GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every 6 hours": {
+      "main": [
+        [
+          {
+            "node": "Find trending topics using Perplexity Sonar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find trending topics using Perplexity Sonar": {
+      "main": [
+        [
+          {
+            "node": "Set Topic Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Content Generation using GPT5-mini": {
+      "main": [
+        [
+          {
+            "node": "Format Blog Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "316024c4bebe6926144c34ab9e32f2d819dcb63f95a5e2063a7c22b8ca3a4742"
+  }
+}

@@ -33,6 +33,8 @@ import { siteConfig } from '@/config';
 interface Props {
   /** Page title (will be appended with site name) */
   title: string;
+  /** Optional short title for SERP display */
+  seoTitle?: string;
   /** Page description for meta tags */
   description: string;
   /** Custom Open Graph image URL (defaults to site ogImage) */
@@ -47,10 +49,19 @@ interface Props {
   author?: string;
   /** Article tags/keywords */
   tags?: string[];
+  /** Add noindex for pages you don't want indexed */
+  noindex?: boolean;
+  /** Optional FAQ schema entries */
+  faq?: { question: string; answer: string }[];
+  /** Optional HowTo schema data */
+  howTo?: { name: string; steps: { name: string; text: string }[] };
+  /** Optional software app schema */
+  softwareApp?: Record<string, unknown> | null;
 }
 
 const {
   title,
+  seoTitle,
   description,
   image,
   type = 'website',
@@ -58,10 +69,17 @@ const {
   modifiedDate,
   author,
   tags = [],
+  noindex = false,
+  faq = [],
+  howTo,
+  softwareApp = null,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
-const fullTitle = `${title} | ${siteConfig.name}`;
+const baseTitle = seoTitle || title;
+const fullTitle = baseTitle.toLowerCase().includes(siteConfig.name.toLowerCase())
+  ? baseTitle
+  : `${baseTitle} | ${siteConfig.name}`;
 const imageUrl = image || siteConfig.ogImage;
 const ogImage = imageUrl ? new URL(imageUrl, siteConfig.url).href : undefined;
 
@@ -79,15 +97,32 @@ const websiteSchema = {
   },
 };
 
+const logoUrl = siteConfig.logo ? new URL(siteConfig.logo, siteConfig.url).href : undefined;
+
+const sameAs = [siteConfig.social.twitter, siteConfig.social.github, siteConfig.social.discord].filter(
+  Boolean
+);
+
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: siteConfig.name,
   url: siteConfig.url,
-  logo: new URL(siteConfig.logo, siteConfig.url).href,
-  sameAs: [siteConfig.social.twitter, siteConfig.social.github, siteConfig.social.discord].filter(
-    Boolean
-  ),
+  contactPoint: siteConfig.contact?.email
+    ? [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: siteConfig.contact.email,
+        },
+      ]
+    : undefined,
+  ...(logoUrl
+    ? {
+        logo: logoUrl,
+      }
+    : {}),
+  ...(sameAs.length ? { sameAs } : {}),
 };
 
 const articleSchema =
@@ -107,10 +142,14 @@ const articleSchema =
         publisher: {
           '@type': 'Organization',
           name: siteConfig.name,
-          logo: {
-            '@type': 'ImageObject',
-            url: new URL(siteConfig.logo, siteConfig.url).href,
-          },
+          ...(logoUrl
+            ? {
+                logo: {
+                  '@type': 'ImageObject',
+                  url: logoUrl,
+                },
+              }
+            : {}),
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -119,6 +158,45 @@ const articleSchema =
         keywords: tags.join(', '),
       }
     : null;
+
+const howToSchema =
+  howTo && howTo.steps.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: howTo.name,
+        step: howTo.steps.map((step, index) => ({
+          '@type': 'HowToStep',
+          position: index + 1,
+          name: step.name,
+          text: step.text,
+        })),
+      }
+    : null;
+
+const faqSchema =
+  faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
+const softwareAppSchema = softwareApp
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      ...softwareApp,
+    }
+  : null;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -150,6 +228,7 @@ const breadcrumbSchema = {
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author} />
 {tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -182,5 +261,20 @@ const breadcrumbSchema = {
 {
   articleSchema && (
     <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  )
+}
+{
+  howToSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+  )
+}
+{
+  faqSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  )
+}
+{
+  softwareAppSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(softwareAppSchema)} />
   )
 }

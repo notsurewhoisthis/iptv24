@@ -1,0 +1,89 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { comparisons } from '@/data/comparisons';
+import { siteConfig } from '@/config';
+
+const ios = comparisons.filter((item) => item.type === 'ios-app');
+const macos = comparisons.filter((item) => item.type === 'macos-app');
+const android = comparisons.filter((item) => item.type === 'android-app');
+const devices = comparisons.filter((item) => item.type === 'device');
+---
+
+<MarketingLayout
+  title={`IPTV Comparisons - ${siteConfig.name}`}
+  description="Side-by-side IPTV comparisons for apps and devices using real ratings, update history, and hardware specs."
+>
+  <section class="py-section">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold text-text">IPTV comparisons</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Compare IPTV apps and hardware with data-backed differences in ratings, updates, HDR support, and network specs.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">iOS app comparisons</h2>
+          <ul class="mt-4 space-y-3 text-sm text-text-muted">
+            {ios.slice(0, 8).map((item) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/comparisons/${item.slug}/`}>
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">macOS app comparisons</h2>
+          <ul class="mt-4 space-y-3 text-sm text-text-muted">
+            {macos.slice(0, 8).map((item) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/comparisons/${item.slug}/`}>
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Android app comparisons</h2>
+          <ul class="mt-4 space-y-3 text-sm text-text-muted">
+            {android.slice(0, 8).map((item) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/comparisons/${item.slug}/`}>
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Device comparisons</h2>
+          <ul class="mt-4 space-y-3 text-sm text-text-muted">
+            {devices.slice(0, 8).map((item) => (
+              <li>
+                <a class="text-primary hover:underline" href={`/comparisons/${item.slug}/`}>
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {[...ios, ...macos, ...android, ...devices].map((item) => (
+          <a
+            class="rounded-lg border border-border p-5 hover:border-primary transition-colors"
+            href={`/comparisons/${item.slug}/`}
+          >
+            <h3 class="text-lg font-semibold text-text">{item.title}</h3>
+            <p class="mt-2 text-sm text-text-muted">{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

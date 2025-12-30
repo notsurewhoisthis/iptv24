@@ -5,7 +5,7 @@ publishedDate: 2025-10-01
 author: "Maria Rodriguez"
 image: "/images/blog/virex-2-launch.webp"
 tags: ["product", "deployment"]
-draft: false
+draft: true
 ---
 
 Today marks a significant milestone in our journey. After months of development and feedback from thousands of developers, we're thrilled to announce **Virex 2.0**—our most ambitious release yet.

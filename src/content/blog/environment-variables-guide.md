@@ -5,7 +5,7 @@ publishedDate: 2025-12-01
 author: "David Kim"
 image: "/images/blog/env-variables.webp"
 tags: ["deployment", "tutorial"]
-draft: false
+draft: true
 ---
 
 Environment variables are one of those things every developer uses but few truly master. Done right, they make your application flexible and secure. Done wrong, they become a source of bugs and security vulnerabilities.

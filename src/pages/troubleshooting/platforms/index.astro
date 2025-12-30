@@ -1,0 +1,45 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { siteConfig } from '@/config';
+import { platforms, topics } from '@/data/troubleshooting-platforms';
+---
+
+<MarketingLayout
+  title={`IPTV Platform Troubleshooting - ${siteConfig.name}`}
+  description="Device and OS-specific IPTV troubleshooting for Apple TV, Fire TV, Android TV, Roku, LG, Samsung, Windows, and more."
+>
+  <section class="py-section">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold text-text">Platform troubleshooting</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Pick your device or OS to get fixes tailored to its settings, app store, and network stack.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {platforms.map((platform) => (
+          <a
+            class="rounded-lg border border-border p-6 hover:border-primary transition-colors"
+            href={`/troubleshooting/platforms/${platform.slug}/`}
+          >
+            <h2 class="text-xl font-semibold text-text">{platform.name}</h2>
+            <p class="mt-2 text-sm text-text-muted">OS: {platform.os} · Store: {platform.store}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-10 rounded-lg border border-border p-6">
+        <h2 class="text-xl font-semibold text-text">Common troubleshooting topics</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          {topics.map((topic) => (
+            <div class="rounded-md border border-border p-4">
+              <p class="font-semibold text-text">{topic.title}</p>
+              <p class="text-sm text-text-muted">Symptoms: {topic.symptoms.slice(0, 2).join(', ')}.</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

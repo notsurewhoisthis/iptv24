@@ -11,19 +11,19 @@ import type { AnnouncementConfig, ContentStrings } from '../lib/types';
 /** Announcement bar configuration */
 export const announcement: AnnouncementConfig = {
   /** Show/hide the announcement bar */
-  enabled: true,
+  enabled: false,
 
   /** Unique ID - change this to reset dismissal for new announcements */
   id: 'launch-2025',
 
   /** Announcement text */
-  text: '🚀 Virex 2.0 is here!',
+  text: 'New Apple TV IPTV app tests are live.',
 
   /** Optional link URL */
-  href: '/changelog',
+  href: '/apps',
 
   /** Optional link text */
-  linkText: "See what's new",
+  linkText: 'See results',
 
   /** Visual style: 'primary' | 'secondary' | 'gradient' */
   variant: 'primary',
@@ -35,10 +35,10 @@ export const announcement: AnnouncementConfig = {
 /** Configurable content strings for various sections */
 export const content: ContentStrings = {
   newsletter: {
-    title: 'Stay in the loop',
-    description: 'Get the latest updates, tips, and news delivered to your inbox.',
+    title: 'Get new IPTV tests',
+    description: 'Weekly app updates, device setup tips, and troubleshooting fixes.',
     placeholder: 'Enter your email',
-    buttonText: 'Subscribe',
+    buttonText: 'Get updates',
     successMessage: 'Thanks for subscribing! Check your inbox to confirm.',
     errorMessage: 'Something went wrong. Please try again.',
     privacyNote: 'We respect your privacy. Unsubscribe at any time.',

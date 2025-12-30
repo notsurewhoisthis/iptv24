@@ -1,22 +1,44 @@
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+
+const baseSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  publishedDate: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
+  author: z.string().default('IPTV24 Lab'),
+  image: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  keywords: z.array(z.string()).default([]),
+  howTo: z
+    .object({
+      name: z.string(),
+      steps: z.array(
+        z.object({
+          name: z.string(),
+          text: z.string(),
+        })
+      ),
+    })
+    .optional(),
+  faq: z
+    .array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+      })
+    )
+    .optional(),
+  draft: z.boolean().default(false),
+});
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    publishedDate: z.coerce.date(),
-    author: z.string(),
-    image: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
-  }),
+  type: 'content',
+  schema: baseSchema,
 });
 
 const docs = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs' }),
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -27,7 +49,7 @@ const docs = defineCollection({
 });
 
 const changelog = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/changelog' }),
+  type: 'content',
   schema: z.object({
     version: z.string(),
     date: z.coerce.date(),
@@ -38,7 +60,7 @@ const changelog = defineCollection({
 });
 
 const testimonials = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/testimonials' }),
+  type: 'content',
   schema: z.object({
     quote: z.string(),
     author: z.string(),
@@ -51,4 +73,24 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { blog, docs, changelog, testimonials };
+const apps = defineCollection({
+  type: 'content',
+  schema: baseSchema,
+});
+
+const devices = defineCollection({
+  type: 'content',
+  schema: baseSchema,
+});
+
+const guides = defineCollection({
+  type: 'content',
+  schema: baseSchema,
+});
+
+const troubleshooting = defineCollection({
+  type: 'content',
+  schema: baseSchema,
+});
+
+export const collections = { blog, docs, changelog, testimonials, apps, devices, guides, troubleshooting };

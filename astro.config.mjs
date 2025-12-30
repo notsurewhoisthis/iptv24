@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -35,13 +36,34 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const { features } = siteConfig;
+        const blockedRoutes = [
+          '/403',
+          '/404',
+          '/500',
+          '/features',
+          '/pricing',
+          '/enterprise',
+          '/dashboard',
+          '/demo',
+          '/status',
+          '/customers',
+          '/integrations',
+          '/faq',
+          '/security',
+          '/careers',
+          '/login',
+          '/register',
+          '/forgot-password',
+        ];
+        const pathname = page.startsWith('http') ? new URL(page).pathname : page;
 
         // Filter out pages based on feature flags
-        if (!features.blog && page.includes('/blog')) return false;
-        if (!features.docs && page.includes('/docs')) return false;
-        if (!features.changelog && page.includes('/changelog')) return false;
-        if (!features.testimonials && page.includes('/testimonials')) return false;
-        if (!features.roadmap && page.includes('/roadmap')) return false;
+        if (!features.blog && pathname.includes('/blog')) return false;
+        if (!features.docs && pathname.includes('/docs')) return false;
+        if (!features.changelog && pathname.includes('/changelog')) return false;
+        if (!features.testimonials && pathname.includes('/testimonials')) return false;
+        if (!features.roadmap && pathname.includes('/roadmap')) return false;
+        if (blockedRoutes.some((route) => pathname.startsWith(route))) return false;
 
         return true;
       },

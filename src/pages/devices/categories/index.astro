@@ -1,0 +1,33 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { deviceCategories } from '@/data/devices';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title={`IPTV Device Categories - ${siteConfig.name}`}
+  description="Browse IPTV devices by category, including streaming sticks, boxes, smart TVs, and mobile devices."
+>
+  <section class="py-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold text-text">IPTV device categories</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Use these category hubs to compare IPTV-ready hardware and jump to detailed device profiles.
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {deviceCategories.map((category) => (
+          <a
+            class="rounded-lg border border-border p-6 hover:border-primary transition-colors"
+            href={`/devices/categories/${category.category}/`}
+          >
+            <h2 class="text-xl font-semibold text-text">{category.label}</h2>
+            <p class="mt-2 text-sm text-text-muted">{category.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

@@ -5,7 +5,7 @@ publishedDate: 2025-11-01
 author: "James Chen"
 image: "/images/blog/future-dev-tools.webp"
 tags: ["tutorial", "development", "product"]
-draft: false
+draft: true
 ---
 
 The developer tools landscape is evolving faster than ever. As we look toward 2025, several trends are converging to fundamentally change how we build, deploy, and maintain software.

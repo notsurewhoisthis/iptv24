@@ -5,7 +5,7 @@ publishedDate: 2025-05-01
 author: "Sarah Mitchell"
 image: "/images/blog/zero-downtime.webp"
 tags: ["tutorial", "deployment", "development"]
-draft: false
+draft: true
 ---
 
 Downtime is expensive. For e-commerce sites, every minute of downtime can mean thousands in lost revenue. For SaaS products, it erodes customer trust. That's why we've invested heavily in making Virex deployments truly zero-downtime.

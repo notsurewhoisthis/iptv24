@@ -1,0 +1,53 @@
+---
+import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import { deviceCategories, getDevicesByCategory } from '@/data/devices';
+import { siteConfig } from '@/config';
+---
+
+<MarketingLayout
+  title={`IPTV Devices - ${siteConfig.name}`}
+  description="Real device comparisons for streaming sticks, streaming boxes, smart TVs, and mobile devices used for IPTV."
+>
+  <section class="py-section">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold text-text">IPTV Device Models</h1>
+        <p class="mt-4 text-lg text-text-muted">
+          Compare streaming sticks, boxes, smart TVs, and mobile devices for IPTV playback.
+        </p>
+      </header>
+
+      <div class="space-y-10">
+        {deviceCategories.map(({ category, label, description, comparisonSlug }) => (
+          <section class="rounded-lg border border-border p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-2xl font-semibold text-text">{label}</h2>
+                <p class="mt-2 text-sm text-text-muted">{description}</p>
+              </div>
+              {comparisonSlug && (
+                <a class="text-sm text-primary hover:underline" href={`/devices/compare/${comparisonSlug}/`}>
+                  View comparison
+                </a>
+              )}
+            </div>
+            <div class="mt-5 grid gap-4 md:grid-cols-2">
+              {getDevicesByCategory(category).map((device) => (
+                <a
+                  class="rounded-md border border-border p-4 hover:border-primary transition-colors"
+                  href={`/devices/models/${device.slug}/`}
+                >
+                  <h3 class="text-lg font-semibold text-text">{device.name}</h3>
+                  <p class="mt-2 text-sm text-text-muted">OS: {device.os}</p>
+                  {device.specs.slice(0, 2).map((spec) => (
+                    <p class="text-sm text-text-muted">{spec.label}: {spec.value}</p>
+                  ))}
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</MarketingLayout>
