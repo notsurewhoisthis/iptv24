@@ -30,7 +30,7 @@ export const ogImage = '/images/logo.png';
 
 /** Social media links */
 export const social: SocialLinks = {
-  twitter: '',
+  twitter: 'https://twitter.com/freeiptv24',
   github: '',
   discord: '',
 };

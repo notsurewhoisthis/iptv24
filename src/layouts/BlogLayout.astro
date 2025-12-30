@@ -2,6 +2,8 @@
 import MarketingLayout from './MarketingLayout.astro';
 import { Icon } from 'astro-icon/components';
 import { calculateReadingTime, formatDate } from '@/lib/utils';
+import { getAuthorByName } from '@/data/authors';
+import { siteConfig } from '@/config';
 
 interface Props {
   title: string;
@@ -25,6 +27,23 @@ const formattedDate = formatDate(publishedDate, {
   month: 'long',
   day: 'numeric',
 });
+const authorProfile = getAuthorByName(author) || getAuthorByName(siteConfig.author);
+const authorName = authorProfile?.name || author || siteConfig.author;
+const authorUrl = authorProfile ? `/authors/${authorProfile.slug}/` : '';
+const personSchema = authorProfile
+  ? {
+      name: authorProfile.name,
+      description: authorProfile.bio,
+      url: new URL(authorUrl, siteConfig.url).href,
+      jobTitle: authorProfile.role,
+      sameAs: authorProfile.sameAs,
+      worksFor: {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    }
+  : null;
 ---
 
 <MarketingLayout
@@ -34,10 +53,11 @@ const formattedDate = formatDate(publishedDate, {
   image={image}
   type="article"
   publishedDate={publishedDate}
-  author={author}
+  author={authorName}
   tags={tags}
   faq={faq}
   howTo={howTo}
+  person={personSchema}
 >
   <article class="py-section">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +72,13 @@ const formattedDate = formatDate(publishedDate, {
         >
           <span class="flex items-center gap-1">
             <Icon name="lucide:user" class="w-4 h-4" />
-            {author}
+            {authorUrl ? (
+              <a class="text-primary hover:underline" href={authorUrl}>
+                {authorName}
+              </a>
+            ) : (
+              <span>{authorName}</span>
+            )}
           </span>
           <span class="flex items-center gap-1">
             <Icon name="lucide:calendar" class="w-4 h-4" />
@@ -86,14 +112,22 @@ const formattedDate = formatDate(publishedDate, {
 
       <div class="mt-10 rounded-lg border border-border p-6">
         <p class="text-sm uppercase tracking-[0.2em] text-text-muted">About the author</p>
-        <h2 class="mt-2 text-lg font-semibold text-text">{author || 'IPTV24 Lab'}</h2>
+        <h2 class="mt-2 text-lg font-semibold text-text">{authorName}</h2>
+        <p class="mt-1 text-sm text-text-muted">{authorProfile?.role || 'Editorial Lab'}</p>
         <p class="mt-2 text-sm text-text-muted">
-          IPTV24 Lab reviews IPTV apps and devices with a focus on playlist compatibility, playback
-          stability, and network performance. Learn more about our methodology on the about page.
+          {authorProfile?.bio ||
+            'IPTV24 Lab reviews IPTV apps and devices with a focus on playlist compatibility, playback stability, and network performance.'}
         </p>
-        <a class="mt-3 inline-flex text-primary hover:underline text-sm" href="/about/">
-          Read our testing methodology
-        </a>
+        <div class="mt-3 flex flex-wrap gap-4 text-sm">
+          {authorUrl && (
+            <a class="text-primary hover:underline" href={authorUrl}>
+              View author profile
+            </a>
+          )}
+          <a class="text-primary hover:underline" href="/about/">
+            Read our testing methodology
+          </a>
+        </div>
       </div>
     </div>
   </article>

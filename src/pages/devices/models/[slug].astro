@@ -17,11 +17,41 @@ if (!device) {
 const relatedComparisons = deviceComparisons.filter((comparison) =>
   comparison.deviceSlugs.includes(device.slug)
 );
+const productSchema = {
+  name: device.name,
+  description: `Specs and IPTV playback notes for ${device.name}.`,
+  category: 'Streaming device',
+  ...(device.review
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: device.review.score.overall,
+          bestRating: 10,
+          worstRating: 0,
+          ratingCount: 1,
+        },
+        review: {
+          '@type': 'Review',
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: device.review.score.overall,
+            bestRating: 10,
+            worstRating: 0,
+          },
+          author: {
+            '@type': 'Person',
+            name: siteConfig.author,
+          },
+        },
+      }
+    : {}),
+};
 ---
 
 <MarketingLayout
   title={`${device.name} - ${siteConfig.name}`}
   description={`Specs and IPTV playback notes for ${device.name}.`}
+  product={productSchema}
 >
   <section class="py-section">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

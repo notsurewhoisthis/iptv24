@@ -57,6 +57,10 @@ interface Props {
   howTo?: { name: string; steps: { name: string; text: string }[] };
   /** Optional software app schema */
   softwareApp?: Record<string, unknown> | null;
+  /** Optional person schema */
+  person?: Record<string, unknown> | null;
+  /** Optional product schema */
+  product?: Record<string, unknown> | null;
 }
 
 const {
@@ -73,6 +77,8 @@ const {
   faq = [],
   howTo,
   softwareApp = null,
+  person = null,
+  product = null,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
@@ -125,6 +131,20 @@ const organizationSchema = {
   ...(sameAs.length ? { sameAs } : {}),
 };
 
+const authorSchema =
+  person && typeof person.name === 'string'
+    ? {
+        '@type': 'Person',
+        name: person.name,
+        ...(person.url ? { url: person.url } : {}),
+        ...(person.sameAs ? { sameAs: person.sameAs } : {}),
+        ...(person.jobTitle ? { jobTitle: person.jobTitle } : {}),
+      }
+    : {
+        '@type': 'Person',
+        name: author || siteConfig.author,
+      };
+
 const articleSchema =
   type === 'article' && publishedDate
     ? {
@@ -135,10 +155,7 @@ const articleSchema =
         image: ogImage,
         datePublished: publishedDate.toISOString(),
         dateModified: (modifiedDate || publishedDate).toISOString(),
-        author: {
-          '@type': 'Person',
-          name: author || siteConfig.author,
-        },
+        author: authorSchema,
         publisher: {
           '@type': 'Organization',
           name: siteConfig.name,
@@ -195,6 +212,23 @@ const softwareAppSchema = softwareApp
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       ...softwareApp,
+    }
+  : null;
+
+const personSchema =
+  person && typeof person.name === 'string'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        ...person,
+      }
+    : null;
+
+const productSchema = product
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      ...product,
     }
   : null;
 
@@ -276,5 +310,15 @@ const breadcrumbSchema = {
 {
   softwareAppSchema && (
     <script is:inline type="application/ld+json" set:html={JSON.stringify(softwareAppSchema)} />
+  )
+}
+{
+  productSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  )
+}
+{
+  personSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   )
 }

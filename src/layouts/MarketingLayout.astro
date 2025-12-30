@@ -20,6 +20,8 @@ interface Props {
   faq?: { question: string; answer: string }[];
   howTo?: { name: string; steps: { name: string; text: string }[] };
   softwareApp?: Record<string, unknown> | null;
+  person?: Record<string, unknown> | null;
+  product?: Record<string, unknown> | null;
 }
 
 const {
@@ -36,6 +38,8 @@ const {
   faq,
   howTo,
   softwareApp,
+  person,
+  product,
 } = Astro.props;
 
 const { announcement } = siteConfig;
@@ -55,6 +59,8 @@ const { announcement } = siteConfig;
   faq={faq}
   howTo={howTo}
   softwareApp={softwareApp}
+  person={person}
+  product={product}
 >
   <div class="flex flex-col min-h-screen">
     {

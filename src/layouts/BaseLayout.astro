@@ -17,6 +17,8 @@ interface Props {
   faq?: { question: string; answer: string }[];
   howTo?: { name: string; steps: { name: string; text: string }[] };
   softwareApp?: Record<string, unknown> | null;
+  person?: Record<string, unknown> | null;
+  product?: Record<string, unknown> | null;
 }
 
 const {
@@ -33,6 +35,8 @@ const {
   faq,
   howTo,
   softwareApp,
+  person,
+  product,
 } = Astro.props;
 
 const autoNoindexPaths = [
@@ -65,6 +69,12 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://play-lh.googleusercontent.com" crossorigin />
+    <link rel="preconnect" href="https://is1-ssl.mzstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.web3forms.com" crossorigin />
+    <link rel="dns-prefetch" href="https://play-lh.googleusercontent.com" />
+    <link rel="dns-prefetch" href="https://is1-ssl.mzstatic.com" />
+    <link rel="dns-prefetch" href="https://api.web3forms.com" />
     <SEO
       title={title}
       seoTitle={seoTitle}
@@ -79,6 +89,8 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
       faq={faq}
       howTo={howTo}
       softwareApp={softwareApp}
+      person={person}
+      product={product}
     />
     <!-- Theme and announcement initialization - runs before page render to prevent flash -->
     <script is:inline>
@@ -102,6 +114,44 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
           }
         });
       })();
+    </script>
+    <script type="module" is:inline>
+      import { onCLS, onINP, onLCP, onFCP, onTTFB } from 'web-vitals';
+
+      const endpoint = ${JSON.stringify(import.meta.env.PUBLIC_VITALS_ENDPOINT || '')};
+
+      function sendToAnalytics(metric) {
+        if (endpoint) {
+          const body = JSON.stringify({
+            name: metric.name,
+            value: metric.value,
+            id: metric.id,
+            rating: metric.rating,
+            delta: metric.delta,
+            path: window.location.pathname,
+          });
+          const blob = new Blob([body], { type: 'application/json' });
+          navigator.sendBeacon(endpoint, blob);
+          return;
+        }
+
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'web_vitals', {
+            event_category: 'Web Vitals',
+            event_label: metric.id,
+            value: Math.round(metric.value),
+            metric_name: metric.name,
+            metric_value: metric.value,
+            metric_rating: metric.rating,
+          });
+        }
+      }
+
+      onCLS(sendToAnalytics);
+      onINP(sendToAnalytics);
+      onLCP(sendToAnalytics);
+      onFCP(sendToAnalytics);
+      onTTFB(sendToAnalytics);
     </script>
   </head>
   <body class="min-h-screen bg-background text-text antialiased">
