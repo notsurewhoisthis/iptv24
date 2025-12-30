@@ -30,31 +30,31 @@ const office = contact.address;
             web3formsKey={contactForm.accessKey}
           />
           <p class="mt-4 text-sm text-text-muted">
-            This form uses a free Web3Forms endpoint. If you do not receive a response, email
-            <a class="text-primary hover:underline ml-1" href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>.
+            This form uses a free Web3Forms endpoint. Include your device model and app version so
+            we can reproduce the issue quickly.
           </p>
         </div>
 
         <div class="space-y-8">
           <!-- Contact Methods -->
-          <div>
-            <h2 class="text-2xl font-bold text-text mb-4">Other ways to reach us</h2>
-            <div class="space-y-3">
-              {
-                contactMethods.map((method) => (
-                  <a
-                    href={method.href}
-                    class="flex items-center gap-3 text-text-muted hover:text-primary transition-colors group"
-                  >
-                    <Icon name={method.icon} class="w-5 h-5 text-primary" />
-                    <span class="group-hover:underline">{method.value}</span>
-                  </a>
-                ))
-              }
-            </div>
-          </div>
+          {
+            contactMethods.length > 0 && (
+              <div>
+                <h2 class="text-2xl font-bold text-text mb-4">Other ways to reach us</h2>
+                <div class="space-y-3">
+                  {contactMethods.map((method) => (
+                    <a
+                      href={method.href}
+                      class="flex items-center gap-3 text-text-muted hover:text-primary transition-colors group"
+                    >
+                      <Icon name={method.icon} class="w-5 h-5 text-primary" />
+                      <span class="group-hover:underline">{method.value}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
           <!-- Our Office -->
           <div>

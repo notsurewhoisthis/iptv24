@@ -38,7 +38,7 @@ export const content: ContentStrings = {
     title: 'Get new IPTV tests',
     description: 'Weekly app updates, device setup tips, and troubleshooting fixes.',
     placeholder: 'Enter your email',
-    buttonText: 'Get updates',
+    buttonText: 'Join the newsletter',
     successMessage: 'Thanks for subscribing! Check your inbox to confirm.',
     errorMessage: 'Something went wrong. Please try again.',
     privacyNote: 'We respect your privacy. Unsubscribe at any time.',

@@ -12,12 +12,13 @@
  * <Header />
  * ```
  */
-import { siteConfig } from '@/config';
+import { contactForm, siteConfig } from '@/config';
 import { Icon } from 'astro-icon/components';
 import ThemeToggle from '@ui/ThemeToggle.astro';
 import type { FeatureFlags } from '@/lib/types';
 
 const { features, navigation } = siteConfig;
+const { newsletter } = siteConfig.content;
 const { header: headerNav } = navigation;
 
 // Filter navigation items based on feature flags
@@ -28,6 +29,9 @@ const mainNavItems = headerNav.main.filter(
 // Separate CTA buttons by variant
 const ghostCTAs = headerNav.cta.filter((cta) => cta.variant === 'ghost');
 const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
+const newsletterAction = contactForm.accessKey ? contactForm.action : '';
+const newsletterKey = contactForm.accessKey;
+const newsletterEnabled = Boolean(newsletterAction && newsletterKey);
 ---
 
 <header
@@ -73,6 +77,47 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
               {cta.label}
             </a>
           ))
+        }
+        {
+          newsletterEnabled && (
+            <details class="relative">
+              <summary class="list-none px-4 py-2 rounded-md bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                {newsletter.buttonText}
+              </summary>
+              <form
+                action={newsletterAction}
+                method="POST"
+                class="newsletter-inline-form absolute right-0 mt-3 w-72 rounded-md border border-border bg-surface p-3 shadow-lg"
+                data-success-message={newsletter.successMessage}
+                data-error-message={newsletter.errorMessage}
+              >
+                <input type="hidden" name="access_key" value={newsletterKey} />
+                <input type="hidden" name="subject" value={`${siteConfig.name} Newsletter Signup`} />
+                <input type="hidden" name="from_name" value={`${siteConfig.name} Newsletter`} />
+                <label class="sr-only" for="newsletter-email-desktop">Email address</label>
+                <div class="flex items-center gap-2">
+                  <input
+                    type="email"
+                    id="newsletter-email-desktop"
+                    name="email"
+                    required
+                    placeholder={newsletter.placeholder}
+                    class="flex-1 px-3 py-2 text-sm rounded-md border border-border bg-background text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                  <button
+                    type="submit"
+                    class="px-3 py-2 text-sm font-medium rounded-md bg-primary text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
+                  >
+                    {newsletter.buttonText}
+                  </button>
+                </div>
+                <p
+                  class="newsletter-inline-message mt-2 text-xs text-text-muted hidden"
+                  data-newsletter-message
+                ></p>
+              </form>
+            </details>
+          )
         }
         {
           primaryCTA && (
@@ -156,6 +201,40 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
         ))
       }
       {
+        newsletterEnabled && (
+          <form
+            action={newsletterAction}
+            method="POST"
+            class="newsletter-inline-form mt-2 space-y-3 rounded-md border border-border bg-background p-3"
+            data-success-message={newsletter.successMessage}
+            data-error-message={newsletter.errorMessage}
+          >
+            <input type="hidden" name="access_key" value={newsletterKey} />
+            <input type="hidden" name="subject" value={`${siteConfig.name} Newsletter Signup`} />
+            <input type="hidden" name="from_name" value={`${siteConfig.name} Newsletter`} />
+            <label class="sr-only" for="newsletter-email-mobile">Email address</label>
+            <input
+              type="email"
+              id="newsletter-email-mobile"
+              name="email"
+              required
+              placeholder={newsletter.placeholder}
+              class="w-full px-3 py-2 text-sm rounded-md border border-border bg-background text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+            <button
+              type="submit"
+              class="w-full px-3 py-2 text-sm font-medium rounded-md bg-primary text-white hover:bg-primary-dark transition-colors"
+            >
+              {newsletter.buttonText}
+            </button>
+            <p
+              class="newsletter-inline-message text-xs text-text-muted hidden"
+              data-newsletter-message
+            ></p>
+          </form>
+        )
+      }
+      {
         primaryCTA && (
           <a
             href={primaryCTA.href}
@@ -223,5 +302,50 @@ const primaryCTA = headerNav.cta.find((cta) => cta.variant === 'primary');
 
   mobileMenu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMobileMenu);
+  });
+
+  document.querySelectorAll('.newsletter-inline-form').forEach((form) => {
+    const formEl = form as HTMLFormElement;
+    const messageEl = formEl.querySelector('[data-newsletter-message]') as HTMLElement | null;
+    const emailInput = formEl.querySelector('input[type="email"]') as HTMLInputElement | null;
+    const submitBtn = formEl.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+    if (!messageEl || !emailInput || !submitBtn) return;
+
+    const successMessage = formEl.dataset.successMessage || 'Thanks for subscribing!';
+    const errorMessage = formEl.dataset.errorMessage || 'Something went wrong. Please try again.';
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      const originalText = submitBtn.textContent || '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining...';
+
+      try {
+        const response = await fetch(formEl.action, {
+          method: 'POST',
+          body: new FormData(formEl),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!response.ok) {
+          throw new Error('Subscription failed');
+        }
+
+        messageEl.textContent = successMessage;
+        messageEl.className = 'newsletter-inline-message mt-2 text-xs text-green-600';
+        emailInput.value = '';
+      } catch {
+        messageEl.textContent = errorMessage;
+        messageEl.className = 'newsletter-inline-message mt-2 text-xs text-red-600';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || 'Join the newsletter';
+      }
+    });
   });
 </script>

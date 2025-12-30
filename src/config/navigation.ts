@@ -28,9 +28,7 @@ export const navigation: Navigation = {
       { label: 'Troubleshooting', href: '/troubleshooting' },
       { label: 'Blog', href: '/blog', feature: 'blog' },
     ],
-    cta: [
-      { label: 'Start Here', href: '/guides/iptv-apple-tv-4k-setup', variant: 'primary' },
-    ],
+    cta: [],
   },
 
   /**

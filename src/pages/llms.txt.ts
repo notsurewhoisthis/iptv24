@@ -22,7 +22,7 @@ troubleshooting for smart TVs, streaming sticks, streaming boxes, and mobile dev
 - [Learn](/learn): IPTV fundamentals, safety, and performance tips.
 
 ## Contact
-- Email: ${siteConfig.contact.email}
+- Contact form: ${siteConfig.url}/contact/
 `;
 
   return new Response(llms, {

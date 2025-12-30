@@ -10,9 +10,9 @@ import type { ContactInfo, ContactMethod, ContactFAQ } from '../lib/types';
 
 /** Contact information used across contact page and legal pages */
 export const contact: ContactInfo = {
-  email: 'hello@freeiptv24.com',
-  supportEmail: 'support@freeiptv24.com',
-  salesEmail: 'partnerships@freeiptv24.com',
+  email: '',
+  supportEmail: '',
+  salesEmail: '',
   address: {
     street: 'Remote',
     city: 'Austin',
@@ -42,7 +42,7 @@ export const contactMethods: ContactMethod[] = [
     value: contact.salesEmail,
     href: `mailto:${contact.salesEmail}`,
   },
-];
+].filter((method) => method.value && method.value.trim().length > 0);
 
 export const contactForm = {
   provider: 'web3forms',
