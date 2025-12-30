@@ -1,0 +1,55 @@
+name: Auto Update App Data
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-apps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Skip off-week runs
+        shell: bash
+        run: |
+          WEEK=$(date +%V)
+          if [ $((10#$WEEK % 2)) -ne 0 ]; then
+            echo "Skipping week ${WEEK} (biweekly schedule)."
+            exit 0
+          fi
+
+      - name: Update iOS/macOS apps
+        run: npm run update:apps
+
+      - name: Update Android apps
+        run: npm run update:android-apps
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          if ! git status --porcelain | grep -E "src/data/(apps|android-apps)\\.json" >/dev/null; then
+            echo "No app data changes to commit."
+            exit 0
+          fi
+          git config user.name "iptv24-bot"
+          git config user.email "actions@github.com"
+          git add src/data/apps.json src/data/android-apps.json
+          git commit -m "chore: refresh app data"
+          git push origin main
