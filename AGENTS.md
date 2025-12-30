@@ -2,59 +2,119 @@
 
 ## Quick Start
 - Required: Node.js 20+, npm.
-- Install: `npm ci`
+- Install dependencies: `npm ci`.
 - Run locally: `npm run dev` (Astro dev server).
 - Build: `npm run build` (static output in `dist/`).
-- Preview: `npm run preview`
-- Optional env vars: `SITE_URL`, `WEB3FORMS_KEY`, `PUBLIC_VITALS_ENDPOINT`.
+- Preview: `npm run preview`.
+- Environment variables (optional but recommended):
+  - `SITE_URL` (production domain for canonical/sitemap).
+  - `WEB3FORMS_KEY` (contact/newsletter submissions).
+  - `PUBLIC_VITALS_ENDPOINT` (Core Web Vitals beacon endpoint).
+
+## Architecture Overview
+- Astro SSG builds a static site with programmatic routes for apps, devices, comparisons, guides, and troubleshooting.
+- Data-driven pages render from JSON/TS datasets in `src/data/` and Markdown content in `src/content/`.
+- Global SEO is centralized in `src/components/common/SEO.astro` and applied via `src/layouts/BaseLayout.astro`.
+- Schema coverage includes WebSite, Organization, Article, FAQ, HowTo, SoftwareApplication, Product, and Person.
 
 ## Project Structure & Module Organization
-- `src/pages/`: Astro routes (SEO pages, blog, app/device pages).
-- `src/layouts/`: Base/marketing/blog layouts and SEO wiring.
-- `src/components/`: Reusable UI and content sections.
+- `src/pages/`: Astro routes (homepage, apps, devices, comparisons, blog, guides, troubleshooting, authors).
+- `src/layouts/`: Base, marketing, and blog layouts with SEO wiring.
+- `src/components/`: Reusable UI sections, forms, and layout components.
 - `src/content/`: Markdown collections (`blog/`, `guides/`, `troubleshooting/`).
-- `src/data/`: Programmatic datasets (`apps.json`, `android-apps.json`, devices, authors).
-- `public/`: Static assets (images, icons, robots).
-- `scripts/`: Data refresh utilities for App Store/Google Play.
+- `src/data/`: Programmatic datasets (`apps.json`, `android-apps.json`, device specs, comparisons, authors).
+- `scripts/`: Data refresh utilities for App Store and Google Play.
+- `public/`: Static assets (logos, images, robots).
 - `.github/workflows/`: CI/CD and scheduled updates.
 
-## Content Updates
-- Blog/guides/troubleshooting: add Markdown under `src/content/<collection>/`.
+## Content & Data Updates
+### Markdown collections
+- Add content in `src/content/<collection>/`.
 - Required frontmatter: `title`, `description`, `publishedDate`, `author`, `tags`, `keywords`, `draft`.
-- App data is generated: use `npm run update:apps` and `npm run update:android-apps` (do not hand-edit JSON).
-- Author profiles live in `src/data/authors.ts` and render at `/authors/<slug>/`.
+- Example:
+  ```md
+  ---
+  title: "EPG Not Loading Fix (2025)"
+  description: "Step-by-step fixes for IPTV EPG issues across devices."
+  publishedDate: 2025-01-15
+  author: "IPTV24 Lab"
+  tags: ["EPG", "troubleshooting"]
+  keywords: ["iptv epg not loading", "epg fix"]
+  draft: false
+  ---
+  ```
+- Slug = filename. Use kebab-case and keep under ~60 chars.
+
+### App datasets (generated)
+- Do not edit `src/data/apps.json` or `src/data/android-apps.json` by hand.
+- Update via scripts:
+  - `npm run update:apps` (iOS/macOS).
+  - `npm run update:android-apps` (Android).
+- Scheduled automation runs biweekly via `.github/workflows/auto-update-apps.yml` and auto-commits.
+
+### Devices and comparisons
+- Device specs live in `src/data/devices.ts` (manual curation).
+- Comparisons live in `src/data/device-comparisons.ts` and `src/data/comparisons.ts`.
+- Only update these manually when you have reliable sources; keep citations in `sources` arrays.
 
 ## Build, Test, and Development Commands
 - `npm run dev`: local dev server.
 - `npm run build`: production build.
 - `npm run preview`: serve built site.
 - `npm run lint`: ESLint.
-- `npm run format`: Prettier.
+- `npm run format` / `npm run format:check`: Prettier.
 - `npm run check`: lint + format check + `astro check`.
 
 ## Coding Style & Naming Conventions
-- Keep existing formatting (2-space indentation, Tailwind utility classes).
-- Use kebab-case slugs for content files.
-- Prefer descriptive naming for sections and data keys.
-- Run Prettier before committing UI changes.
+- Match existing formatting (2-space indentation, Tailwind utility classes).
+- Use kebab-case slugs for content files and routes.
+- Keep component props and data keys descriptive and stable.
+- Avoid non-ASCII characters unless already used in a file.
 
-## Testing Guidelines
-- No dedicated test framework yet.
-- Run `npm run check` before merging.
-- If you add tests, document them here and add scripts to `package.json`.
-
-## SEO/GEO Notes
-- Global SEO handled in `src/components/common/SEO.astro`.
+## SEO/GEO Implementation Notes
+- Global SEO lives in `src/components/common/SEO.astro` and is applied via `BaseLayout`.
 - Article pages use `BlogLayout` for schema, author links, and metadata.
-- Device reviews emit Product + AggregateRating schema automatically.
+- Device review pages emit Product + AggregateRating schema automatically.
+- Author profiles live at `/authors/<slug>/` and emit Person schema.
 - `llms.txt` is generated from `src/pages/llms.txt.ts`.
+- Sitemap: `https://freeiptv24.com/sitemap-index.xml` (auto-generated by Astro).
+- If a title is too long, pass `seoTitle` to shorten SERP display.
 
-## Deployment & Automation
-- Cloudflare Pages deploys from `main` via GitHub Actions.
-- Auto app updates run biweekly via `.github/workflows/auto-update-apps.yml`.
-- Web3Forms handles contact/newsletter forms; keep `WEB3FORMS_KEY` in secrets only.
+## Core Web Vitals & Performance
+- CWV metrics are captured with `web-vitals` in `src/layouts/BaseLayout.astro`.
+- Events are sent to `PUBLIC_VITALS_ENDPOINT` if set; otherwise to GA4 if `gtag` is available.
+- Resource hints are configured for App Store/Google Play/Web3Forms.
+- Keep images optimized; prefer explicit width/height where possible.
+
+## Forms & Emails
+- Contact and newsletter forms use Web3Forms (no server required).
+- The Web3Forms key is supplied via `WEB3FORMS_KEY` in GitHub Secrets and runtime env.
+- Do not hardcode private emails; use the contact form instead.
+
+## Automation & Deployment
+- Cloudflare Pages deploys on every push to `main`.
+- Scheduled app data updates run every other Monday at 03:00 UTC.
+- If a scheduled update fails, check Actions logs for API rate limits or network timeouts.
 
 ## Commit & Pull Request Guidelines
 - Commit messages: short, imperative (e.g., "Add ...", "Fix ...", "chore: ...").
-- PRs should include a summary, impacted paths, and screenshots for UI changes.
-- Note if data files under `src/data/` were regenerated.
+- PRs should include: summary, impacted paths, and screenshots for UI changes.
+- Note when data files under `src/data/` are regenerated.
+
+## Common Tasks
+- Add a blog post: create a Markdown file in `src/content/blog/` with frontmatter.
+- Update iOS/macOS apps: `npm run update:apps`.
+- Update Android apps: `npm run update:android-apps`.
+- Add a device: edit `src/data/devices.ts` and include `sources` URLs.
+- Add author: update `src/data/authors.ts` and ensure slug is unique.
+
+## Troubleshooting
+- Build errors from content: verify required frontmatter fields and valid dates.
+- 404s for new content: ensure `draft: false` and filename is correct.
+- Sitemap issues: confirm `SITE_URL` is set to `https://freeiptv24.com` during builds.
+
+## Security & Configuration Tips
+- Never commit secrets or API keys.
+- Keep `SITE_URL` consistent with the production domain.
+- Data refresh scripts should be treated as source-of-truth for app metadata.
+- Avoid editing generated JSON directly to prevent drift and merge conflicts.
