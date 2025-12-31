@@ -16,7 +16,7 @@
     "type": "git",
     "url": ""
   },
-  "homepage": "https://freeiptv24.com",
+  "homepage": "https://streamingguide.org",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

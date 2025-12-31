@@ -17,7 +17,7 @@ export const description =
   'Device-first IPTV guides, app rankings, and troubleshooting for smart TVs, streaming sticks, and mobile devices.';
 
 /** Production URL of your site (used for sitemap, RSS, canonical URLs) */
-export const url = import.meta.env.SITE_URL || 'https://freeiptv24.com';
+export const url = import.meta.env.SITE_URL || 'https://streamingguide.org';
 
 /** Author name for meta tags and copyright */
 export const author = import.meta.env.SITE_AUTHOR || 'IPTV24 Lab';
@@ -37,7 +37,7 @@ export const social: SocialLinks = {
 
 /** Legal configuration for privacy policy and terms pages */
 export const legal: LegalConfig = {
-  privacyEmail: 'privacy@freeiptv24.com',
-  legalEmail: 'legal@freeiptv24.com',
+  privacyEmail: '',
+  legalEmail: '',
   lastUpdated: 'March 8, 2025',
 };
