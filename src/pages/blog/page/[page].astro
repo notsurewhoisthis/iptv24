@@ -4,6 +4,7 @@ import Pagination from '@ui/Pagination.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import { calculateReadingTime } from '@/lib/utils';
+import { sortBlogPostsByNewest } from '@/lib/blog';
 
 const POSTS_PER_PAGE = 6;
 
@@ -21,10 +22,7 @@ const { page } = Astro.params;
 const currentPage = parseInt(page!);
 
 const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
-const sortedPosts = posts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
-    b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
-);
+const sortedPosts = sortBlogPostsByNewest(posts);
 
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 const startIndex = (currentPage - 1) * POSTS_PER_PAGE;

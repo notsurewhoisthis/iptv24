@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
+import { sortBlogPostsByNewest } from '@/lib/blog';
 import type { APIContext } from 'astro';
 
 type BlogPost = CollectionEntry<'blog'>;
@@ -14,11 +15,7 @@ export async function GET(context: APIContext) {
   }
 
   const blogPosts = await getCollection('blog', ({ data }: BlogPost) => !data.draft);
-
-  // Sort posts by date (newest first)
-  const sortedPosts = blogPosts.sort(
-    (a: BlogPost, b: BlogPost) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
-  );
+  const sortedPosts = sortBlogPostsByNewest(blogPosts);
 
   return rss({
     title: `${siteConfig.name} Blog`,

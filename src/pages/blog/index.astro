@@ -4,15 +4,14 @@ import Pagination from '@ui/Pagination.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import { calculateReadingTime } from '@/lib/utils';
+import { sortBlogPostsByNewest } from '@/lib/blog';
 
 type BlogPost = CollectionEntry<'blog'>;
 
 const POSTS_PER_PAGE = 6;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const sortedPosts = [...posts].sort(
-  (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
-);
+const sortedPosts = sortBlogPostsByNewest(posts);
 
 // Get current page from URL
 const currentPage = 1;

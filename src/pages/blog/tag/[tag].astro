@@ -2,6 +2,7 @@
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
+import { sortBlogPostsByNewest } from '@/lib/blog';
 
 type BlogPost = CollectionEntry<'blog'>;
 
@@ -22,11 +23,9 @@ interface Props {
 const { tag } = Astro.props;
 
 const posts = await getCollection('blog', ({ data }: { data: BlogPost['data'] }) => !data.draft);
-const filteredPosts: BlogPost[] = posts
-  .filter((post: BlogPost) => post.data.tags.includes(tag))
-  .sort(
-    (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
-  );
+const filteredPosts: BlogPost[] = sortBlogPostsByNewest(
+  posts.filter((post: BlogPost) => post.data.tags.includes(tag))
+);
 
 // Get tags ordered by frequency, then alphabetically
 const tagCounts = posts.reduce((acc: Map<string, number>, post: BlogPost) => {
