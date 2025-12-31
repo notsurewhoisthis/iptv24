@@ -310,11 +310,6 @@ If your provider uses **HLS (M3U8)** with longer segments, channel zapping will 
 
 ---
 
-## Frequently Asked Questions
-
-
-
----
 
 ## Conclusion
 Once you’ve done the initial setup, TiviMate stops feeling like “another tech project” and starts feeling like a normal TV interface—guide, favorites, categories, and predictable playback. The big beginner milestones are always the same: enable sideloading correctly (especially on Fire OS), install **TiviMate 4.7.0**, add your playlist using **M3U/M3U8** or **Xtream Codes**, then connect and update your **EPG XMLTV** source so the guide isn’t blank.
