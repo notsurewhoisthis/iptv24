@@ -2,7 +2,7 @@
 title: "IPTV Black Screen Fix: Audio With No Video"
 description: "Fix IPTV streams that play audio but show a black screen by adjusting codecs, HDR, and playback settings."
 publishedDate: 2025-03-06
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["black screen", "iptv", "video", "codec"]
 keywords: ["iptv black screen", "audio but no video", "iptv codec fix"]

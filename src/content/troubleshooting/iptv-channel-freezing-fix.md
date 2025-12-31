@@ -2,7 +2,7 @@
 title: "IPTV Channel Freezing on Specific Channels"
 description: "When only some channels freeze, the issue is usually stream-specific rather than device-wide."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["channels", "iptv"]
 keywords: ["iptv channel freezing", "iptv channel stuck", "iptv stream freeze"]

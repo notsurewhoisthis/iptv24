@@ -2,7 +2,7 @@
 title: "IPTV Apple TV App Guide: What to Check Before You Install"
 description: "A practical checklist for choosing an Apple TV IPTV app, including playlist support, EPG handling, and remote usability."
 publishedDate: 2025-03-04
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["apple-tv", "apps", "iptv", "guide"]
 keywords: ["iptv apple tv app", "apple tv iptv app guide", "iptv app apple tv"]

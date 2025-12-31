@@ -2,7 +2,7 @@
 title: "Slow IPTV Channel Switching: How to Speed Up Zapping"
 description: "Reduce IPTV channel switch delays with playlist trimming, cache management, and network tuning."
 publishedDate: 2025-03-08
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["channel switching", "iptv", "zapping", "performance"]
 keywords: ["slow iptv channel switching", "iptv zapping delay", "iptv channel change slow"]

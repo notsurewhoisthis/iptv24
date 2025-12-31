@@ -2,7 +2,7 @@
 title: "IPTV EPG Not Loading Fix — 5 Proven Solutions for 2025"
 description: "This document assumes a working IPTV stream but no working EPG. It focuses on common apps used in 2025: IPTV Smarters Pro, IBO Player, and generic M3U/Xtre..."
 publishedDate: 2025-12-30
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["IPTV EPG not loading","EPG refresh not working","fix IPTV guide","EPG troubleshooting"]
 keywords: ["IPTV EPG not loading","EPG refresh not working","fix IPTV guide","EPG troubleshooting"]
 draft: false

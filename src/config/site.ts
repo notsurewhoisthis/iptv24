@@ -9,7 +9,7 @@
 import type { SocialLinks, LegalConfig } from '../lib/types';
 
 /** Site name displayed in header, footer, and meta tags */
-export const name = import.meta.env.SITE_NAME || 'IPTV24';
+export const name = import.meta.env.SITE_NAME || 'Streaming Guide';
 
 /** Site description for SEO and meta tags */
 export const description =
@@ -20,7 +20,7 @@ export const description =
 export const url = import.meta.env.SITE_URL || 'https://streamingguide.org';
 
 /** Author name for meta tags and copyright */
-export const author = import.meta.env.SITE_AUTHOR || 'IPTV24 Lab';
+export const author = import.meta.env.SITE_AUTHOR || 'Streaming Guide Lab';
 
 /** Path to logo file (relative to /public) */
 export const logo = '/images/logo.png';

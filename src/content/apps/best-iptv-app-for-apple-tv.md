@@ -2,7 +2,7 @@
 title: "Best IPTV App for Apple TV: How to Choose the Right One"
 description: "A practical checklist for picking an Apple TV IPTV app, plus the best companion apps for iOS and macOS."
 publishedDate: 2025-03-01
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["apple-tv", "apps", "iptv", "guide"]
 keywords: ["best iptv app for apple tv", "apple tv iptv app", "iptv player apple tv"]

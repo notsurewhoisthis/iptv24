@@ -2,7 +2,7 @@
 title: "IPTV Subtitles Missing: Restore Captions and Language Tracks"
 description: "Fix missing subtitles or wrong languages by switching tracks and updating the app."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["subtitles", "iptv"]
 keywords: ["iptv subtitles missing", "iptv captions", "iptv subtitle fix"]

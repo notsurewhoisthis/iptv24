@@ -2,7 +2,7 @@
 title: "IPTV Connection Timeout Troubleshooting Guide — 2025 Edition"
 description: "This comprehensive guide concentrates on practical, step‑by‑step troubleshooting and optimization. It covers immediate fixes, deeper network and device con..."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: []
 keywords: []
 draft: false

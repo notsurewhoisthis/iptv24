@@ -2,7 +2,7 @@
 title: "IPTV App Update Broke Playback: What to Do"
 description: "App updates can change decoding or playlist parsing. Roll back settings and restore playback."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["app update", "iptv"]
 keywords: ["iptv app update issues", "iptv update broke playback", "iptv app bug"]

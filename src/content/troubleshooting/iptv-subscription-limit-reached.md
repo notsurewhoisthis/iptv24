@@ -2,7 +2,7 @@
 title: "IPTV Subscription Limit Reached: Fix Connection Caps"
 description: "Many providers limit simultaneous streams. Learn how to avoid connection caps."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["subscription", "limits", "iptv"]
 keywords: ["iptv connection limit", "iptv simultaneous streams", "iptv limit reached"]

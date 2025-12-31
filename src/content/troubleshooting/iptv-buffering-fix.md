@@ -2,7 +2,7 @@
 title: "IPTV Buffering Fix: 9 Steps That Actually Help"
 description: "Fix IPTV buffering with stream protocol changes, buffer tuning, and network diagnostics."
 publishedDate: 2025-03-10
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["buffering", "iptv", "troubleshooting"]
 keywords: ["iptv buffering fix", "iptv buffering constantly", "iptv buffering issues"]

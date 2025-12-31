@@ -2,7 +2,7 @@
 title: "Fix IPTV Audio Sync and Delay Issues"
 description: "Resolve audio lag, echo, and subtitle drift with stream protocol changes, device tweaks, and player settings."
 publishedDate: 2025-03-07
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["audio sync", "iptv", "subtitles", "troubleshooting"]
 keywords: ["iptv audio delay", "iptv audio sync fix", "iptv subtitle drift"]

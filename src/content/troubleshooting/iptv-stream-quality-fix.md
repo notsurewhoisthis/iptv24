@@ -2,7 +2,7 @@
 title: "Low IPTV Stream Quality: Fix Pixelation and Blurry Video"
 description: "Improve IPTV image quality by testing alternate streams and reducing network congestion."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["quality", "iptv", "video"]
 keywords: ["iptv low quality", "iptv pixelation", "iptv blurry"]

@@ -2,7 +2,7 @@
 title: "EPG Time Zone Fix: Align Guide Listings"
 description: "Use time shift settings to fix EPG listings that show the wrong schedule."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["epg", "timezone", "iptv"]
 keywords: ["iptv epg timezone fix", "iptv guide wrong time", "epg offset"]

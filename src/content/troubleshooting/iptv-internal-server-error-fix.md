@@ -2,7 +2,7 @@
 title: "IPTV Internal Server Error: What to Do Next"
 description: "Internal server errors indicate provider-side issues. Learn how to confirm and work around them."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["server error", "iptv", "provider"]
 keywords: ["iptv internal server error", "iptv 500 error", "iptv server down"]

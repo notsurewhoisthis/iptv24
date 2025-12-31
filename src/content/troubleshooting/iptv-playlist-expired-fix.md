@@ -2,7 +2,7 @@
 title: "IPTV Playlist Expired: How to Restore Channels"
 description: "Expired playlists lead to blank channels or login errors. Refresh the URL and restore access fast."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["playlist", "expired", "iptv"]
 keywords: ["iptv playlist expired", "m3u expired", "xtream codes expired"]

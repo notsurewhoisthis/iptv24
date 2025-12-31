@@ -2,7 +2,7 @@
 title: "IPTV on iOS: Setup Guide for iPhone and iPad"
 description: "Step-by-step IPTV setup on iOS with playlist import, EPG sync, and playback settings."
 publishedDate: 2025-03-07
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["ios", "iphone", "iptv", "setup"]
 keywords: ["iptv on ios", "iphone iptv setup", "ios iptv guide"]

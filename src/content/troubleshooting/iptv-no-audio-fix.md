@@ -2,7 +2,7 @@
 title: "IPTV No Audio Fix: Restore Sound Fast"
 description: "Solve IPTV audio issues by switching tracks, adjusting output, and testing codecs."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["audio", "iptv"]
 keywords: ["iptv no audio", "iptv sound not working", "iptv audio fix"]

@@ -2,7 +2,7 @@
 title: "IPTV Device Storage Full: Prevent Crashes and Free Space"
 description: "Low storage causes IPTV apps to crash during EPG sync and playlist updates."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["storage", "iptv"]
 keywords: ["iptv storage full", "iptv cache full", "iptv app crashing"]

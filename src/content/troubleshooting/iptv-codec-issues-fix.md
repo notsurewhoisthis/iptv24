@@ -2,7 +2,7 @@
 title: "IPTV Codec Issues: Fix Unsupported Video Formats"
 description: "Unsupported codecs cause black screens or audio-only playback. Fix it with player settings."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["codec", "video", "iptv"]
 keywords: ["iptv codec issues", "iptv unsupported codec", "iptv video format"]

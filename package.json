@@ -2,7 +2,7 @@
   "name": "streamwise-iptv",
   "type": "module",
   "version": "1.4.1",
-  "description": "IPTV24 Astro site with programmatic app and device comparisons.",
+  "description": "Streaming Guide Astro site with programmatic app and device comparisons.",
   "keywords": [
     "astro",
     "iptv",

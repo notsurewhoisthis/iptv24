@@ -2,7 +2,7 @@
 title: "IPTV Login Errors: Xtream Codes, M3U, and Authentication Fixes"
 description: "Resolve IPTV login failures, invalid URL errors, and Xtream Codes issues with a proven troubleshooting checklist."
 publishedDate: 2025-03-04
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["login", "iptv", "xtream codes", "m3u"]
 keywords: ["iptv login error", "xtream codes failed", "m3u invalid url"]

@@ -2,7 +2,7 @@
 title: "Xtream Codes Authentication Failed: Fix Login Quickly"
 description: "Authentication failures can come from wrong server URLs, expired accounts, or IP blocks."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["xtream codes", "login", "iptv"]
 keywords: ["xtream codes auth failed", "iptv login failed", "xtream iptv error"]

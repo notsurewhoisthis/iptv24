@@ -2,7 +2,7 @@
 title: "IPTV Audio Format Unsupported: Fix Silent Channels"
 description: "Unsupported audio formats can silence specific channels. Adjust output settings to restore sound."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["audio", "codec", "iptv"]
 keywords: ["iptv audio format unsupported", "iptv silent channel", "iptv audio codec"]

@@ -2,7 +2,7 @@
 title: "TiviMate on Firestick (2025) — Complete Setup, Troubleshooting, and Optimization Guide"
 description: "You will learn how to: - Enable Developer Options and allow installation from unknown sources. - Install and use the Downloader app to sideload TiviMate (c..."
 publishedDate: 2025-12-30
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: []
 keywords: []
 draft: false

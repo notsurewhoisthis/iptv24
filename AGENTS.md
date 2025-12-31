@@ -37,7 +37,7 @@
   title: "EPG Not Loading Fix (2025)"
   description: "Step-by-step fixes for IPTV EPG issues across devices."
   publishedDate: 2025-01-15
-  author: "IPTV24 Lab"
+  author: "Streaming Guide Lab"
   tags: ["EPG", "troubleshooting"]
   keywords: ["iptv epg not loading", "epg fix"]
   draft: false

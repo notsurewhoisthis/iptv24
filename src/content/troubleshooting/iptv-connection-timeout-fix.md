@@ -2,7 +2,7 @@
 title: "IPTV Connection Timeout Fix: When Streams Won't Start"
 description: "Fix IPTV connection timeouts caused by DNS issues, VPN routing, or server congestion."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["timeout", "network", "iptv"]
 keywords: ["iptv timeout", "iptv connection timeout", "iptv stream timeout"]

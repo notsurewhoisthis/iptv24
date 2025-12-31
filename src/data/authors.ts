@@ -11,11 +11,11 @@ export type AuthorProfile = {
 
 export const authors: AuthorProfile[] = [
   {
-    name: 'IPTV24 Lab',
-    slug: 'iptv24-lab',
+    name: 'Streaming Guide Lab',
+    slug: 'streaming-guide-lab',
     role: 'Editorial Lab',
     location: 'Austin, TX',
-    bio: 'IPTV24 Lab is the editorial testing group behind IPTV24. We review IPTV apps, devices, and setup guides with repeatable checklists focused on playlist import, EPG accuracy, playback stability, and network performance.',
+    bio: 'Streaming Guide Lab is the editorial testing group behind Streaming Guide. We review IPTV apps, devices, and setup guides with repeatable checklists focused on playlist import, EPG accuracy, playback stability, and network performance.',
     credentials: [
       'Tests cover iOS, tvOS, Android TV, Fire OS, webOS, and Google TV devices.',
       'Playback sessions include live channel switching, VOD navigation, and EPG refresh timing.',

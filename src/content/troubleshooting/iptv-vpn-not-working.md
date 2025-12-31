@@ -2,7 +2,7 @@
 title: "IPTV VPN Not Working: Fix Streams That Fail on VPN"
 description: "Some IPTV providers block VPN IPs. Use the right server and split tunneling to fix it."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["vpn", "iptv"]
 keywords: ["iptv vpn not working", "iptv vpn blocked", "iptv vpn fix"]

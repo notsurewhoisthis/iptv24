@@ -2,7 +2,7 @@
 title: "IPTV VOD Not Working: Fix Movies and Series Playback"
 description: "Troubleshoot IPTV VOD catalogs that do not load, show empty lists, or fail to start playback."
 publishedDate: 2025-03-05
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["vod", "iptv", "movies", "series"]
 keywords: ["iptv vod not working", "iptv movies not loading", "iptv series playback"]

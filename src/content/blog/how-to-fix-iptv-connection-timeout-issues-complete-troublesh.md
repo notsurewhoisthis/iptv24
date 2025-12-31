@@ -2,7 +2,7 @@
 title: "How to Fix IPTV Connection Timeout Issues — Complete Troubleshooting Guide 2025"
 description: "---..."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["iptv connection timeout","iptv server timeout","fix iptv not connecting","iptv login timeout"]
 keywords: ["iptv connection timeout","iptv server timeout","fix iptv not connecting","iptv login timeout"]
 draft: false

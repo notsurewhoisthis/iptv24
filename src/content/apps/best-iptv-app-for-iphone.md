@@ -2,7 +2,7 @@
 title: "Best IPTV App for iPhone (Data-Driven Ranking)"
 description: "A real iPhone IPTV app ranking based on App Store ratings, update recency, and pricing signals."
 publishedDate: 2025-03-02
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["iphone", "ios", "apps", "iptv"]
 keywords: ["best iptv app for iphone", "iptv app ios", "iphone iptv player"]

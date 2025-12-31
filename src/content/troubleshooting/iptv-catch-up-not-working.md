@@ -2,7 +2,7 @@
 title: "IPTV Catch-Up Not Working: Fix Replay Features"
 description: "Catch-up issues often come from missing metadata or unsupported players. Fix it with these steps."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["catch-up", "iptv"]
 keywords: ["iptv catch up not working", "iptv replay", "iptv time shift"]

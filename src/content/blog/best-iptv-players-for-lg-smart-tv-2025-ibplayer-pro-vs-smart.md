@@ -2,7 +2,7 @@
 title: "Best IPTV Players for LG Smart TV 2025: ibPlayer Pro vs SmartOne IPTV vs IBO Player"
 description: "This guide compares these three players and gives practical, step‑by‑step setup instructions, recommended settings, troubleshooting steps, and optimization..."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["best iptv players lg smart tv","iptv apps lg webos","lg smart tv iptv player 2025","iptv player lg tv comparison"]
 keywords: ["best iptv players lg smart tv","iptv apps lg webos","lg smart tv iptv player 2025","iptv player lg tv comparison"]
 draft: false

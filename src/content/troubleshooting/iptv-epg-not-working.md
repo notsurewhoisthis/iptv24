@@ -2,7 +2,7 @@
 title: "IPTV EPG Not Working: Fix Guide Data and Time Shift"
 description: "Step-by-step fixes for IPTV guide data that will not load, shows blank listings, or displays the wrong time."
 publishedDate: 2025-03-03
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["epg", "iptv", "guide", "troubleshooting"]
 keywords: ["iptv epg not working", "epg xmltv fix", "iptv guide time shift"]

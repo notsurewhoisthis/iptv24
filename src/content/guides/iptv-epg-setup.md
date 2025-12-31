@@ -2,7 +2,7 @@
 title: "IPTV EPG Setup: Fixing Guide Sync and Time Shifts"
 description: "EPG setup steps that fix guide mismatches, blank listings, and time zone offsets."
 publishedDate: 2025-03-06
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["epg", "iptv", "guide"]
 keywords: ["iptv epg setup", "epg time shift", "iptv guide sync"]

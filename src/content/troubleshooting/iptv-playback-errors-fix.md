@@ -2,7 +2,7 @@
 title: "IPTV Playback Errors: Fix Common Error Messages"
 description: "Resolve playback errors like failed to load, playback error, or stream unavailable with targeted fixes."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["playback", "errors", "iptv"]
 keywords: ["iptv playback error", "iptv stream unavailable", "iptv error fix"]

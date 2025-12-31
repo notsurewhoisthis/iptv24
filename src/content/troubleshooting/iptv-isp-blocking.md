@@ -2,7 +2,7 @@
 title: "IPTV Not Working on One Network: ISP or DNS Blocking"
 description: "If IPTV works on mobile data but not home Wi-Fi, ISP or DNS blocking may be the cause."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["network", "isp", "iptv"]
 keywords: ["iptv isp blocking", "iptv dns block", "iptv not working wifi"]

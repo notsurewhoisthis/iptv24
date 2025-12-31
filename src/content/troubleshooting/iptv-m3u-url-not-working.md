@@ -2,7 +2,7 @@
 title: "M3U URL Not Working: Fix Invalid Playlist Links"
 description: "Fix invalid M3U links by checking URL syntax, expiration, and provider changes."
 publishedDate: 2025-04-29
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["m3u", "playlist", "iptv"]
 keywords: ["m3u url not working", "iptv m3u invalid", "iptv playlist url"]

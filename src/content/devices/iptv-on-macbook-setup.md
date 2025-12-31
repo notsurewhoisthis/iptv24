@@ -2,7 +2,7 @@
 title: "IPTV on MacBook: Setup and Playback Checklist"
 description: "MacBook IPTV setup with playlist import, EPG sync, and audio/video fixes for macOS."
 publishedDate: 2025-03-09
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["macbook", "macos", "iptv", "setup"]
 keywords: ["iptv on macbook", "macbook iptv setup", "macos iptv guide"]

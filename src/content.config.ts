@@ -6,7 +6,7 @@ const baseSchema = z.object({
   description: z.string(),
   publishedDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
-  author: z.string().default('IPTV24 Lab'),
+  author: z.string().default('Streaming Guide Lab'),
   image: z.string().optional(),
   tags: z.array(z.string()).default([]),
   keywords: z.array(z.string()).default([]),

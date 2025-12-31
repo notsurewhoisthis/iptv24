@@ -2,7 +2,7 @@
 title: "Best IPTV Player for Mac (macOS 14 Comparison)"
 description: "Mac IPTV player comparison using App Store data, update recency, and device support signals."
 publishedDate: 2025-03-08
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["mac", "macos", "iptv", "player"]
 keywords: ["iptv player for mac", "mac iptv app", "iptv macos player"]
