@@ -1,10 +1,11 @@
 ---
 title: "How to Fix IPTV Connection Timeout Issues — Complete Troubleshooting Guide 2025"
-description: "---..."
+description: "Step-by-step IPTV connection timeout fixes for 2025: network tests, DNS changes, cache resets, decoder tweaks, and provider checks."
 publishedDate: 2025-12-31
 author: "Streaming Guide Lab"
 tags: ["iptv connection timeout","iptv server timeout","fix iptv not connecting","iptv login timeout"]
 keywords: ["iptv connection timeout","iptv server timeout","fix iptv not connecting","iptv login timeout"]
+canonical: "/blog/how-to-fix-iptv-connection-timeout-issues-complete-guide-202/"
 draft: false
 ---
 

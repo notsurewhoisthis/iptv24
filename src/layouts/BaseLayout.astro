@@ -16,6 +16,7 @@ interface Props {
   noindex?: boolean;
   faq?: { question: string; answer: string }[];
   howTo?: { name: string; steps: { name: string; text: string }[] };
+  canonicalUrl?: string;
   softwareApp?: Record<string, unknown> | null;
   person?: Record<string, unknown> | null;
   product?: Record<string, unknown> | null;
@@ -34,6 +35,7 @@ const {
   noindex,
   faq,
   howTo,
+  canonicalUrl,
   softwareApp,
   person,
   product,
@@ -88,6 +90,7 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
       noindex={resolvedNoindex}
       faq={faq}
       howTo={howTo}
+      canonicalUrl={canonicalUrl}
       softwareApp={softwareApp}
       person={person}
       product={product}

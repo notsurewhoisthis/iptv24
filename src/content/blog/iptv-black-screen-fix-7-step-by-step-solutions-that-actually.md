@@ -1,8 +1,8 @@
 ---
 title: "IPTV Black Screen Fix: 7 Step-by-Step Solutions That Actually Work (2025)"
-description: "---..."
+description: "Fix IPTV black screen errors with 7 step-by-step checks for network speed, app cache, decoder settings, HDMI, and provider status."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["iptv black screen fix","iptv no signal","iptv not working","fix iptv troubleshooting"]
 keywords: ["iptv black screen fix","iptv no signal","iptv not working","fix iptv troubleshooting"]
 draft: false

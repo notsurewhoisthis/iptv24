@@ -63,6 +63,8 @@ export default defineConfig({
         if (!features.changelog && pathname.includes('/changelog')) return false;
         if (!features.testimonials && pathname.includes('/testimonials')) return false;
         if (!features.roadmap && pathname.includes('/roadmap')) return false;
+        if (pathname === '/blog/page/1' || pathname === '/blog/page/1/') return false;
+        if (pathname === '/authors/iptv24-lab' || pathname === '/authors/iptv24-lab/') return false;
         if (blockedRoutes.some((route) => pathname.startsWith(route))) return false;
 
         return true;

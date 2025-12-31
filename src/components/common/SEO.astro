@@ -55,6 +55,8 @@ interface Props {
   faq?: { question: string; answer: string }[];
   /** Optional HowTo schema data */
   howTo?: { name: string; steps: { name: string; text: string }[] };
+  /** Optional canonical override (absolute or site-relative URL) */
+  canonicalUrl?: string;
   /** Optional software app schema */
   softwareApp?: Record<string, unknown> | null;
   /** Optional person schema */
@@ -76,12 +78,15 @@ const {
   noindex = false,
   faq = [],
   howTo,
+  canonicalUrl,
   softwareApp = null,
   person = null,
   product = null,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
+const canonicalURL = canonicalUrl
+  ? new URL(canonicalUrl, siteConfig.url)
+  : new URL(Astro.url.pathname, siteConfig.url);
 const baseTitle = seoTitle || title;
 const fullTitle = baseTitle.toLowerCase().includes(siteConfig.name.toLowerCase())
   ? baseTitle

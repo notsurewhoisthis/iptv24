@@ -1,6 +1,6 @@
 ---
 title: "How to Record IPTV Streams Without DVR: Best Apps & Methods 2025"
-description: "---..."
+description: "Record IPTV streams without DVR using apps and screen capture, plus storage planning, playback quality tips, and legality notes."
 publishedDate: 2025-12-30
 author: "Streaming Guide Lab"
 tags: ["how to record iptv streams","iptv recording app","tivimate recording setup","iptv dvr guide"]

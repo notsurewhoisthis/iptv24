@@ -5,6 +5,7 @@ publishedDate: 2025-12-31
 author: "Streaming Guide Lab"
 tags: []
 keywords: []
+canonical: "/blog/how-to-fix-iptv-connection-timeout-issues-complete-guide-202/"
 draft: false
 ---
 

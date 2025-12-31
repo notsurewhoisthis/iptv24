@@ -10,6 +10,7 @@ const baseSchema = z.object({
   image: z.string().optional(),
   tags: z.array(z.string()).default([]),
   keywords: z.array(z.string()).default([]),
+  canonical: z.string().optional(),
   howTo: z
     .object({
       name: z.string(),

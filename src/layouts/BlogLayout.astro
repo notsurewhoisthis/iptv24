@@ -16,10 +16,22 @@ interface Props {
   content: string;
   faq?: { question: string; answer: string }[];
   howTo?: { name: string; steps: { name: string; text: string }[] };
+  canonicalUrl?: string;
 }
 
-const { title, seoTitle, description, publishedDate, author, image, tags = [], content, faq, howTo } =
-  Astro.props;
+const {
+  title,
+  seoTitle,
+  description,
+  publishedDate,
+  author,
+  image,
+  tags = [],
+  content,
+  faq,
+  howTo,
+  canonicalUrl,
+} = Astro.props;
 
 const readingTime = calculateReadingTime(content);
 const formattedDate = formatDate(publishedDate, {
@@ -30,6 +42,26 @@ const formattedDate = formatDate(publishedDate, {
 const authorProfile = getAuthorByName(author) || getAuthorByName(siteConfig.author);
 const authorName = authorProfile?.name || author || siteConfig.author;
 const authorUrl = authorProfile ? `/authors/${authorProfile.slug}/` : '';
+const hasQuickAnswer = /##\\s+quick answer/i.test(content);
+const shortTopic = title.replace(/\\s*\\(\\d{4}\\).*$/, '').replace(/\\s+\\|\\s+.*/, '').trim();
+const fallbackFaq = [
+  {
+    question: `What does "${shortTopic}" usually mean?`,
+    answer:
+      'Most IPTV issues come from playlist credentials, network instability, or app compatibility. Start with the quick answer checklist and then follow the step-by-step fixes.',
+  },
+  {
+    question: 'What is the fastest fix to try first?',
+    answer:
+      'Restart the app and device, confirm your playlist or Xtream Codes details, and test on a second network to isolate provider versus local issues.',
+  },
+  {
+    question: 'When should I contact my IPTV provider?',
+    answer:
+      'If the same error happens across multiple devices or networks, collect the error message, app version, and timestamps, then contact your provider with that data.',
+  },
+];
+const resolvedFaq = faq?.length ? faq : fallbackFaq;
 const personSchema = authorProfile
   ? {
       name: authorProfile.name,
@@ -55,8 +87,9 @@ const personSchema = authorProfile
   publishedDate={publishedDate}
   author={authorName}
   tags={tags}
-  faq={faq}
+  faq={resolvedFaq}
   howTo={howTo}
+  canonicalUrl={canonicalUrl}
   person={personSchema}
 >
   <article class="py-section">
@@ -105,6 +138,13 @@ const personSchema = authorProfile
       </header>
 
       <!-- Article Content -->
+      {!hasQuickAnswer && (
+        <div class="rounded-lg border border-border bg-surface p-4 mb-6">
+          <p class="text-sm text-text-muted">
+            <span class="font-semibold text-text">Quick answer:</span> {description}
+          </p>
+        </div>
+      )}
       <div class="prose prose-lg max-w-none dark:prose-invert">
         <slot name="content" />
       </div>
