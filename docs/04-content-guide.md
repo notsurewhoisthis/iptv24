@@ -51,6 +51,74 @@ Your content here...
 - **Tag filtering**: Filter by tag at `/blog/tag/[tag-name]`
 - **Reading time**: Automatically calculated based on word count
 - **RSS feed**: Published posts appear in `/rss.xml`
+- **Ordering**: Listings sort newest-first by `publishedDate`, then `updatedDate`, then `slug` for ties.
+
+### Editorial Backlog (IPTV Topics)
+
+Use these titles as a vetted starting list for high-volume IPTV content. Keep the phrasing when possible to align with search demand.
+
+- "How to fix IPTV buffering issues"
+- "Best IPTV players for Firestick 2025"
+- "TiviMate setup guide for beginners"
+- "IPTV Smarters Pro vs TiviMate comparison"
+- "How to setup IPTV on Apple TV"
+- "Fix IPTV freezing and stuttering"
+- "Best free IPTV players for Android"
+- "How to use VPN with IPTV"
+- "IPTV EPG not loading fix"
+- "Kodi IPTV addon setup guide"
+- "Best IPTV players for Samsung Smart TV"
+- "How to record IPTV streams"
+- "IPTV playlist format M3U explained"
+- "Fix IPTV no audio problem"
+- "Best IPTV players for iPhone and iPad"
+- "How to setup IPTV on Nvidia Shield"
+- "IPTV catchup and timeshift guide"
+- "Best IPTV players with parental controls"
+- "How to fix IPTV authentication errors"
+- "IPTV multiscreen setup guide"
+- "Best IPTV players for Mac"
+- "How to optimize internet for IPTV"
+- "IPTV vs cable TV comparison"
+- "Best IPTV players with DVR features"
+- "How to setup Xtream Codes API"
+- "IPTV picture quality settings guide"
+- "Best IPTV players for Windows PC"
+- "How to fix IPTV black screen"
+- "IPTV favorites and playlist management"
+- "Best IPTV players for LG Smart TV"
+- "JamRun IPTV setup guide for Apple devices"
+- "GSE Smart IPTV setup tutorial"
+- "VLC IPTV setup guide"
+- "How to test IPTV stream quality"
+- "IPTV channel logos not showing fix"
+- "Best IPTV players with Chromecast support"
+- "How to backup IPTV settings"
+- "IPTV external player integration guide"
+- "Best IPTV players for Android TV box"
+- "How to fix IPTV connection timeout"
+- "Stalker Portal (MAG) IPTV setup guide"
+- "IPTV Smarters login failed fix (Xtream Codes / URL errors)"
+- "How to fix IPTV EPG time offset (wrong timezone)"
+- "How to fix IPTV VOD not working"
+- "How to fix IPTV subtitles not working"
+- "How to fix IPTV audio sync issues"
+- "Best IPTV apps for Apple TV 4K (2025)"
+- "Best IPTV apps for Google TV (2025)"
+- "Best IPTV apps for Sony Bravia / Android TV (2025)"
+- "How to setup IPTV on Chromecast with Google TV"
+- "IPTV playlist expired fix (M3U/Xtream refresh)"
+- "How to fix IPTV server connection failed"
+- "How to fix IPTV app crash on launch"
+- "How to fix IPTV no channels / empty playlist"
+- "How to fix IPTV playback error (HLS/MPEG-TS)"
+- "Best IPTV players for Linux (Ubuntu) 2025"
+- "IPTV HLS vs MPEG-TS explained (which to use)"
+- "How to fix IPTV AirPlay casting issues"
+- "How to fix IPTV streaming on mobile data (APN/DNS)"
+- "IPTV parental controls setup on Fire TV and Android TV"
+
+If multiple posts share the same date and need strict ordering, use full ISO timestamps in `publishedDate` (e.g., `2025-12-31T12:02:07Z`).
 
 ## Documentation
 
