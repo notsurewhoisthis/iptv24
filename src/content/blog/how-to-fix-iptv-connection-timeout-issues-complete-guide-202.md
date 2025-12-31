@@ -2,7 +2,7 @@
 title: "How to Fix IPTV Connection Timeout Issues (2025) — Complete Troubleshooting How‑To Guide"
 description: "An   IPTV connection timeout   (often shown as  “IPTV server connection failed”  or  “iptv network timeout” ) is usually caused by one of four things: unst..."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["iptv connection timeout","iptv server connection failed","fix iptv not connecting","iptv network timeout"]
 keywords: ["iptv connection timeout","iptv server connection failed","fix iptv not connecting","iptv network timeout"]
 draft: false
