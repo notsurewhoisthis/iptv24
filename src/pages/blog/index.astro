@@ -1,7 +1,6 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
 import Pagination from '@ui/Pagination.astro';
-import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 import { calculateReadingTime } from '@/lib/utils';
@@ -20,8 +19,17 @@ const currentPage = 1;
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 const paginatedPosts: BlogPost[] = sortedPosts.slice(0, POSTS_PER_PAGE);
 
-// Get all unique tags
-const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
+// Get tags ordered by frequency, then alphabetically
+const tagCounts = posts.reduce((acc: Map<string, number>, post: BlogPost) => {
+  post.data.tags.forEach((tag) => acc.set(tag, (acc.get(tag) ?? 0) + 1));
+  return acc;
+}, new Map());
+const sortedTags = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([tag]) => tag);
+const MAX_TAGS = 10;
+const featuredTags = sortedTags.slice(0, MAX_TAGS);
+const extraTags = sortedTags.slice(MAX_TAGS);
 
 // Helper to get typed tags
 const getTypedTags = (tags: string[]) => tags.slice(0, 3);
@@ -42,8 +50,8 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
 
       <!-- Tags Filter -->
       {
-        allTags.length > 0 && (
-          <div class="mb-10">
+        featuredTags.length > 0 && (
+          <div class="mb-10 space-y-3">
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
               <a
@@ -52,7 +60,7 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
               >
                 All
               </a>
-              {allTags.map((tag) => (
+              {featuredTags.map((tag) => (
                 <a
                   href={`/blog/tag/${tag}`}
                   class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
@@ -61,6 +69,23 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
                 </a>
               ))}
             </div>
+            {extraTags.length > 0 && (
+              <details class="group">
+                <summary class="cursor-pointer text-sm font-medium text-text-muted hover:text-primary transition-colors">
+                  More tags
+                </summary>
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+                  {extraTags.map((tag) => (
+                    <a
+                      href={`/blog/tag/${tag}`}
+                      class="px-3 py-1.5 text-sm font-medium rounded-md bg-surface text-text-muted hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            )}
           </div>
         )
       }
@@ -72,19 +97,15 @@ const getTypedTags = (tags: string[]) => tags.slice(0, 3);
             <article class="group">
               <a href={`/blog/${post.slug}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">
-                  <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
-                    {post.data.image ? (
+                  {post.data.image && (
+                    <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
                       <img
                         src={post.data.image}
                         alt={post.data.title}
                         class="w-full h-32 sm:h-full object-cover"
                       />
-                    ) : (
-                      <div class="w-full h-32 sm:h-full bg-primary/10 flex items-center justify-center">
-                        <Icon name="lucide:image" class="w-12 h-12 text-primary/40" />
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div class="flex-1">
                     <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
                       <span>

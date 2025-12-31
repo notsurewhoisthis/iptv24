@@ -1,6 +1,5 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import { Icon } from 'astro-icon/components';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { siteConfig } from '@/config';
 
@@ -29,8 +28,17 @@ const filteredPosts: BlogPost[] = posts
     (a: BlogPost, b: BlogPost) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
   );
 
-// Get all unique tags for the filter
-const allTags = [...new Set(posts.flatMap((post: BlogPost) => post.data.tags))].sort();
+// Get tags ordered by frequency, then alphabetically
+const tagCounts = posts.reduce((acc: Map<string, number>, post: BlogPost) => {
+  post.data.tags.forEach((item) => acc.set(item, (acc.get(item) ?? 0) + 1));
+  return acc;
+}, new Map());
+const sortedTags = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([item]) => item);
+const MAX_TAGS = 10;
+const featuredTags = sortedTags.slice(0, MAX_TAGS);
+const extraTags = sortedTags.slice(MAX_TAGS);
 
 function calculateReadingTime(text: string): number {
   const wordCount = text.trim().split(/\s+/).length;
@@ -63,8 +71,8 @@ const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
 
       <!-- Tags Filter -->
       {
-        allTags.length > 0 && (
-          <div class="mb-10">
+        featuredTags.length > 0 && (
+          <div class="mb-10 space-y-3">
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-sm font-medium text-text-muted mr-2">Filter by tag:</span>
               <a
@@ -73,7 +81,7 @@ const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
               >
                 All
               </a>
-              {allTags.map((t) => (
+              {featuredTags.map((t) => (
                 <a
                   href={`/blog/tag/${t}`}
                   class:list={[
@@ -87,6 +95,28 @@ const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
                 </a>
               ))}
             </div>
+            {extraTags.length > 0 && (
+              <details class="group">
+                <summary class="cursor-pointer text-sm font-medium text-text-muted hover:text-primary transition-colors">
+                  More tags
+                </summary>
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+                  {extraTags.map((t) => (
+                    <a
+                      href={`/blog/tag/${t}`}
+                      class:list={[
+                        'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                        t === tag
+                          ? 'bg-primary text-white'
+                          : 'bg-surface text-text-muted hover:bg-primary/10 hover:text-primary',
+                      ]}
+                    >
+                      {t}
+                    </a>
+                  ))}
+                </div>
+              </details>
+            )}
           </div>
         )
       }
@@ -98,19 +128,15 @@ const getTypedTagsWithActive = (tags: string[], activeTag: string) =>
             <article class="group">
               <a href={`/blog/${post.slug}`} class="block">
                 <div class="flex flex-col sm:flex-row gap-6">
-                  <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
-                    {post.data.image ? (
+                  {post.data.image && (
+                    <div class="sm:w-48 sm:h-32 shrink-0 rounded-lg overflow-hidden bg-surface">
                       <img
                         src={post.data.image}
                         alt={post.data.title}
                         class="w-full h-32 sm:h-full object-cover"
                       />
-                    ) : (
-                      <div class="w-full h-32 sm:h-full bg-primary/10 flex items-center justify-center">
-                        <Icon name="lucide:image" class="w-12 h-12 text-primary/40" />
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div class="flex-1">
                     <div class="flex flex-wrap items-center gap-3 text-sm text-text-muted mb-2">
                       <span>
