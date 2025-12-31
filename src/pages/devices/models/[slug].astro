@@ -99,6 +99,22 @@ const productSchema = {
         </div>
       )}
 
+      {device.editorSources && device.editorSources.length > 0 && (
+        <div class="mt-8 rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Editor sources</h2>
+          <div class="mt-4 space-y-4">
+            {device.editorSources.map((source) => (
+              <div class="rounded-md border border-border p-4">
+                <p class="text-sm text-text-muted">
+                  {source.label}: <a class="text-primary hover:underline" href={source.url}>{source.url}</a>
+                </p>
+                <blockquote class="mt-3 text-sm text-text-muted">“{source.quote}”</blockquote>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {device.review && (
         <div class="mt-8 rounded-lg border border-border p-6">
           <h2 class="text-xl font-semibold text-text">IPTV review summary</h2>
