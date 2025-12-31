@@ -4,9 +4,7 @@ description: "---..."
 publishedDate: 2025-12-31
 lastModified: 2025-12-31
 lastVerified: 2025-12-28
-author:
-  name: "IPTV24 Lab"
-  credentials: "500+ device configurations tested since 2020"
+author: "Streaming Guide Lab"
 tags: ["TiviMate installation Firestick","TiviMate IPTV setup beginners","TiviMate playlist configuration","TiviMate Android TV setup"]
 keywords: ["TiviMate installation Firestick","TiviMate IPTV setup beginners","TiviMate playlist configuration","TiviMate Android TV setup"]
 readingTime: "14 min"
