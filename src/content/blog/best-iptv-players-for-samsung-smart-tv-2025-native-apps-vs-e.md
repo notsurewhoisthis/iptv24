@@ -2,7 +2,7 @@
 title: "Best IPTV Players for Samsung Smart TV 2025: Native Apps vs External Solutions"
 description: "This guide compares native Tizen apps vs external solutions from the perspective of installation, playlist and EPG (Electronic Program Guide) handling, pla..."
 publishedDate: 2025-12-31
-author: "IPTV24 Lab"
+author: "Streaming Guide Lab"
 tags: ["best iptv player samsung tv","iptv apps samsung tizen","ibo player samsung tv","samsung smart tv iptv setup"]
 keywords: ["best iptv player samsung tv","iptv apps samsung tizen","ibo player samsung tv","samsung smart tv iptv setup"]
 draft: false

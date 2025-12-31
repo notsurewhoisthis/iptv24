@@ -28,7 +28,7 @@ export const authors: AuthorProfile[] = [
       'Troubleshooting workflows for buffering, login, and EPG drift',
       'Performance tuning for Wi-Fi and Ethernet setups',
     ],
-    sameAs: ['https://twitter.com/freeiptv24'],
+    sameAs: [],
   },
 ];
 
