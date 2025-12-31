@@ -38,6 +38,7 @@ export type AndroidApp = {
   offersIAP?: boolean;
   IAPRange?: string | null;
   privacyPolicy?: string | null;
+  humanReview?: string | null;
 };
 
 export const androidAppsUpdatedAt = androidApps.updatedAt as string;

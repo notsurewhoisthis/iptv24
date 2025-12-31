@@ -25,6 +25,7 @@ export type AppEntry = {
   languageCodes: string[];
   description?: string | null;
   releaseNotes?: string | null;
+  humanReview?: string | null;
   supportedDevices: string[];
   platforms: Platform[];
   artworkUrl512?: string | null;

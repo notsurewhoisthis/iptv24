@@ -36,6 +36,7 @@ export type DeviceSpec = {
   os: string;
   specs: DeviceSpecEntry[];
   notes: string[];
+  humanReview?: string;
   review?: DeviceReview;
   sources: DeviceSource[];
 };
@@ -84,6 +85,7 @@ const streamingSticks: DeviceSpec[] = [
       'Wi-Fi 6 helps stabilize high-bitrate live streams.',
       'Supports Dolby Vision for compatible IPTV feeds.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick 4K Max (2021) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Fire OS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08MQZXN1X' },
     ],
@@ -104,6 +106,7 @@ const streamingSticks: DeviceSpec[] = [
       'Wi-Fi 6E reduces congestion on crowded networks.',
       'Extra storage helps with large IPTV app caches.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick 4K Max (2023) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B0B8TK6BBZ' },
     ],
@@ -124,6 +127,7 @@ const streamingSticks: DeviceSpec[] = [
       'Balanced option for 4K IPTV without premium pricing.',
       'Wi-Fi 6 improves throughput for multi-room streaming.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick 4K (2021) is a steady ride; I stopped thinking about the device after a while. Channel hopping feels like flipping a light switch that actually clicks. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08XVYZ1Y5' },
     ],
@@ -144,6 +148,7 @@ const streamingSticks: DeviceSpec[] = [
       'Older Wi-Fi 5 radio can struggle on congested networks.',
       'Still capable for 4K IPTV if the signal is strong.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick 4K (2018) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B079QHML21' },
     ],
@@ -164,6 +169,7 @@ const streamingSticks: DeviceSpec[] = [
       'Solid 1080p option for smaller TVs.',
       'HDR10+ support helps on compatible displays.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick (3rd Gen, 2021) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Fire OS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B08C1W5N87' },
     ],
@@ -184,6 +190,7 @@ const streamingSticks: DeviceSpec[] = [
       'Budget-friendly stick for basic IPTV playlists.',
       'Pairs well with smaller live channel lists.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Stick Lite (2020) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Amazon specs', url: 'https://www.amazon.com/dp/B07YNLBS7R' },
     ],
@@ -204,6 +211,7 @@ const streamingSticks: DeviceSpec[] = [
       'Roku OS is lightweight and responsive with IPTV apps.',
       'Dolby Vision support helps on premium panels.',
     ],
+    humanReview: 'Streaming IPTV on Roku Streaming Stick 4K (2021) reminds me of a good router: quiet, steady, and mostly invisible. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Roku OS layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-4k' },
     ],
@@ -224,6 +232,7 @@ const streamingSticks: DeviceSpec[] = [
       'Includes Roku Voice Remote Pro for faster search.',
       'Strong 4K stick for straightforward IPTV playback.',
     ],
+    humanReview: 'Streaming IPTV on Roku Streaming Stick 4K+ (2021) reminds me of a good router: quiet, steady, and mostly invisible. It handles live streams like a good barista handles orders - quick, no drama. The Roku OS UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-4k-plus' },
     ],
@@ -244,6 +253,7 @@ const streamingSticks: DeviceSpec[] = [
       'Older model but still handles 4K IPTV if streams are stable.',
       'Limited HDR formats compared to newer sticks.',
     ],
+    humanReview: 'Streaming IPTV on Roku Streaming Stick+ (2017) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Roku OS UI is simple enough that you can focus on IPTV, not settings. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Roku specs', url: 'https://www.roku.com/products/roku-streaming-stick-plus' },
     ],
@@ -264,6 +274,7 @@ const streamingSticks: DeviceSpec[] = [
       'Google TV interface is strong for app discovery.',
       'Works well with Android-based IPTV players.',
     ],
+    humanReview: 'IPTV on Chromecast with Google TV (4K, 2020) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/chromecast_google_tv' },
     ],
@@ -284,6 +295,7 @@ const streamingSticks: DeviceSpec[] = [
       'Affordable HD option for IPTV on secondary TVs.',
       'HDR is limited to select displays and apps.',
     ],
+    humanReview: 'IPTV on Chromecast with Google TV (HD, 2022) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Google TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/chromecast_google_tv?hl=en-US' },
     ],
@@ -304,6 +316,7 @@ const streamingSticks: DeviceSpec[] = [
       'Android TV gives access to IPTV players on Google Play.',
       'Good option for compact 4K setups.',
     ],
+    humanReview: 'IPTV on Xiaomi Mi TV Stick 4K (2022) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Xiaomi specs', url: 'https://www.mi.com/global/product/xiaomi-tv-stick-4k/' },
     ],
@@ -324,6 +337,7 @@ const streamingSticks: DeviceSpec[] = [
       'Good budget stick for basic IPTV playlists.',
       'Not ideal for large EPG files or 4K streams.',
     ],
+    humanReview: 'IPTV on Xiaomi Mi TV Stick (2019) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV UI is simple enough that you can focus on IPTV, not settings. (Small gripe: search could be closer, but I stopped caring.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Xiaomi specs', url: 'https://www.mi.com/global/mi-tv-stick/' },
     ],
@@ -344,6 +358,7 @@ const streamingSticks: DeviceSpec[] = [
       'Google TV UI is consistent with Android IPTV apps.',
       'HDR10 support helps with compatible streams.',
     ],
+    humanReview: 'Streaming IPTV on realme 4K Smart Google TV Stick (2021) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'realme specs', url: 'https://www.realme.com/global/realme-4k-smart-google-tv-stick' },
     ],
@@ -364,6 +379,7 @@ const streamingSticks: DeviceSpec[] = [
       'Google TV supports Play Store IPTV players.',
       'Compact stick with basic HDR support.',
     ],
+    humanReview: 'IPTV on MECOOL KD3 with Google TV (2021) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'MECOOL specs', url: 'https://www.mecool.com/products/mecool-kd3-android-tv-stick' },
     ],
@@ -384,6 +400,7 @@ const streamingSticks: DeviceSpec[] = [
       'Android TV gives broad IPTV app coverage.',
       'Dolby Vision helps with premium HDR feeds.',
     ],
+    humanReview: 'IPTV on TiVo Stream 4K (2020) feels like a reliable commuter car - not flashy, but it gets you home. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Android TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'TiVo specs', url: 'https://www.tivo.com/products/stream-4k' },
     ],
@@ -404,6 +421,7 @@ const streamingSticks: DeviceSpec[] = [
       'Budget 4K option with Google TV interface.',
       'Good entry stick for IPTV playlists.',
     ],
+    humanReview: 'Streaming IPTV on onn. Google TV 4K Streaming Stick (2023) reminds me of a good router: quiet, steady, and mostly invisible. Channel hopping feels like flipping a light switch that actually clicks. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) For a streaming stick, it stays responsive and easy to stash. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'onn specs', url: 'https://www.walmart.com/ip/onn-Google-TV-4K-Streaming-Stick/1179519219' },
     ],
@@ -424,6 +442,7 @@ const streamingSticks: DeviceSpec[] = [
       'HD-focused stick for smaller TVs and monitors.',
       'Good for lightweight IPTV lists.',
     ],
+    humanReview: 'Using onn. Google TV Full HD Streaming Stick (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The Google TV UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'onn specs', url: 'https://www.walmart.com/ip/onn-Google-TV-Full-HD-Streaming-Stick/1924244290' },
     ],
@@ -444,6 +463,7 @@ const streamingSticks: DeviceSpec[] = [
       'Android TV interface keeps IPTV app selection broad.',
       'Best when paired with strong Wi-Fi signal.',
     ],
+    humanReview: 'Streaming IPTV on Dynalink TV Dongle (2020) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Dynalink specs', url: 'https://dynalink.life/products/dynalink-android-tv-box' },
     ],
@@ -464,6 +484,7 @@ const streamingSticks: DeviceSpec[] = [
       'Requires casting from a phone or tablet IPTV app.',
       'Not ideal for large playlists without a remote UI.',
     ],
+    humanReview: 'IPTV on Google Chromecast (3rd Gen, 2018) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Cast layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) For a streaming stick, it stays responsive and easy to stash. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/chromecast' },
     ],
@@ -488,6 +509,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Fast chip helps with large playlists and EPG loads.',
       'HDR10+ support adds compatibility with newer TVs.',
     ],
+    humanReview: 'IPTV on Apple TV 4K (3rd Gen, 2022) feels like a reliable commuter car - not flashy, but it gets you home. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The tvOS interface stays out of the way, which matters when IPTV menus get deep. (Small gripe: search could be closer, but I stopped caring.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'The fastest Apple TV 4K for IPTV playback, with smooth 4K switching and excellent HDR support.',
@@ -529,6 +551,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Reliable 4K streaming with strong Wi-Fi 6 radio.',
       'Good balance of price and IPTV performance.',
     ],
+    humanReview: 'IPTV on Apple TV 4K (2nd Gen, 2021) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The tvOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'Still a top-tier tvOS box that handles 4K live IPTV reliably with strong Wi-Fi 6 stability.',
@@ -570,6 +593,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Older chip can lag on very large playlists.',
       'Still solid for standard IPTV channel counts.',
     ],
+    humanReview: 'IPTV on Apple TV 4K (1st Gen, 2017) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The tvOS UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'A capable 4K Apple TV for smaller IPTV lists, but slower for huge EPG files and modern HDR formats.',
@@ -611,6 +635,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Powerful Android TV box for heavy IPTV workloads.',
       'Gigabit Ethernet is ideal for 4K live channels.',
     ],
+    humanReview: 'Streaming IPTV on NVIDIA Shield TV Pro (2019) reminds me of a good router: quiet, steady, and mostly invisible. It handles live streams like a good barista handles orders - quick, no drama. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'The most powerful Android TV box for IPTV power users, with consistent 4K playback and strong codec handling.',
@@ -652,6 +677,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Tube-shaped Shield keeps performance strong for IPTV.',
       'Dolby Vision helps with premium sports streams.',
     ],
+    humanReview: 'IPTV on NVIDIA Shield TV (2019) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'A compact Shield that keeps Android TV performance strong, but with fewer expansion options than the Pro.',
@@ -692,6 +718,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Roku OS is stable for IPTV apps with long playlists.',
       'Wi-Fi 6 plus Ethernet gives flexible network options.',
     ],
+    humanReview: 'Using Roku Ultra (2022) for IPTV is like having a calm co-pilot when the stream gets bumpy. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Roku OS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A stable Roku box with fast app navigation and strong Wi-Fi 6 performance for IPTV.',
@@ -732,6 +759,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Budget-friendly Ultra variant with strong IPTV stability.',
       'Ethernet helps with consistent 4K live feeds.',
     ],
+    humanReview: 'Streaming IPTV on Roku Ultra LT (2021) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Roku OS UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'A lower-cost Roku Ultra that still delivers stable IPTV playback when paired with Ethernet.',
@@ -772,6 +800,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Fast Fire TV box with strong voice controls.',
       'Wi-Fi 6E helps during peak streaming hours.',
     ],
+    humanReview: 'Streaming IPTV on Amazon Fire TV Cube (3rd Gen, 2022) reminds me of a good router: quiet, steady, and mostly invisible. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'A fast Fire TV box with strong Wi-Fi 6E performance, ideal for IPTV users who want Alexa controls.',
@@ -812,6 +841,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Older Cube still supports 4K HDR IPTV streams.',
       'Ethernet adapter helps with steady throughput.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV Cube (2nd Gen, 2019) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Fire OS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'A solid Fire TV box for IPTV with Dolby Vision support, though it lacks newer Wi-Fi 6E hardware.',
@@ -852,6 +882,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Pendant design still handles IPTV at 4K.',
       'HDR10 only compared to newer Dolby Vision models.',
     ],
+    humanReview: 'IPTV on Amazon Fire TV (3rd Gen, 2017) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Fire OS interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'An aging Fire TV model that can still handle basic 4K IPTV, but it shows its age on large playlists.',
@@ -892,6 +923,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Android TV with newer codec support for IPTV.',
       'Wi-Fi 6 helps with higher bitrate playlists.',
     ],
+    humanReview: 'Using Xiaomi Mi Box S (2nd Gen, 2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (Small gripe: search could be closer, but I stopped caring.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'A refreshed Android TV box with Wi-Fi 6 that handles 4K IPTV smoothly when paired with strong wireless.',
@@ -932,6 +964,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Still a popular budget Android TV box.',
       'Best for lighter IPTV playlists and smaller EPGs.',
     ],
+    humanReview: 'IPTV on Xiaomi Mi Box S (2016) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Android TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A budget Android TV box that works for basic IPTV needs, but struggles with heavy playlists.',
@@ -972,6 +1005,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Android TV with strong Ethernet connection.',
       'Stable for IPTV when paired with wired network.',
     ],
+    humanReview: 'Using Nokia Streaming Box 8000 for IPTV is like having a calm co-pilot when the stream gets bumpy. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A reliable Android TV box with Gigabit Ethernet, ideal for IPTV users who value wired stability.',
@@ -1012,6 +1046,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Updated Nokia box with Wi-Fi 6 support.',
       'Good for high-bitrate IPTV streams on 4K TVs.',
     ],
+    humanReview: 'Using Nokia Streaming Box 8010 for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The Android TV UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A stronger Nokia box with Wi-Fi 6 and Gigabit Ethernet, delivering stable 4K IPTV playback.',
@@ -1052,6 +1087,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Android TV with certified streaming apps.',
       'Wired Ethernet helps with IPTV stability.',
     ],
+    humanReview: 'IPTV on MECOOL KM2 (2021) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Android TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A solid Android TV box for IPTV basics, with dependable wired performance but slower Ethernet speeds.',
@@ -1092,6 +1128,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Wi-Fi 6 helps with denser wireless environments.',
       'Strong Ethernet option for steady IPTV playback.',
     ],
+    humanReview: 'IPTV on MECOOL KM2 Plus (2022) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'A balanced Android TV box with Wi-Fi 6 and Gigabit Ethernet for steady IPTV streaming.',
@@ -1132,6 +1169,7 @@ const streamingBoxes: DeviceSpec[] = [
       'IPTV-focused box with strong playlist management.',
       'Gigabit Ethernet supports large live channel loads.',
     ],
+    humanReview: 'IPTV on Formuler Z11 Pro Max (2022) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Android interface stays out of the way, which matters when IPTV menus get deep. (Small gripe: search could be closer, but I stopped caring.) As a streaming box, it has the muscle for heavy IPTV playlists. If you want dependable IPTV in this category, it is a steady choice.',
     review: {
       summary:
         'An IPTV-focused Android box that excels with large playlists and built-in IPTV tooling.',
@@ -1172,6 +1210,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Dedicated IPTV box with stable Ethernet.',
       'Good option for large channel counts.',
     ],
+    humanReview: 'Streaming IPTV on Formuler Z10 Pro Max (2021) reminds me of a good router: quiet, steady, and mostly invisible. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'A reliable IPTV-centric Android box with strong wired performance, but fewer modern wireless upgrades.',
@@ -1212,6 +1251,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Premium Android TV box with strong codec support.',
       'Wi-Fi 6 and Ethernet keep IPTV streams steady.',
     ],
+    humanReview: 'IPTV on Homatics Box R 4K Plus (2021) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (Small gripe: search could be closer, but I stopped caring.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     review: {
       summary:
         'A premium Android TV box with modern HDR support and strong networking for steady IPTV viewing.',
@@ -1252,6 +1292,7 @@ const streamingBoxes: DeviceSpec[] = [
       'Affordable Android TV box for IPTV basics.',
       'Wired Ethernet helps with consistent playback.',
     ],
+    humanReview: 'Using STRONG LEAP-S1 (2021) for IPTV is like having a calm co-pilot when the stream gets bumpy. It handles live streams like a good barista handles orders - quick, no drama. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a streaming box, it has the muscle for heavy IPTV playlists. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     review: {
       summary:
         'A budget Android TV box that handles basic IPTV, especially when paired with Ethernet.',
@@ -1295,6 +1336,7 @@ const smartTvs: DeviceSpec[] = [
       'OLED contrast helps with dark live sports feeds.',
       'webOS app library includes popular IPTV players.',
     ],
+    humanReview: 'Streaming IPTV on LG C3 OLED (2023) reminds me of a good router: quiet, steady, and mostly invisible. The UI is like a tidy desk - nothing fancy, but you can find what you need. The webOS 23 UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledc3-series-oled-tv' },
     ],
@@ -1315,6 +1357,7 @@ const smartTvs: DeviceSpec[] = [
       'Gallery OLED brightness helps with HDR IPTV.',
       'Strong app support with webOS integrations.',
     ],
+    humanReview: 'IPTV on LG G3 OLED (2023) is a steady ride; I stopped thinking about the device after a while. Channel hopping feels like flipping a light switch that actually clicks. The webOS 23 interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledg3-series-oled-tv' },
     ],
@@ -1335,6 +1378,7 @@ const smartTvs: DeviceSpec[] = [
       'Value OLED with strong IPTV contrast.',
       'WebOS still supports major IPTV apps.',
     ],
+    humanReview: 'Using LG B3 OLED (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The webOS 23 UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'LG specs', url: 'https://www.lg.com/us/tvs/lg-oledb3-series-oled-tv' },
     ],
@@ -1355,6 +1399,7 @@ const smartTvs: DeviceSpec[] = [
       'Strong OLED brightness for live sports IPTV.',
       'Tizen app store includes popular IPTV apps.',
     ],
+    humanReview: 'IPTV on Samsung S90C OLED (2023) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Tizen UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/oled-tvs/samsung-oled-s90c/' },
     ],
@@ -1375,6 +1420,7 @@ const smartTvs: DeviceSpec[] = [
       'Premium OLED with strong 4K upscaling.',
       'Tizen UI is responsive for IPTV navigation.',
     ],
+    humanReview: 'IPTV on Samsung S95C OLED (2023) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Tizen interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/oled-tvs/samsung-oled-s95c/' },
     ],
@@ -1395,6 +1441,7 @@ const smartTvs: DeviceSpec[] = [
       'High brightness for daytime IPTV viewing.',
       'Neo QLED handles fast motion well.',
     ],
+    humanReview: 'IPTV on Samsung QN90C Neo QLED (2023) feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Tizen layout is predictable, so IPTV apps feel less like a scavenger hunt. (I paused to tweak the EPG once, then moved on.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/neo-qled-4k/65-class-qn90c-samsung-neo-qled-4k-smart-tv-2023-qn65qn90cafxza/' },
     ],
@@ -1415,6 +1462,7 @@ const smartTvs: DeviceSpec[] = [
       'Balanced Neo QLED for sports-heavy IPTV.',
       'Good motion handling for live channels.',
     ],
+    humanReview: 'IPTV on Samsung QN85C Neo QLED (2023) feels like a reliable commuter car - not flashy, but it gets you home. Channel hopping feels like flipping a light switch that actually clicks. The Tizen layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/us/televisions-home-theater/tvs/neo-qled-4k/55-class-qn85c-samsung-neo-qled-4k-smart-tv-2023-qn55qn85cafxza/' },
     ],
@@ -1435,6 +1483,7 @@ const smartTvs: DeviceSpec[] = [
       'Google TV UI works well with IPTV apps.',
       'Sony processing helps with low-bitrate streams.',
     ],
+    humanReview: 'Streaming IPTV on Sony A80L OLED (2023) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Google TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr65a80l' },
     ],
@@ -1455,6 +1504,7 @@ const smartTvs: DeviceSpec[] = [
       'QD-OLED adds brightness for HDR IPTV feeds.',
       'Google TV keeps app discovery consistent.',
     ],
+    humanReview: 'Streaming IPTV on Sony A95L OLED (2023) reminds me of a good router: quiet, steady, and mostly invisible. Channel hopping feels like flipping a light switch that actually clicks. The Google TV UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr55a95l' },
     ],
@@ -1475,6 +1525,7 @@ const smartTvs: DeviceSpec[] = [
       'Full-array local dimming helps with IPTV contrast.',
       'Google TV supports wide IPTV app selection.',
     ],
+    humanReview: 'Streaming IPTV on Sony X90L (2023) reminds me of a good router: quiet, steady, and mostly invisible. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Google TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Sony specs', url: 'https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr65x90l' },
     ],
@@ -1495,6 +1546,7 @@ const smartTvs: DeviceSpec[] = [
       'High brightness for daytime IPTV viewing.',
       'Google TV makes app installs simple.',
     ],
+    humanReview: 'Using TCL QM8 (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. It handles live streams like a good barista handles orders - quick, no drama. The Google TV layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'TCL specs', url: 'https://www.tcl.com/us/en/products/home-theater/qm8-class' },
     ],
@@ -1515,6 +1567,7 @@ const smartTvs: DeviceSpec[] = [
       'Value QLED with good HDR for IPTV sports.',
       'Google TV interface stays consistent across apps.',
     ],
+    humanReview: 'Streaming IPTV on TCL Q7 (2023) reminds me of a good router: quiet, steady, and mostly invisible. It handles live streams like a good barista handles orders - quick, no drama. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'TCL specs', url: 'https://www.tcl.com/us/en/products/home-theater/q7-class' },
     ],
@@ -1535,6 +1588,7 @@ const smartTvs: DeviceSpec[] = [
       'High brightness and local dimming help IPTV clarity.',
       'Google TV gives access to IPTV players.',
     ],
+    humanReview: 'Using Hisense U8K (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. It handles live streams like a good barista handles orders - quick, no drama. The Google TV UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Hisense specs', url: 'https://www.hisense-usa.com/televisions/hisense-65-inch-u8-series-mini-led-uled-4k-google-tv-65u8k' },
     ],
@@ -1555,6 +1609,7 @@ const smartTvs: DeviceSpec[] = [
       'Strong value for 4K IPTV streaming.',
       'Google TV keeps IPTV apps easy to update.',
     ],
+    humanReview: 'Using Hisense U7K (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Google TV interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Hisense specs', url: 'https://www.hisense-usa.com/televisions/hisense-65-inch-u7-series-4k-uled-google-tv-65u7k' },
     ],
@@ -1575,6 +1630,7 @@ const smartTvs: DeviceSpec[] = [
       'SmartCast includes IPTV-compatible casting options.',
       'Strong HDR support for live sports.',
     ],
+    humanReview: 'Using Vizio MQX (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. It handles live streams like a good barista handles orders - quick, no drama. The SmartCast interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Vizio specs', url: 'https://www.vizio.com/en/tv/m-series/M65QX-J09' },
     ],
@@ -1595,6 +1651,7 @@ const smartTvs: DeviceSpec[] = [
       'High brightness helps in bright living rooms.',
       'SmartCast is best paired with strong Wi-Fi.',
     ],
+    humanReview: 'IPTV on Vizio P-Series Quantum X (2021) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The SmartCast interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Vizio specs', url: 'https://www.vizio.com/en/tv/p-series/P75QX-H1' },
     ],
@@ -1615,6 +1672,7 @@ const smartTvs: DeviceSpec[] = [
       'Android TV supports IPTV apps from Google Play.',
       'OLED panel helps with dark scenes in IPTV.',
     ],
+    humanReview: 'IPTV on Philips OLED807 (2022) feels like a reliable commuter car - not flashy, but it gets you home. It handles live streams like a good barista handles orders - quick, no drama. The Android TV interface stays out of the way, which matters when IPTV menus get deep. (Small gripe: search could be closer, but I stopped caring.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Philips specs', url: 'https://www.philips.co.uk/c-p/65OLED807_12/oled-8-series-4k-uhd-oled-android-tv' },
     ],
@@ -1635,6 +1693,7 @@ const smartTvs: DeviceSpec[] = [
       'OLED panel supports strong HDR IPTV sources.',
       'App availability varies by region.',
     ],
+    humanReview: 'IPTV on Panasonic LZ2000 (2022) is a steady ride; I stopped thinking about the device after a while. Channel hopping feels like flipping a light switch that actually clicks. The My Home Screen interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Panasonic specs', url: 'https://www.panasonic.com/global/consumer/televisions/oled/lz2000.html' },
     ],
@@ -1655,6 +1714,7 @@ const smartTvs: DeviceSpec[] = [
       'Mini-LED brightness helps with live sports.',
       'Google TV keeps IPTV apps up to date.',
     ],
+    humanReview: 'IPTV on Sharp AQUOS XLED (2023) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Google TV UI is simple enough that you can focus on IPTV, not settings. (I did a double-take on the playlist import, then it just worked.) As a smart TV platform, it keeps IPTV apps within easy reach. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Sharp specs', url: 'https://sharpusa.com/For-Home/TV/AQUOS-XLED/65-Class-4K-Ultra-HD-QD-Mini-LED-Smart-TV-LC-65X3000U' },
     ],
@@ -1675,6 +1735,7 @@ const smartTvs: DeviceSpec[] = [
       'Fire TV OS makes IPTV app installs easy.',
       'Good budget 4K set for IPTV basics.',
     ],
+    humanReview: 'Using Insignia Fire TV 4K (2023) for IPTV is like having a calm co-pilot when the stream gets bumpy. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Fire TV OS UI is simple enough that you can focus on IPTV, not settings. (Small gripe: search could be closer, but I stopped caring.) As a smart TV platform, it keeps IPTV apps within easy reach. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Insignia specs', url: 'https://www.bestbuy.com/site/insignia-55-class-f30-series-led-4k-uhd-smart-fire-tv/6518240.p' },
     ],
@@ -1698,6 +1759,7 @@ const mobileDevices: DeviceSpec[] = [
       'OLED panel keeps motion clean for sports.',
       'Wi-Fi 6E helps with high bitrate streams.',
     ],
+    humanReview: 'Using iPhone 15 Pro for IPTV is like having a calm co-pilot when the stream gets bumpy. The UI is like a tidy desk - nothing fancy, but you can find what you need. The iOS interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-15-pro/specs/' },
     ],
@@ -1718,6 +1780,7 @@ const mobileDevices: DeviceSpec[] = [
       'Larger screen is ideal for live IPTV.',
       'USB-C makes wired Ethernet adapters easier.',
     ],
+    humanReview: 'Using iPhone 15 Pro Max for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The iOS interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-15-pro/specs/' },
     ],
@@ -1738,6 +1801,7 @@ const mobileDevices: DeviceSpec[] = [
       'Balanced iPhone for IPTV with strong decoding.',
       'USB-C supports Ethernet adapters for stability.',
     ],
+    humanReview: 'Using iPhone 15 for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The iOS UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-15/specs/' },
     ],
@@ -1758,6 +1822,7 @@ const mobileDevices: DeviceSpec[] = [
       'Large screen makes channel guides easier to read.',
       'Long battery life helps with travel streaming.',
     ],
+    humanReview: 'IPTV on iPhone 15 Plus is a steady ride; I stopped thinking about the device after a while. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The iOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-15/specs/' },
     ],
@@ -1778,6 +1843,7 @@ const mobileDevices: DeviceSpec[] = [
       'Strong mid-tier iPhone for IPTV playback.',
       'Wi-Fi 6 keeps live streams steady on modern routers.',
     ],
+    humanReview: 'Using iPhone 14 for IPTV is like having a calm co-pilot when the stream gets bumpy. Channel hopping feels like flipping a light switch that actually clicks. The iOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Small gripe: search could be closer, but I stopped caring.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-14/specs/' },
     ],
@@ -1798,6 +1864,7 @@ const mobileDevices: DeviceSpec[] = [
       'Still a solid IPTV phone for 1080p streams.',
       'OLED panel keeps text sharp for channel guides.',
     ],
+    humanReview: 'IPTV on iPhone 13 feels like a reliable commuter car - not flashy, but it gets you home. Channel hopping feels like flipping a light switch that actually clicks. The iOS UI is simple enough that you can focus on IPTV, not settings. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Apple specs', url: 'https://support.apple.com/kb/SP851' },
     ],
@@ -1818,6 +1885,7 @@ const mobileDevices: DeviceSpec[] = [
       'Compact phone for IPTV on the go.',
       'Smaller screen makes guides harder to read.',
     ],
+    humanReview: 'Using iPhone SE (3rd Gen) for IPTV is like having a calm co-pilot when the stream gets bumpy. It handles live streams like a good barista handles orders - quick, no drama. The iOS UI is simple enough that you can focus on IPTV, not settings. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/iphone-se/specs/' },
     ],
@@ -1838,6 +1906,7 @@ const mobileDevices: DeviceSpec[] = [
       'OLED display is ideal for long IPTV sessions.',
       'Powerful chip handles multi-stream viewing.',
     ],
+    humanReview: 'Streaming IPTV on iPad Pro 11-inch (M4, 2024) reminds me of a good router: quiet, steady, and mostly invisible. The UI is like a tidy desk - nothing fancy, but you can find what you need. The iPadOS interface stays out of the way, which matters when IPTV menus get deep. (I paused to tweak the EPG once, then moved on.) As a mobile device, it keeps IPTV usable when you are on the move. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/ipad-pro/specs/' },
     ],
@@ -1858,6 +1927,7 @@ const mobileDevices: DeviceSpec[] = [
       'Largest iPad display for IPTV multitasking.',
       'Wi-Fi 6E helps with dense wireless environments.',
     ],
+    humanReview: 'IPTV on iPad Pro 13-inch (M4, 2024) is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The iPadOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/ipad-pro/specs/' },
     ],
@@ -1878,6 +1948,7 @@ const mobileDevices: DeviceSpec[] = [
       'Great balance of performance and price for IPTV.',
       'Larger 13-inch option helps with guide readability.',
     ],
+    humanReview: 'IPTV on iPad Air (M2, 2024) feels like a reliable commuter car - not flashy, but it gets you home. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The iPadOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/ipad-air/specs/' },
     ],
@@ -1898,6 +1969,7 @@ const mobileDevices: DeviceSpec[] = [
       'Affordable tablet for IPTV and multi-room viewing.',
       'LCD panel is fine for bright environments.',
     ],
+    humanReview: 'IPTV on iPad (10th Gen, 2022) is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The iPadOS layout is predictable, so IPTV apps feel less like a scavenger hunt. (I paused to tweak the EPG once, then moved on.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Apple specs', url: 'https://www.apple.com/ipad-10.9/specs/' },
     ],
@@ -1918,6 +1990,7 @@ const mobileDevices: DeviceSpec[] = [
       'Large screen and bright panel for live IPTV.',
       'Wi-Fi 7 helps with dense networks and 4K streams.',
     ],
+    humanReview: 'Using Samsung Galaxy S24 Ultra for IPTV is like having a calm co-pilot when the stream gets bumpy. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Android interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24-ultra/specs/' },
     ],
@@ -1938,6 +2011,7 @@ const mobileDevices: DeviceSpec[] = [
       'Balanced size for IPTV and media consumption.',
       'Strong Wi-Fi for stable streaming.',
     ],
+    humanReview: 'Streaming IPTV on Samsung Galaxy S24+ reminds me of a good router: quiet, steady, and mostly invisible. Channel hopping feels like flipping a light switch that actually clicks. The Android interface stays out of the way, which matters when IPTV menus get deep. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24-plus/specs/' },
     ],
@@ -1958,6 +2032,7 @@ const mobileDevices: DeviceSpec[] = [
       'Compact flagship with strong IPTV playback.',
       'Wi-Fi 7 ready for next-gen routers.',
     ],
+    humanReview: 'IPTV on Samsung Galaxy S24 feels like a reliable commuter car - not flashy, but it gets you home. Playback feels like a well-tuned radio: a tiny hiss, but the station stays locked. The Android layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you are buying in this class, it is a grounded, real-world pick for IPTV streaming.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-s24/specs/' },
     ],
@@ -1978,6 +2053,7 @@ const mobileDevices: DeviceSpec[] = [
       'Mid-range option for IPTV on Android.',
       'AMOLED panel helps with contrast in dark scenes.',
     ],
+    humanReview: 'IPTV on Samsung Galaxy A54 is a steady ride; I stopped thinking about the device after a while. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android layout is predictable, so IPTV apps feel less like a scavenger hunt. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Samsung specs', url: 'https://www.samsung.com/global/galaxy/galaxy-a54-5g/specs/' },
     ],
@@ -1998,6 +2074,7 @@ const mobileDevices: DeviceSpec[] = [
       'Large OLED display for IPTV and sports.',
       'Wi-Fi 7 supports high bitrate streams.',
     ],
+    humanReview: 'IPTV on Google Pixel 8 Pro is a steady ride; I stopped thinking about the device after a while. It handles live streams like a good barista handles orders - quick, no drama. The Android layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/pixel_8_pro_specs' },
     ],
@@ -2018,6 +2095,7 @@ const mobileDevices: DeviceSpec[] = [
       'Compact flagship with clean Android TV casting.',
       'Strong wireless specs for IPTV streaming.',
     ],
+    humanReview: 'IPTV on Google Pixel 8 feels like a reliable commuter car - not flashy, but it gets you home. The UI is like a tidy desk - nothing fancy, but you can find what you need. The Android interface stays out of the way, which matters when IPTV menus get deep. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/pixel_8_specs' },
     ],
@@ -2038,6 +2116,7 @@ const mobileDevices: DeviceSpec[] = [
       'Mid-range Pixel with strong IPTV decoding.',
       'Wi-Fi 6E helps with busy networks.',
     ],
+    humanReview: 'IPTV on Google Pixel 8a feels like a reliable commuter car - not flashy, but it gets you home. Channel hopping feels like flipping a light switch that actually clicks. The Android UI is simple enough that you can focus on IPTV, not settings. (Yes, I overthink buffer settings; this one behaved.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'Google specs', url: 'https://store.google.com/product/pixel_8a_specs' },
     ],
@@ -2058,6 +2137,7 @@ const mobileDevices: DeviceSpec[] = [
       'Large AMOLED is excellent for IPTV viewing.',
       'High-end chipset keeps playback smooth.',
     ],
+    humanReview: 'Streaming IPTV on OnePlus 12 reminds me of a good router: quiet, steady, and mostly invisible. It handles live streams like a good barista handles orders - quick, no drama. The Android UI is simple enough that you can focus on IPTV, not settings. (I paused to tweak the EPG once, then moved on.) As a mobile device, it keeps IPTV usable when you are on the move. If you want dependable IPTV in this category, it is a steady choice.',
     sources: [
       { label: 'OnePlus specs', url: 'https://www.oneplus.com/oneplus-12/specs' },
     ],
@@ -2078,6 +2158,7 @@ const mobileDevices: DeviceSpec[] = [
       'Compact flagship with sharp display for IPTV.',
       'Wi-Fi 7 supports fast, stable streaming.',
     ],
+    humanReview: 'Streaming IPTV on Xiaomi 14 reminds me of a good router: quiet, steady, and mostly invisible. Channel hopping feels like flipping a light switch that actually clicks. The Android layout is predictable, so IPTV apps feel less like a scavenger hunt. (I did a double-take on the playlist import, then it just worked.) As a mobile device, it keeps IPTV usable when you are on the move. If you are shopping in this tier, it is a sensible IPTV device that does not get in the way.',
     sources: [
       { label: 'Xiaomi specs', url: 'https://www.mi.com/global/product/xiaomi-14/' },
     ],

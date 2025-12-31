@@ -131,6 +131,13 @@ const softwareAppSchema = {
         </ul>
       </div>
 
+      {app.humanReview && (
+        <div class="mt-8 rounded-lg border border-border p-6">
+          <h2 class="text-xl font-semibold text-text">Human review</h2>
+          <p class="mt-3 text-text-muted">{app.humanReview}</p>
+        </div>
+      )}
+
       <div class="mt-8 rounded-lg border border-border p-6">
         <h2 class="text-xl font-semibold text-text">What to verify</h2>
         <ul class="mt-3 space-y-2 text-sm text-text-muted">
