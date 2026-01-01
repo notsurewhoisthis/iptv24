@@ -63,7 +63,7 @@ const autoNoindexPaths = [
 
 const autoNoindex = autoNoindexPaths.some((path) => Astro.url.pathname.startsWith(path));
 const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
-const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-LSXXH6K02S';
 const gaInlineScript = gaMeasurementId
   ? `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
