@@ -1,109 +1,23 @@
 ---
-title: "Installation"
-description: "Get Virex set up in your project in under 5 minutes. This guide covers installation, authentication, and your first deployment."
+title: "First-time IPTV setup"
+description: "A simple, device-first checklist to get IPTV working with your own playlist and player app."
 section: "Getting Started"
 order: 2
 draft: false
 ---
 
-Getting started with Virex takes just a few minutes. This guide will walk you through installation, authentication, and deploying your first project.
+This is a short checklist to get IPTV working the right way on day one.
 
-## Prerequisites
+## What you need
+- A legal IPTV playlist or service credentials (M3U or Xtream Codes).
+- A supported device (phone, tablet, streaming box, or smart TV).
+- A stable internet connection.
 
-Before you begin, make sure you have:
+## Basic steps
+1. Pick a player app for your device.
+2. Add your playlist or login details.
+3. Set your EPG URL if your provider supplies one.
+4. Test a mix of live channels and VOD to confirm playback.
+5. Save favorites and create a short list for quick access.
 
-- **Node.js 18+** installed on your machine
-- A **Virex account** (sign up at [virex.example.com](https://virex.example.com))
-- **Git** installed and configured
-
-## Install the CLI
-
-The Virex CLI is the primary way to interact with the platform. Install it globally:
-
-```bash
-npm install -g @virex/cli
-```
-
-Verify the installation:
-
-```bash
-virex --version
-```
-
-## Authenticate
-
-Log in to your Virex account:
-
-```bash
-virex login
-```
-
-This opens your browser for authentication. Once complete, you're ready to create projects.
-
-## Initialize Your Project
-
-Navigate to your project directory and initialize Virex:
-
-```bash
-cd your-project
-virex init
-```
-
-This creates a `virex.config.js` file with sensible defaults:
-
-```javascript
-export default {
-  name: 'your-project',
-  framework: 'auto', // Virex auto-detects your framework
-  buildCommand: 'npm run build',
-  outputDirectory: 'dist',
-};
-```
-
-## Deploy
-
-Deploy your project with a single command:
-
-```bash
-virex deploy
-```
-
-That's it! Virex will:
-
-1. Build your project
-2. Upload the artifacts
-3. Deploy to a preview URL
-4. Return the live URL
-
-## Next Steps
-
-Now that you're set up:
-
-- Learn about [Configuration](/docs/configuration) options
-- Set up [environments](/docs/configuration#environments) for staging and production
-- Explore [Customization](/docs/customization) options
-
-## Troubleshooting
-
-### "Command not found: virex"
-
-Make sure npm's global bin directory is in your PATH. Run `npm bin -g` to find the location.
-
-### Authentication Issues
-
-Try logging out and back in:
-
-```bash
-virex logout
-virex login
-```
-
-### Build Failures
-
-Check that your build command works locally before deploying:
-
-```bash
-npm run build
-```
-
-Still stuck? Join our [Discord](https://discord.gg/virex) for help from the community.
+If you get stuck, jump to the troubleshooting section for the exact error you see.
