@@ -63,6 +63,7 @@ const autoNoindexPaths = [
 
 const autoNoindex = autoNoindexPaths.some((path) => Astro.url.pathname.startsWith(path));
 const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
 ---
 
 <!doctype html>
@@ -74,9 +75,11 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
     <link rel="preconnect" href="https://play-lh.googleusercontent.com" crossorigin />
     <link rel="preconnect" href="https://is1-ssl.mzstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.web3forms.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://play-lh.googleusercontent.com" />
     <link rel="dns-prefetch" href="https://is1-ssl.mzstatic.com" />
     <link rel="dns-prefetch" href="https://api.web3forms.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <SEO
       title={title}
       seoTitle={seoTitle}
@@ -95,6 +98,22 @@ const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
       person={person}
       product={product}
     />
+    {
+      gaMeasurementId && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+          <script is:inline>
+            {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', ${JSON.stringify(gaMeasurementId)}, {
+  anonymize_ip: true,
+  send_page_view: true
+});`}
+          </script>
+        </>
+      )
+    }
     <!-- Theme and announcement initialization - runs before page render to prevent flash -->
     <script is:inline>
       (function () {

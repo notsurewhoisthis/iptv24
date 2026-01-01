@@ -15,6 +15,7 @@ Set these in Cloudflare Pages and local `.env`:
 - `SITE_URL` for canonical links, sitemap, RSS
 - `WEB3FORMS_KEY` for contact and newsletter
 - `PUBLIC_VITALS_ENDPOINT` for optional CWV beacons
+- `PUBLIC_GA_MEASUREMENT_ID` for Google Analytics 4
 
 ## SEO defaults
 - Canonicals are derived from `SITE_URL` and the current path.

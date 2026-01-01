@@ -21,6 +21,7 @@ npm run preview
 - `SITE_URL`: production domain for canonical URLs and sitemap.
 - `WEB3FORMS_KEY`: contact and newsletter forms.
 - `PUBLIC_VITALS_ENDPOINT`: optional Core Web Vitals beacon endpoint.
+- `PUBLIC_GA_MEASUREMENT_ID`: Google Analytics 4 measurement ID.
 
 ## Project highlights
 - Programmatic app, device, and comparison pages are driven by `src/data/`.

@@ -37,6 +37,7 @@ npm run update:android-apps
 - Cloudflare Pages deploys on every push to `main` via `.github/workflows/cloudflare-pages.yml`.
 - Sitemap and canonical URLs use `SITE_URL` (set to `https://streamingguide.org` in production).
 - Contact and newsletter forms use Web3Forms (`WEB3FORMS_KEY`).
+- Google Analytics uses `PUBLIC_GA_MEASUREMENT_ID` (GA4).
 
 ## License
 MIT. See `LICENSE`.
