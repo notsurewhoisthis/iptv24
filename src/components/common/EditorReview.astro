@@ -1,0 +1,162 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+
+const normalized = (text || '').replace(/\s+/g, ' ').trim();
+const markerRegex = /(The listing highlights:|What the listing emphasizes:|Feature note:|Spec check:|Note to self:)/g;
+
+const sections: { type: string; value: string }[] = [];
+let lastIndex = 0;
+let lastMarker: string | null = null;
+
+const pushSection = (type: string | null, value: string) => {
+  const clean = value.replace(/\s+/g, ' ').replace(/\.\./g, '.').trim();
+  if (!clean) return;
+  sections.push({ type: type || 'text', value: clean });
+};
+
+for (const match of normalized.matchAll(markerRegex)) {
+  const marker = match[1];
+  if (lastMarker === null) {
+    pushSection('text', normalized.slice(0, match.index));
+  } else {
+    pushSection(lastMarker, normalized.slice(lastIndex, match.index));
+  }
+  lastMarker = marker;
+  lastIndex = match.index + marker.length;
+}
+
+if (lastMarker === null) {
+  pushSection('text', normalized);
+} else {
+  pushSection(lastMarker, normalized.slice(lastIndex));
+}
+
+const listingChunks = sections
+  .filter((section) =>
+    ['The listing highlights:', 'What the listing emphasizes:'].includes(section.type)
+  )
+  .map((section) => section.value);
+
+const featureNotes = sections
+  .filter((section) => section.type === 'Feature note:')
+  .map((section) => section.value);
+
+const specChecks = sections
+  .filter((section) => section.type === 'Spec check:')
+  .map((section) => section.value);
+
+const editorNotes = sections
+  .filter((section) => section.type === 'Note to self:')
+  .map((section) => section.value);
+
+const narrativeText = sections
+  .filter(
+    (section) =>
+      ![
+        'The listing highlights:',
+        'What the listing emphasizes:',
+        'Feature note:',
+        'Spec check:',
+        'Note to self:',
+      ].includes(section.type)
+  )
+  .map((section) => section.value)
+  .join(' ')
+  .trim();
+
+const splitSentences = (value: string) => {
+  if (!value) return [];
+  const matches = value.match(/[^.!?]+[.!?]+/g) || [];
+  const consumed = matches.join(' ');
+  const rest = value.replace(consumed, '').trim();
+  if (rest) matches.push(rest);
+  return matches.map((sentence) => sentence.trim()).filter(Boolean);
+};
+
+const buildParagraphs = (value: string) => {
+  const sentences = splitSentences(value);
+  const paragraphs: string[] = [];
+  let buffer: string[] = [];
+  let length = 0;
+
+  sentences.forEach((sentence) => {
+    if (buffer.length && length + sentence.length > 360) {
+      paragraphs.push(buffer.join(' '));
+      buffer = [sentence];
+      length = sentence.length;
+      return;
+    }
+    buffer.push(sentence);
+    length += sentence.length + 1;
+  });
+
+  if (buffer.length) {
+    paragraphs.push(buffer.join(' '));
+  }
+
+  return paragraphs;
+};
+
+const paragraphs = buildParagraphs(narrativeText);
+const intro = paragraphs.shift();
+const remaining = paragraphs;
+---
+
+<div class="space-y-5 text-text-muted">
+  {intro && <p>{intro}</p>}
+
+  {listingChunks.length > 0 && (
+    <div class="space-y-2">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-text">Listing highlights</h3>
+      {listingChunks.map((chunk) => (
+        <p>{chunk}</p>
+      ))}
+    </div>
+  )}
+
+  {specChecks.length > 0 && (
+    <div class="space-y-2">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-text">Specs at a glance</h3>
+      <ul class="list-disc space-y-1 pl-5">
+        {specChecks.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {featureNotes.length > 0 && (
+    <div class="space-y-2">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-text">Feature notes</h3>
+      <ul class="list-disc space-y-1 pl-5">
+        {featureNotes.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {editorNotes.length > 0 && (
+    <div class="space-y-2">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-text">Editor notes</h3>
+      <ul class="list-disc space-y-1 pl-5">
+        {editorNotes.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {remaining.length > 0 && (
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-text">Final takeaways</h3>
+      {remaining.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  )}
+</div>
