@@ -64,6 +64,15 @@ const autoNoindexPaths = [
 const autoNoindex = autoNoindexPaths.some((path) => Astro.url.pathname.startsWith(path));
 const resolvedNoindex = typeof noindex === 'boolean' ? noindex : autoNoindex;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
+const gaInlineScript = gaMeasurementId
+  ? `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}', {
+  anonymize_ip: true,
+  send_page_view: true
+});`
+  : '';
 ---
 
 <!doctype html>
@@ -102,15 +111,7 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || '';
       gaMeasurementId && (
         <>
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-          <script is:inline>
-            {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', ${JSON.stringify(gaMeasurementId)}, {
-  anonymize_ip: true,
-  send_page_view: true
-});`}
-          </script>
+          <script is:inline set:html={gaInlineScript}></script>
         </>
       )
     }
