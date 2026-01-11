@@ -1,0 +1,61 @@
+---
+/**
+ * RelatedContent - Shows related articles/guides based on tags or category
+ * 
+ * @description
+ * Displays a grid of related content to improve internal linking and user engagement.
+ * 
+ * @example
+ * ```astro
+ * <RelatedContent
+ *   title="Related Guides"
+ *   items={[
+ *     { title: "Guide 1", url: "/guides/guide-1/", description: "...", date: new Date() }
+ *   ]}
+ * />
+ * ```
+ */
+
+interface ContentItem {
+  title: string;
+  url: string;
+  description?: string;
+  date?: Date;
+}
+
+interface Props {
+  /** Section title */
+  title?: string;
+  /** Items to display */
+  items: ContentItem[];
+  /** Maximum items to show */
+  maxItems?: number;
+}
+
+const { title = 'Related Content', items, maxItems = 3 } = Astro.props;
+const displayItems = items.slice(0, maxItems);
+---
+
+{displayItems.length > 0 && (
+  <div class="mt-10 rounded-lg border border-border p-6">
+    <h2 class="text-lg font-semibold text-text mb-4">{title}</h2>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {displayItems.map((item) => (
+        <a
+          href={item.url}
+          class="block rounded-md border border-border p-4 hover:border-primary transition-colors"
+        >
+          <h3 class="font-medium text-text text-sm">{item.title}</h3>
+          {item.description && (
+            <p class="mt-2 text-xs text-text-muted line-clamp-2">{item.description}</p>
+          )}
+          {item.date && (
+            <p class="mt-2 text-xs text-text-muted">
+              {item.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </p>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+)}

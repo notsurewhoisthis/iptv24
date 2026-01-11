@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import ItemListSchema from '@/components/common/ItemListSchema.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '@/config';
 import { deviceCategories, getDevicesByCategory, getDeviceSpecValue, type DeviceSpec } from '@/data/devices';
@@ -27,12 +28,26 @@ const getDeviceHighlights = (device: DeviceSpec) => {
     })
     .filter(Boolean) as { key: string; value: string }[];
 };
+
+// Generate ItemList schema items from all categories
+const listItems = deviceCategories.flatMap(({ category }) => 
+  getDevicesByCategory(category).slice(0, 3).map((device) => ({
+    name: device.name,
+    url: `/devices/models/${device.slug}/`,
+    description: `${device.name} - ${device.os} streaming device for IPTV`,
+  }))
+);
 ---
 
 <MarketingLayout
   title={`IPTV Devices - ${siteConfig.name}`}
   description="Real device comparisons for streaming sticks, streaming boxes, smart TVs, and mobile devices used in IPTV streaming."
 >
+  <ItemListSchema 
+    name="Best IPTV Streaming Devices" 
+    description="Top streaming sticks, boxes, smart TVs, and mobile devices for IPTV playback with real specs and reviews"
+    items={listItems}
+  />
   <section class="py-section">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="text-center mb-12">

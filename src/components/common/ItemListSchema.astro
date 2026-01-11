@@ -1,0 +1,66 @@
+---
+/**
+ * ItemListSchema - Generates ItemList structured data for category/listing pages
+ * 
+ * @description
+ * Creates JSON-LD ItemList schema to help Google understand content lists.
+ * This can enable carousel-style rich results in search.
+ * 
+ * @example
+ * ```astro
+ * <ItemListSchema
+ *   name="Best IPTV Apps"
+ *   description="Top-rated IPTV apps for streaming"
+ *   items={[
+ *     { name: "App 1", url: "/apps/app-1/", image: "/images/app1.png" },
+ *     { name: "App 2", url: "/apps/app-2/" }
+ *   ]}
+ * />
+ * ```
+ */
+import { siteConfig } from '@/config';
+
+interface ListItem {
+  name: string;
+  url: string;
+  description?: string;
+  image?: string;
+  position?: number;
+}
+
+interface Props {
+  /** Name of the list (e.g., "Best IPTV Apps for iOS") */
+  name: string;
+  /** Description of the list */
+  description?: string;
+  /** Array of items to include in the list */
+  items: ListItem[];
+  /** Optional list type - defaults to ItemList */
+  listType?: 'ItemList' | 'OfferCatalog';
+}
+
+const { name, description, items, listType = 'ItemList' } = Astro.props;
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': listType,
+  name: name,
+  description: description || `${name} on ${siteConfig.name}`,
+  numberOfItems: items.length,
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: item.position || index + 1,
+    name: item.name,
+    url: new URL(item.url, siteConfig.url).href,
+    ...(item.description ? { description: item.description } : {}),
+    ...(item.image ? { 
+      image: {
+        '@type': 'ImageObject',
+        url: new URL(item.image, siteConfig.url).href,
+      }
+    } : {}),
+  })),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />

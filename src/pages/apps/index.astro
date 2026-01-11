@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import ItemListSchema from '@/components/common/ItemListSchema.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '@/config';
 import { getTopApps, slugify, getAppSummary } from '@/data/apps';
@@ -11,12 +12,36 @@ const posts = [...entries].sort(
 
 const iosApps = getTopApps('ios', 3);
 const macApps = getTopApps('macos', 3);
+
+// Generate ItemList schema items
+const listItems = [
+  ...iosApps.map(({ app }) => ({
+    name: app.name,
+    url: `/apps/ios/${slugify(app.name)}/`,
+    description: getAppSummary(app),
+  })),
+  ...macApps.map(({ app }) => ({
+    name: app.name,
+    url: `/apps/macos/${slugify(app.name)}/`,
+    description: getAppSummary(app),
+  })),
+  ...posts.slice(0, 5).map((post) => ({
+    name: post.data.title,
+    url: `/apps/${post.slug ?? post.id}/`,
+    description: post.data.description,
+  })),
+];
 ---
 
 <MarketingLayout
   title={`IPTV Apps - ${siteConfig.name}`}
   description="Real IPTV app comparisons for iOS and macOS with App Store data and editorial picks."
 >
+  <ItemListSchema 
+    name="Best IPTV Apps" 
+    description="Top-rated IPTV player apps for iOS, macOS, and Android with App Store data and expert reviews"
+    items={listItems}
+  />
   <section class="py-section">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="text-center mb-12">

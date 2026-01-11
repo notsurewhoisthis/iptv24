@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
+import ItemListSchema from '@/components/common/ItemListSchema.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '@/config';
 import { platforms } from '@/data/troubleshooting-platforms';
@@ -8,12 +9,31 @@ const entries = await getCollection('troubleshooting', ({ data }) => !data.draft
 const posts = [...entries].sort(
   (a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime()
 );
+
+// Generate ItemList schema items
+const listItems = [
+  ...platforms.slice(0, 8).map((platform) => ({
+    name: `${platform.name} Troubleshooting`,
+    url: `/troubleshooting/platforms/${platform.slug}/`,
+    description: `Fix IPTV issues on ${platform.name} (${platform.os})`,
+  })),
+  ...posts.slice(0, 10).map((post) => ({
+    name: post.data.title,
+    url: `/troubleshooting/${post.slug ?? post.id}/`,
+    description: post.data.description,
+  })),
+];
 ---
 
 <MarketingLayout
   title={`IPTV Troubleshooting - ${siteConfig.name}`}
   description="Fix buffering, playlist, EPG, VOD, and network issues with proven IPTV steps."
 >
+  <ItemListSchema 
+    name="IPTV Troubleshooting Guides" 
+    description="Step-by-step fixes for common IPTV issues including buffering, EPG, login errors, and playback problems"
+    items={listItems}
+  />
   <section class="py-section bg-surface">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 lg:grid-cols-2 items-center">

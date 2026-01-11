@@ -1,0 +1,54 @@
+---
+/**
+ * LastUpdated - Displays a visible "Last Updated" date for content freshness
+ * 
+ * @description
+ * Shows when content was last updated, improving user trust and SEO freshness signals.
+ * 
+ * @example
+ * ```astro
+ * <LastUpdated 
+ *   publishedDate={new Date('2025-01-01')} 
+ *   updatedDate={new Date('2025-06-15')} 
+ * />
+ * ```
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** Original publish date */
+  publishedDate: Date;
+  /** Last updated date (optional - if not provided, shows published date) */
+  updatedDate?: Date;
+  /** Show in compact mode */
+  compact?: boolean;
+}
+
+const { publishedDate, updatedDate, compact = false } = Astro.props;
+
+const displayDate = updatedDate || publishedDate;
+const isUpdated = updatedDate && updatedDate.getTime() !== publishedDate.getTime();
+const formattedDate = displayDate.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+{compact ? (
+  <span class="inline-flex items-center gap-1 text-xs text-text-muted">
+    <Icon name="lucide:refresh-cw" class="w-3 h-3" />
+    {isUpdated ? 'Updated' : 'Published'} {formattedDate}
+  </span>
+) : (
+  <div class="flex items-center gap-2 text-sm text-text-muted border-t border-border pt-4 mt-6">
+    <Icon name="lucide:refresh-cw" class="w-4 h-4" />
+    <span>
+      {isUpdated ? (
+        <>Last updated: <time datetime={displayDate.toISOString()}>{formattedDate}</time></>
+      ) : (
+        <>Published: <time datetime={displayDate.toISOString()}>{formattedDate}</time></>
+      )}
+    </span>
+  </div>
+)}
