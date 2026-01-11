@@ -25,8 +25,8 @@ export const author = import.meta.env.SITE_AUTHOR || 'Streaming Guide Lab';
 /** Path to logo file (relative to /public) */
 export const logo = '/images/logo.png';
 
-/** Path to Open Graph image (relative to /public) */
-export const ogImage = '/images/logo.png';
+/** Path to Open Graph image (1200x630 for optimal social sharing) */
+export const ogImage = '/images/og-default.png';
 
 /** Social media links */
 export const social: SocialLinks = {
