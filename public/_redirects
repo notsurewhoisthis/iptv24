@@ -1,1 +1,11 @@
-/authors/iptv24-lab/ /authors/streaming-guide-lab/ 301
+# Cloudflare Pages Redirects
+# https://developers.cloudflare.com/pages/platform/redirects/
+
+# Force www to non-www (if needed)
+# https://www.streamingguide.org/* https://streamingguide.org/:splat 301
+
+# HTTP to HTTPS is handled automatically by Cloudflare, but we ensure canonical
+# These are additional helpful redirects
+
+# Old URL patterns to new (add as needed)
+# /old-path /new-path 301
