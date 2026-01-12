@@ -2,6 +2,7 @@
 title: "IPTV for Sports Streaming 2026: No-Buffer Setup Guide"
 description: "Complete guide to watching live sports on IPTV without buffering. Covers best devices, apps, settings, and network optimization for sports streaming."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-default.png"
 tags: ["sports", "live-streaming", "buffering", "setup", "iptv"]

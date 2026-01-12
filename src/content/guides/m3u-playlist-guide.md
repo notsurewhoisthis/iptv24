@@ -2,6 +2,7 @@
 title: "M3U Playlist Complete Guide 2026: Format, Editing, Troubleshooting"
 description: "Everything you need to know about M3U playlists for IPTV: format explained, how to edit playlists, common errors and fixes, and best practices."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-default.png"
 tags: ["m3u", "playlist", "setup", "troubleshooting", "iptv"]

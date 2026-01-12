@@ -2,6 +2,7 @@
 title: "How to Add an M3U Playlist on Apple TV"
 description: "Quick Apple TV IPTV M3U setup with playlist import, EPG sync, and playback checks."
 publishedDate: 2025-03-05
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["apple-tv", "m3u", "iptv", "guide"]

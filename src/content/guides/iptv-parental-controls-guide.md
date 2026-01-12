@@ -2,6 +2,7 @@
 title: "IPTV Parental Controls 2026: Complete Guide to Child-Safe Streaming"
 description: "Set up parental controls on IPTV to block adult channels, set age restrictions, and create a safe streaming environment for kids on any device."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/parental-control-guide.png"
 tags: ["parental-controls", "kids", "safety", "family", "setup"]

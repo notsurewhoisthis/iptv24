@@ -2,6 +2,7 @@
 title: "Xtream Codes API Setup Guide 2026: Every Device Covered"
 description: "Complete guide to setting up IPTV using Xtream Codes API on Fire TV, Android TV, iOS, and more. Includes troubleshooting for login errors."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-default.png"
 tags: ["xtream-codes", "setup", "api", "login", "iptv"]

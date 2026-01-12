@@ -2,6 +2,7 @@
 title: "TiviMate vs IPTV Smarters Pro 2026: Complete Comparison"
 description: "Head-to-head comparison of TiviMate and IPTV Smarters Pro covering features, interface, performance, and which IPTV player is best for your device."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-default.png"
 tags: ["tivimate", "iptv-smarters", "android", "comparison", "iptv-apps"]
@@ -141,7 +142,7 @@ Both support:
 
 ### TiviMate Setup
 
-1. Install from Google Play Store or Amazon App Store
+1. Install from [Google Play Store](https://play.google.com/store/apps/details?id=ar.tvplayer.tv) or [Amazon App Store](https://www.amazon.com/dp/B0842FVPHX)
 2. Open app and select "Add playlist"
 3. Choose Xtream Codes or M3U
 4. Enter credentials or URL
@@ -150,7 +151,7 @@ Both support:
 
 ### IPTV Smarters Pro Setup
 
-1. Install from app store (varies by platform)
+1. Install from [Google Play Store](https://play.google.com/store/apps/details?id=com.nst.iptvsmarterstvbox) or [App Store (iOS)](https://apps.apple.com/app/iptv-smarters-pro/id1383614816)
 2. Select "Add User" on launch
 3. Choose "Login with Xtream Codes API" or "Load playlist/file"
 4. Enter details and tap Add
@@ -158,6 +159,7 @@ Both support:
 6. EPG syncs if provider includes it
 
 Both are straightforward, but TiviMate's initial setup feels more polished.
+
 
 ## Performance on Different Devices
 

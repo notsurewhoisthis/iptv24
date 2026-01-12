@@ -2,6 +2,7 @@
 title: "IPTV on Fire TV Stick 2026: Complete Setup & Optimization Guide"
 description: "Step-by-step guide to setting up IPTV on Fire TV Stick and Fire TV Stick 4K Max. Covers app installation, sideloading, settings, and performance tips."
 publishedDate: 2026-01-11
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-default.png"
 tags: ["fire-tv", "firestick", "setup", "amazon", "iptv"]
@@ -44,7 +45,7 @@ Fire TV Stick is the most popular device for IPTV streaming. This guide covers s
 | Fire TV Stick 4K | ✅ | 5 | 1.5 GB | Good for 4K |
 | **Fire TV Stick 4K Max** | ✅ | 6E | 2 GB | **Best for IPTV** |
 
-**Recommendation**: Get the **Fire TV Stick 4K Max** for the best IPTV experience with faster channel switching and 4K support.
+**Recommendation**: Get the [Fire TV Stick 4K Max](https://www.amazon.com/dp/B0BP9SNVH9) for the best IPTV experience with faster channel switching and 4K support.
 
 ## Initial Setup
 
@@ -73,12 +74,12 @@ Downloader makes sideloading easy:
 These apps are available directly from the store:
 
 **IPTV Smarters Pro:**
-1. Search "IPTV Smarters Pro" in the store
+1. Search "IPTV Smarters Pro" in the [Amazon App Store](https://www.amazon.com/dp/B07K3FQMXJ) or install directly
 2. Click Get/Download
 3. Open and set up with your credentials
 
 **TiviMate:**
-1. Search "TiviMate" in the store
+1. Search "TiviMate" in the [Amazon App Store](https://www.amazon.com/dp/B0842FVPHX) or install directly
 2. Download the free version
 3. Upgrade to Premium for multiple playlists ($4.99/year)
 
@@ -180,7 +181,7 @@ If running low on space:
 
 ### Using Ethernet (Best)
 
-Fire TV Stick doesn't have built-in Ethernet. Use the Amazon Ethernet Adapter ($15):
+Fire TV Stick doesn't have built-in Ethernet. Use the [Amazon Ethernet Adapter](https://www.amazon.com/dp/B074TC662N) ($15):
 
 1. Connect Ethernet adapter to Fire TV Stick's USB port
 2. Connect Ethernet cable from adapter to router

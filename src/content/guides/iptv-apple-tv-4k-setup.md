@@ -2,6 +2,7 @@
 title: "IPTV Apple TV 4K Setup (tvOS 17 Step-by-Step)"
 description: "A clear Apple TV 4K IPTV setup guide with playlist import, EPG sync, and playback settings."
 publishedDate: 2025-03-03
+updatedDate: 2026-01-12
 author: "Streaming Guide Lab"
 image: "/images/og-image.png"
 tags: ["apple-tv", "setup", "iptv", "tvos"]
